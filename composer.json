@@ -15,6 +15,20 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "witals/framework": "*"
+        "php": "^8.1",
+        "witals/framework": "dev-master",
+        "spiral/roadrunner-http": "^3.0",
+        "spiral/roadrunner-worker": "^3.0",
+        "nyholm/psr7": "^1.8",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "spiral/roadrunner-cli": "^2.6"
+    },
+    "scripts": {
+        "rr:download": "vendor/bin/rr get-binary",
+        "rr:serve": "./rr.exe serve",
+        "rr:serve:dev": "./rr.exe serve -d",
+        "serve": "php -S localhost:8000 -t public"
     }
 }

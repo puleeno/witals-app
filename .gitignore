@@ -1,1 +1,9 @@
-/vendor/
+/vendor
+/.idea
+/.vscode
+.env
+.rr.yaml.lock
+rr
+rr.exe
+composer.lock
+*.log

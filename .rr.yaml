@@ -1,0 +1,45 @@
+version: "3"
+
+rpc:
+  listen: tcp://127.0.0.1:6001
+
+server:
+  command: "php worker.php"
+  relay: pipes
+  relay_timeout: 20s
+
+http:
+  address: 127.0.0.1:8800
+  middleware: ["static", "gzip"]
+  static:
+    dir: "public"
+    forbid: [".php", ".htaccess"]
+  pool:
+    num_workers: 4
+    max_jobs: 0
+    allocate_timeout: 60s
+    destroy_timeout: 60s
+    supervisor:
+      watch_tick: 1s
+      ttl: 0s
+      idle_ttl: 10s
+      exec_ttl: 60s
+      max_worker_memory: 128
+
+logs:
+  mode: development
+  level: debug
+  encoding: console
+  output: stdout
+  err_output: stderr
+
+reload:
+  interval: 1s
+  patterns: [".php"]
+  services:
+    http:
+      dirs: ["app", "public"]
+      ignore: ["vendor"]
+
+metrics:
+  address: localhost:2112
