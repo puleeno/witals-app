@@ -87,11 +87,26 @@
         
         <div class="posts">
             <h3>Bài viết mới nhất (Từ WordPress DB):</h3>
-            <?php foreach($posts as $post): ?>
-                <div class="post-card">
-                    <div class="post-title"><?php echo $post['title']; ?> <span class="badge"><?php echo $post['type']; ?></span></div>
-                    <div class="post-meta">ID: <?php echo $post['id']; ?> • Ngày đăng: <?php echo $post['date']; ?></div>
+            <?php if (!empty($posts_error)): ?>
+                <div class="post-card" style="border-left-color: #ef4444;">
+                    <div class="post-title" style="color: #ef4444;">Lỗi: <?php echo $posts_error; ?></div>
+                    <div class="post-meta">Vui lòng kiểm tra cấu hình Database trong .env hoặc wp-config.php</div>
                 </div>
+            <?php endif; ?>
+
+            <?php if (empty($posts) && empty($posts_error)): ?>
+                <div class="post-card">
+                    <div class="post-title">Không tìm thấy bài viết nào.</div>
+                </div>
+            <?php endif; ?>
+
+            <?php foreach($posts as $post): ?>
+                <?php if (is_array($post)): ?>
+                <div class="post-card">
+                    <div class="post-title"><?php echo $post['title'] ?? 'N/A'; ?> <span class="badge"><?php echo $post['type'] ?? 'post'; ?></span></div>
+                    <div class="post-meta">ID: <?php echo $post['id'] ?? '?'; ?> • Ngày đăng: <?php echo $post['date'] ?? 'N/A'; ?></div>
+                </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>

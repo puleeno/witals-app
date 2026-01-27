@@ -103,6 +103,7 @@ class Kernel implements KernelContract
 
         // Demo Data: Load posts via CycleORM
         $postsData = [];
+        $postsError = null;
         try {
             if ($this->app->has(\Cycle\ORM\ORMInterface::class)) {
                 $orm = $this->app->make(\Cycle\ORM\ORMInterface::class);
@@ -126,10 +127,10 @@ class Kernel implements KernelContract
                     ];
                 }
             } else {
-                $postsData = ['error' => 'ORM Not Configured'];
+                $postsError = 'ORM Not Configured';
             }
         } catch (\Throwable $e) {
-            $postsData = ['error' => 'ORM Error: ' . $e->getMessage()];
+            $postsError = 'ORM Error: ' . $e->getMessage();
         }
 
         // Use Theme Engine to render if not a JSON request
@@ -143,6 +144,7 @@ class Kernel implements KernelContract
             $html = $themeManager->render('index', [
                 'title' => 'Home',
                 'posts' => $postsData,
+                'posts_error' => $postsError,
                 'themes' => $themeManager->all()
             ]);
 
