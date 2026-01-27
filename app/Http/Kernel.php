@@ -93,11 +93,43 @@ class Kernel implements KernelContract
             }
         }
 
+        // Demo Data: Load posts via CycleORM
+        $postsData = [];
+        try {
+            if ($this->app->has(\Cycle\ORM\ORMInterface::class)) {
+                $orm = $this->app->make(\Cycle\ORM\ORMInterface::class);
+                $repo = $orm->getRepository(\App\Models\Post::class);
+                
+                // Fetch 5 latest items (posts or pages)
+                // Note: Using select() directly from repository might check if SelectRepository is used
+                $posts = $repo->select()
+                    ->where('post_status', 'publish')
+                    ->where('post_type', 'IN', ['post', 'page'])
+                    ->orderBy('post_date', 'DESC')
+                    ->limit(5)
+                    ->fetchAll();
+
+                foreach ($posts as $post) {
+                    $postsData[] = [
+                        'id' => $post->id,
+                        'title' => $post->title,
+                        'type' => $post->type,
+                        'date' => $post->date->format('Y-m-d H:i:s'),
+                    ];
+                }
+            } else {
+                $postsData = ['error' => 'ORM Not Configured'];
+            }
+        } catch (\Throwable $e) {
+            $postsData = ['error' => 'ORM Error: ' . $e->getMessage()];
+        }
+
         return Response::json([
             'message' => 'Welcome to PrestoWorld Native!',
             'runtime' => $this->getEnvironmentName(),
             'modules' => $modules,
             'wordpress_enabled' => config('modules.enabled.wordpress') ? 'Yes' : 'No',
+            'latest_posts' => $postsData,
         ]);
     }
 
@@ -124,6 +156,7 @@ class Kernel implements KernelContract
                 'name' => 'Witals Framework',
                 'environment' => $this->getEnvironmentName(),
                 'is_roadrunner' => $this->app->isRoadRunner(),
+                'database' => $this->checkDatabase(),
             ],
             'php' => [
                 'version' => PHP_VERSION,
@@ -141,6 +174,22 @@ class Kernel implements KernelContract
                 'uptime' => $this->getUptime(),
             ],
         ]);
+    }
+
+    protected function checkDatabase(): string
+    {
+        try {
+            if (!$this->app->has(\Cycle\Database\DatabaseProviderInterface::class)) {
+                return 'Not Configured';
+            }
+            $dbal = $this->app->make(\Cycle\Database\DatabaseProviderInterface::class);
+            $db = $dbal->database();
+            $driver = $db->getDriver();
+            $driver->connect(); // Ensure connection is established
+            return 'Connected (' . get_class($driver) . ')';
+        } catch (\Throwable $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     protected function getEnvironmentName(): string
