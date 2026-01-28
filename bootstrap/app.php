@@ -1,9 +1,8 @@
 <?php
 
 /**
- * PrestoWorld Application Bootstrap
- * 
- * This file initializes the PrestoWorld application and is shared across all runtimes:
+ * Application Bootstrap
+ * This file initializes the application and is shared across all runtimes:
  * - Traditional (PHP-FPM/Apache/Nginx)
  * - RoadRunner
  * - ReactPHP
@@ -13,33 +12,13 @@
 
 declare(strict_types=1);
 
-use App\Foundation\Application;
+use Witals\Framework\Application;
 use Witals\Framework\Contracts\RuntimeType;
+use App\Http\Kernel;
 
-use App\Foundation\Config\ChainConfigLoader;
-use App\Foundation\Config\ConfigLoader;
-use App\Foundation\Config\Dotenv\DotenvReader;
-use App\Foundation\Config\Dotenv\DotenvTransformer;
-use App\Foundation\Config\WordPress\WordPressConfigReader;
-use App\Foundation\Config\WordPress\WordPressConfigTransformer;
-
-// 1. Initialize Chain Config Loader
-$loader = new ChainConfigLoader();
-
-// 2. Add Native .env loader (High Priority)
-$loader->addLoader(
-    new ConfigLoader(new DotenvReader(), new DotenvTransformer()),
-    __DIR__ . '/../.env'
-);
-
-// 3. Add WordPress config loader (Fallback Strategy / Zero Migrate)
-$loader->addLoader(
-    new ConfigLoader(new WordPressConfigReader(), new WordPressConfigTransformer()),
-    __DIR__ . '/../public/wp-config.php'
-);
-
-// 4. Execute Load
-$loader->load();
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->safeLoad();
 
 // Auto-detect runtime or use explicitly set environment
 $runtime = null;
@@ -47,21 +26,38 @@ if (defined('WITALS_RUNTIME')) {
     $runtime = RuntimeType::from(WITALS_RUNTIME);
 }
 
-// Create PrestoWorld application instance
+// Create application instance with auto-detected or explicit runtime
 $app = new Application(
     basePath: dirname(__DIR__),
     runtime: $runtime
 );
 
-// Bind HTTP Kernel
+// Bind important interfaces
 $app->singleton(
     \Witals\Framework\Contracts\Http\Kernel::class,
     \App\Http\Kernel::class
 );
 
-// Load service providers from config
-$providers = $app->config('app.providers', []);
-$app->registerProviders($providers);
+// Register Enterprise Logger
+$app->singleton(\Psr\Log\LoggerInterface::class, function ($app) {
+    return new \Witals\Framework\Log\LogManager([
+        'default'  => getenv('APP_DEBUG') === 'true' ? 'debug' : 'standard',
+        'channels' => [
+            'standard' => [
+                'driver'    => 'standard',
+                'path'      => $app->basePath('storage/logs/witals.log'),
+                'buffered'  => true,
+                'formatter' => 'json', // Use JSON for enterprise log analysis
+            ],
+            'debug' => [
+                'driver' => 'debug',
+            ],
+        ],
+    ]);
+});
+
+// Register service providers
+$app->registerConfiguredProviders();
 
 // Configure based on runtime type
 if ($app->isLongRunning()) {

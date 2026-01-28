@@ -4,12 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "PrestoWorld\\": "presto/"
-        },
-        "files": [
-            "app/Support/helpers.php"
-        ]
+            "App\\": "app/"
+        }
     },
     "authors": [
         {
@@ -25,14 +21,7 @@
         "spiral/roadrunner-worker": "^3.0",
         "nyholm/psr7": "^1.8",
         "vlucas/phpdotenv": "^5.5",
-        "psr/log": "^3.0",
-        "cycle/orm": "^2.0",
-        "cycle/database": "^2.0",
-        "cycle/annotated": "^3.0",
-        "psr/http-server-middleware": "^1.0@dev",
-        "psr/http-server-handler": "^1.0@dev",
-        "spiral/stempler": "^3.17@dev",
-        "laravel/serializable-closure": "2.x-dev"
+        "psr/log": "^3.0"
     },
     "require-dev": {
         "spiral/roadrunner-cli": "^2.6"
