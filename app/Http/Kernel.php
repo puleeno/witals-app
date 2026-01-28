@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
  */
 class Kernel implements KernelContract
 {
-    use KernelStateDemoTrait;
+
 
     protected Application $app;
     protected array $middleware = [];
@@ -33,6 +33,14 @@ class Kernel implements KernelContract
      */
     public function handle(Request $request): Response
     {
+        // Reset debug bar for the current request
+        if ($this->app->has(\App\Foundation\Debug\DebugBar::class)) {
+            $this->app->make(\App\Foundation\Debug\DebugBar::class)->reset();
+        }
+
+        // Bind the current request instance to the container
+        $this->app->instance(Request::class, $request);
+
         $this->logger->info("Incoming request: {method} {uri}", [
             'method' => $request->method(),
             'uri' => $request->uri(),
@@ -58,11 +66,6 @@ class Kernel implements KernelContract
                 return $this->handleInfo($request);
             }
 
-            // Route: State Demo
-            if ($path === '/state-demo') {
-                return $this->handleStateDemo($request);
-            }
-
             // 404 Not Found
             return Response::json([
                 'error' => 'Not Found',
@@ -82,87 +85,114 @@ class Kernel implements KernelContract
      */
     protected function handleHome(Request $request): Response
     {
-        $html = <<<HTML
-        <!DOCTYPE html>
-        <html lang="vi">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Witals Framework</title>
-            <style>
-                * { margin: 0; padding: 0; box-sizing: border-box; }
-                body {
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    min-height: 100vh;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: white;
-                }
-                .container {
-                    text-align: center;
-                    padding: 2rem;
-                }
-                h1 {
-                    font-size: 3rem;
-                    margin-bottom: 1rem;
-                    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-                }
-                .badge {
-                    display: inline-block;
-                    padding: 0.5rem 1rem;
-                    background: rgba(255,255,255,0.2);
-                    border-radius: 20px;
-                    margin: 0.5rem;
-                    backdrop-filter: blur(10px);
-                }
-                .info {
-                    margin-top: 2rem;
-                    padding: 1.5rem;
-                    background: rgba(255,255,255,0.1);
-                    border-radius: 10px;
-                    backdrop-filter: blur(10px);
-                }
-                .links {
-                    margin-top: 2rem;
-                }
-                .links a {
-                    color: white;
-                    text-decoration: none;
-                    padding: 0.75rem 1.5rem;
-                    background: rgba(255,255,255,0.2);
-                    border-radius: 5px;
-                    margin: 0.5rem;
-                    display: inline-block;
-                    transition: all 0.3s;
-                }
-                .links a:hover {
-                    background: rgba(255,255,255,0.3);
-                    transform: translateY(-2px);
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>🚀 Witals Framework</h1>
-                <div class="badge">Environment: {$this->getEnvironmentName()}</div>
-                <div class="info">
-                    <p><strong>PHP Version:</strong> {$this->getPhpVersion()}</p>
-                    <p><strong>Server:</strong> {$this->getServerInfo()}</p>
-                    <p><strong>Memory Usage:</strong> {$this->getMemoryUsage()}</p>
-                </div>
-                <div class="links">
-                    <a href="/health">Health Check</a>
-                    <a href="/info">System Info</a>
-                    <a href="/state-demo">State Demo</a>
-                </div>
-            </div>
-        </body>
-        </html>
-        HTML;
+        $modules = [];
+        if (app()->has(\App\Foundation\Module\ModuleManager::class)) {
+            $manager = app(\App\Foundation\Module\ModuleManager::class);
+            foreach ($manager->all() as $module) {
+                $modules[] = [
+                    'name' => $module->getName(),
+                    'version' => $module->getVersion(),
+                    'priority' => $module->getPriority(),
+                    'enabled' => $module->isEnabled() ? 'Yes' : 'No',
+                    'loaded' => $manager->isLoaded($module->getName()) ? 'Yes' : 'No',
+                    'path' => $module->getPath(),
+                    'type' => $module->getType(),
+                ];
+            }
+        }
 
-        return Response::html($html);
+        // Demo Data: Load posts via CycleORM
+        $postsData = [];
+        $postsError = null;
+        try {
+            if ($this->app->has(\Cycle\ORM\ORMInterface::class)) {
+                $orm = $this->app->make(\Cycle\ORM\ORMInterface::class);
+                $repo = $orm->getRepository(\App\Models\Post::class);
+                
+                // Fetch 5 latest items (posts or pages)
+                // Note: Using select() directly from repository might check if SelectRepository is used
+                $posts = $repo->select()
+                    ->where('post_status', 'publish')
+                    ->where('post_type', 'IN', ['post', 'page'])
+                    ->orderBy('post_date', 'DESC')
+                    ->limit(5)
+                    ->fetchAll();
+
+                foreach ($posts as $post) {
+                    $postsData[] = [
+                        'id' => $post->id,
+                        'title' => $post->title,
+                        'type' => $post->type,
+                        'date' => $post->date->format('Y-m-d H:i:s'),
+                    ];
+                }
+            } else {
+                $postsError = 'ORM Not Configured';
+            }
+        } catch (\Throwable $e) {
+            $postsError = 'ORM Error: ' . $e->getMessage();
+        }
+
+        // Use Theme Engine to render if not a JSON request
+        if (str_contains($request->header('accept', ''), 'text/html') || !$request->header('accept')) {
+            $themeManager = $this->app->make(\App\Foundation\Theme\ThemeManager::class);
+            $hooks = $this->app->make('hooks');
+
+
+            // Trigger Action
+            $hooks->doAction('pre_render_home');
+
+            // Apply Filter to Title
+            $pageTitle = $hooks->applyFilters('home_page_title', 'Home');
+            
+            // Allow dynamic theme switching for demo
+            $targetTheme = $request->query('theme', env('THEME_ACTIVE', 'default'));
+            $themeManager->setActiveTheme($targetTheme);
+
+            $html = $themeManager->render('index', [
+                'title' => $pageTitle, // Used filtered title
+                'posts' => $postsData,
+                'posts_error' => $postsError,
+                'themes' => $themeManager->all()
+            ]);
+
+            // Apply Filter to HTML Content
+            $html = $hooks->applyFilters('home_page_content', $html);
+
+            // Inject Debug Bar
+            if (env('APP_DEBUG_BAR', false)) {
+                $debugBar = $this->app->make(\App\Foundation\Debug\DebugBar::class);
+                $debugBarHtml = $debugBar->render();
+                
+                if (str_contains($html, '</body>')) {
+                    $html = str_replace('</body>', $debugBarHtml . '</body>', $html);
+                } else {
+                    $html .= $debugBarHtml;
+                }
+            }
+
+            return \Witals\Framework\Http\Response::html($html);
+        }
+
+        $themesInfo = [];
+        $themeManager = $this->app->make(\App\Foundation\Theme\ThemeManager::class);
+        foreach ($themeManager->all() as $theme) {
+            $themesInfo[] = [
+                'name' => $theme->getName(),
+                'title' => $theme->getTitle(),
+                'type' => $theme->getType(),
+                'active' => $theme->isActive()
+            ];
+        }
+
+        return Response::json([
+            'message' => 'Welcome to PrestoWorld Native!',
+            'runtime' => $this->getEnvironmentName(),
+            'modules' => $modules,
+            'wordpress_enabled' => config('modules.enabled.wordpress') ? 'Yes' : 'No',
+            'latest_posts' => $postsData,
+            'available_themes' => $themesInfo
+        ]);
     }
 
     /**
@@ -188,6 +218,10 @@ class Kernel implements KernelContract
                 'name' => 'Witals Framework',
                 'environment' => $this->getEnvironmentName(),
                 'is_roadrunner' => $this->app->isRoadRunner(),
+                'database' => $this->checkDatabase(),
+                'db_user' => env('DB_USERNAME', 'unknown'),
+                'db_prefix' => env('WP_TABLE_PREFIX', 'unknown'),
+                'auth_key_sample' => substr(env('WP_AUTH_KEY', 'none'), 0, 10) . '...',
             ],
             'php' => [
                 'version' => PHP_VERSION,
@@ -205,6 +239,22 @@ class Kernel implements KernelContract
                 'uptime' => $this->getUptime(),
             ],
         ]);
+    }
+
+    protected function checkDatabase(): string
+    {
+        try {
+            if (!$this->app->has(\Cycle\Database\DatabaseProviderInterface::class)) {
+                return 'Not Configured';
+            }
+            $dbal = $this->app->make(\Cycle\Database\DatabaseProviderInterface::class);
+            $db = $dbal->database();
+            $driver = $db->getDriver();
+            $driver->connect(); // Ensure connection is established
+            return 'Connected (' . get_class($driver) . ')';
+        } catch (\Throwable $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 
     protected function getEnvironmentName(): string

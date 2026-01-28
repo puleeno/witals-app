@@ -1,0 +1,9 @@
+{
+    "name": "default",
+    "title": "PrestoWorld Default Native Theme",
+    "description": "Modern, clean native theme for PrestoWorld CMS",
+    "version": "1.0.0",
+    "author": "PrestoWorld Team",
+    "engine": "prestoworld",
+    "type": "native"
+}
