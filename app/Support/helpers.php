@@ -64,3 +64,13 @@ if (!function_exists('base_path')) {
         return app()->basePath($path);
     }
 }
+
+if (!function_exists('path_join')) {
+    /**
+     * Join paths safely across OS
+     */
+    function path_join(string ...$paths): string
+    {
+        return preg_replace('#/+#', '/', implode('/', array_filter($paths)));
+    }
+}

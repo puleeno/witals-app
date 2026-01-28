@@ -136,17 +136,46 @@ class Kernel implements KernelContract
         // Use Theme Engine to render if not a JSON request
         if (str_contains($request->header('accept', ''), 'text/html') || !$request->header('accept')) {
             $themeManager = $this->app->make(\App\Foundation\Theme\ThemeManager::class);
+            $hooks = $this->app->make('hooks');
+
+            // --- DEMO HOOK REGISTRATION (Normally in a Plugin/Provider) ---
+            // 1. Action: Log that we are rendering home
+            $hooks->addAction('pre_render_home', function() {
+                // This will appear in logs or stdout
+                // echo "Rendering Home Page via Action Hook!\n"; 
+            });
+
+            // 2. Filter: Modify Title
+            $hooks->addFilter('home_page_title', function($title) {
+                return $title . ' - Powered by PrestoWorld Hooks';
+            });
+
+            // 3. Filter: Inject content into Footer (now Header to avoid DebugBar overlap)
+            $runtime = $this->getEnvironmentName();
+            $hooks->addFilter('home_page_content', function($html) use ($runtime) {
+                 return str_replace('</body>', '<div style="background:linear-gradient(90deg, #ff00cc, #333399); color:white; padding:10px; text-align:center; position:fixed; top:0; left:0; width:100%; z-index:99999; font-weight:bold; box-shadow:0 2px 10px rgba(0,0,0,0.5);">⚡ PrestoWorld Hooks Active via ' . $runtime . '!</div></body>', $html);
+            });
+            // -------------------------------------------------------------
+
+            // Trigger Action
+            $hooks->doAction('pre_render_home');
+
+            // Apply Filter to Title
+            $pageTitle = $hooks->applyFilters('home_page_title', 'Home');
             
             // Allow dynamic theme switching for demo
             $targetTheme = $request->query('theme', env('THEME_ACTIVE', 'default'));
             $themeManager->setActiveTheme($targetTheme);
 
             $html = $themeManager->render('index', [
-                'title' => 'Home',
+                'title' => $pageTitle, // Used filtered title
                 'posts' => $postsData,
                 'posts_error' => $postsError,
                 'themes' => $themeManager->all()
             ]);
+
+            // Apply Filter to HTML Content
+            $html = $hooks->applyFilters('home_page_content', $html);
 
             // Inject Debug Bar
             if (env('APP_DEBUG_BAR', false)) {

@@ -37,6 +37,7 @@ return [
     'providers' => [
         // Core Providers
         App\Providers\LogServiceProvider::class,
+        App\Providers\HookServiceProvider::class,
         \App\Providers\DatabaseServiceProvider::class,
         \App\Foundation\Theme\ThemeServiceProvider::class,
         \App\Foundation\Debug\DebugServiceProvider::class,
