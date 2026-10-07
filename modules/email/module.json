@@ -1,0 +1,22 @@
+{
+    "name": "email",
+    "version": "1.0.0",
+    "description": "Email delivery service — provides mail sender for other modules",
+    "type": "support",
+    "priority": 10,
+    "enabled": false,
+    "provides": [
+        "email.sender",
+        "email.template"
+    ],
+    "depends": [],
+    "consumes": [],
+    "providers": [
+        "Modules\\Email\\Providers\\EmailServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Email\\": "src/"
+        }
+    }
+}

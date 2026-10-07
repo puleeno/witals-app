@@ -3,63 +3,47 @@
 
 declare(strict_types=1);
 
-use Witals\Framework\Application;
-use Witals\Framework\Console\ServeCommand;
-use Witals\Framework\Contracts\RuntimeType;
+/**
+ * Witals Framework - CLI Tool
+ *
+ * Usage: php witals <command> [options]
+ */
 
-define('WITALS_START', microtime(true));
+use App\Foundation\Application;
+use Witals\Framework\Console\Kernel;
 
-// Register the Composer autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Get command line arguments
-$argv = $_SERVER['argv'];
-$commandName = $argv[1] ?? 'help';
+// ──────────────────────────────────────────────
+// 1. Bootstrap application
+// ──────────────────────────────────────────────
+$app = new Application(__DIR__);
 
-if (in_array($commandName, ['serve', 'server'])) {
-    // Detect runtime before bootstrapping to allow WITALS_RUNTIME to affect bootstrap
-    $runtime = detectRuntimeFromArgs($argv);
-    if ($runtime) {
-        define('WITALS_RUNTIME', $runtime->value);
-    }
-}
-
-// Bootstrap the application
-$app = require_once __DIR__ . '/bootstrap/app.php';
-
-// Shift arguments to remove the command name for the handler
-$remainingArgv = array_slice($argv, 2);
-
-match ($commandName) {
-    'serve', 'server' => (new ServeCommand($app))->handle($remainingArgv),
-    'help' => displayHelp(),
-    default => exitWithUnknownCommand($commandName),
-};
-
-function detectRuntimeFromArgs(array $argv): ?RuntimeType
-{
-    foreach ($argv as $arg) {
-        if ($arg === '--reactphp') return RuntimeType::REACTPHP;
-        if ($arg === '--swoole') return RuntimeType::SWOOLE;
-        if ($arg === '--openswoole') return RuntimeType::OPENSWOOLE;
-        if ($arg === '--roadrunner') return RuntimeType::ROADRUNNER;
-    }
-    return null;
-}
-
-function displayHelp(): void
-{
-    echo "Witals Framework CLI\n\n";
-    echo "Usage:\n";
-    echo "  php witals <command> [options]\n\n";
-    echo "Available commands:\n";
-    echo "  serve, server    Start the application server\n";
-    echo "  help             Display this help message\n\n";
-}
-
-function exitWithUnknownCommand(string $command): never
-{
-    echo "Unknown command: {$command}\n";
-    displayHelp();
+try {
+    $app->boot();
+} catch (Throwable $e) {
+    fwrite(STDERR, sprintf(
+        "\033[31mError booting application: %s\033[0m\n%s\n",
+        $e->getMessage(),
+        $e->getFile() . ':' . $e->getLine()
+    ));
     exit(1);
 }
+
+// ──────────────────────────────────────────────
+// 2. Dispatch CLI command
+// ──────────────────────────────────────────────
+$kernel = $app->make(Kernel::class);
+
+try {
+    $exitCode = $kernel->handle($argv);
+} catch (Throwable $e) {
+    fwrite(STDERR, sprintf(
+        "\033[31mError: %s\033[0m\n%s\n",
+        $e->getMessage(),
+        $e->getFile() . ':' . $e->getLine()
+    ));
+    $exitCode = 1;
+}
+
+exit($exitCode);

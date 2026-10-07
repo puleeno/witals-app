@@ -1,0 +1,72 @@
+{
+    "name": "sample",
+    "version": "1.0.0",
+    "description": "Example route module — handles /api/sample/* endpoints",
+    "type": "route",
+    "priority": 50,
+    "enabled": true,
+    "route_prefix": "/api/sample",
+    "routes": [
+        {
+            "method": "GET",
+            "path": "/hello",
+            "handler": ["Modules\\Sample\\Controllers\\SampleController", "hello"]
+        },
+        {
+            "method": "GET",
+            "path": "/hello/{name}",
+            "handler": ["Modules\\Sample\\Controllers\\SampleController", "greet"]
+        }
+    ],
+    "provides": [
+        "sample.greeting"
+    ],
+    "depends": [],
+    "consumes": [],
+    "providers": [
+        "Modules\\Sample\\Providers\\SampleServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Sample\\": "src/"
+        }
+    },
+    "functions": {
+        "greeter": {
+            "description": "Greeting functions",
+            "type": "route",
+            "routes": [
+                {
+                    "method": "GET",
+                    "path": "/greet/{name}",
+                    "handler": ["Modules\\Sample\\Controllers\\SampleController", "greet"]
+                }
+            ],
+            "provides": ["sample.greeter"]
+        },
+        "admin": {
+            "description": "Admin functions",
+            "type": "route",
+            "route_prefix": "/admin",
+            "routes": [
+                {
+                    "method": "GET",
+                    "path": "/dashboard",
+                    "handler": ["Modules\\Sample\\Controllers\\SampleController", "hello"]
+                }
+            ],
+            "functions": {
+                "users": {
+                    "description": "User management",
+                    "routes": [
+                        {
+                            "method": "GET",
+                            "path": "/users",
+                            "handler": ["Modules\\Sample\\Controllers\\SampleController", "hello"]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
