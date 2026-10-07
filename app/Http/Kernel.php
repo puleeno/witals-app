@@ -10,8 +10,6 @@ use Witals\Framework\Contracts\ResettableInterface;
 use Witals\Framework\Http\Request;
 use Witals\Framework\Http\Response;
 use Psr\Log\LoggerInterface;
-use App\Http\Middleware\DebugBarMiddleware;
-use App\Http\Middleware\LogRequestMiddleware;
 
 /**
  * HTTP Kernel

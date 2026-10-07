@@ -10,7 +10,6 @@ use Cycle\Database\Config\DatabaseConfig;
 use Cycle\Database\DatabaseManager;
 use Cycle\Database\DatabaseProviderInterface;
 use Cycle\ORM\ORMInterface;
-use Symfony\Component\Finder\Finder;
 
 class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
 {

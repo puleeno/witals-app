@@ -7,7 +7,6 @@ namespace App\Providers;
 use App\Support\ServiceProvider;
 use Witals\Framework\Contracts\View\Factory as ViewFactory;
 use Witals\Framework\View\Engines\StemplerEngine;
-use Witals\Framework\View\Engines\PhpEngine;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -34,17 +33,5 @@ class ViewServiceProvider extends ServiceProvider
             
             return $view;
         });
-    }
-
-    /**
-     * Boot view services.
-     */
-    public function boot(): void
-    {
-        // Logic for adding theme paths can go here
-        // $themeManager = $this->app->make(ThemeManager::class);
-        // if ($theme = $themeManager->getActiveTheme()) {
-        //     $this->app->view()->addLocation($theme->getPath() . '/views');
-        // }
     }
 }

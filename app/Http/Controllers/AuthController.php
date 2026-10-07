@@ -564,16 +564,4 @@ class AuthController
 
         return $token;
     }
-
-    private function validateCsrf(string $token): bool
-    {
-        $session = $this->app->make(SessionInterface::class);
-        $expected = $session->get('_csrf_token', '');
-
-        if ($expected === '' || $token === '') {
-            return false;
-        }
-
-        return hash_equals($expected, $token);
-    }
 }

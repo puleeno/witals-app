@@ -151,7 +151,6 @@ class Application extends BaseApplication
             \App\Providers\DatabaseServiceProvider::class,
             \App\Providers\ViewServiceProvider::class,
             \App\Providers\RouteServiceProvider::class,
-            \App\Providers\ConsoleServiceProvider::class,
             \App\Providers\AppServiceProvider::class,
         ]);
     }
