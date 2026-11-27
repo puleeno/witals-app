@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "newsletter_subscribers",
+            "columns": [
+                { "name": "id",         "type": "primary" },
+                { "name": "email",      "type": "string", "size": 255, "nullable": false },
+                { "name": "name",       "type": "string", "size": 255, "nullable": true },
+                { "name": "created_at", "type": "datetime", "nullable": true }
+            ],
+            "indexes": [
+                { "name": "uq_newsletter_email", "columns": ["email"], "unique": true }
+            ]
+        }
+    ]
+}

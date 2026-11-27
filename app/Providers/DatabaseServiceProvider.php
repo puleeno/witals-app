@@ -55,27 +55,28 @@ class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
 
         $this->app->singleton(DatabaseProviderInterface::class, function ($app) {
             $dbConfig = $app->config('database');
-            if (!is_array($dbConfig) || empty($dbConfig)) {
+            if (!is_array($dbConfig) || empty($dbConfig) || empty($dbConfig['connections'])) {
+                // Build a valid Cycle config from environment variables.
                 $dbConfig = [
-                    'default' => env('DB_CONNECTION', 'mysql'),
-                    'databases' => ['default' => ['connection' => env('DB_CONNECTION', 'mysql')]],
+                    'default'     => 'default',
+                    'databases'   => ['default' => ['connection' => 'mysql']],
                     'connections' => [
-                        'mysql' => [
-                            'driver'  => 'mysql',
-                            'host'    => env('DB_HOST', '127.0.0.1'),
-                            'port'    => env('DB_PORT', 3306),
-                            'dbname'  => env('DB_DATABASE', 'app'),
-                            'user'    => env('DB_USERNAME', 'root'),
-                            'password' => env('DB_PASSWORD', ''),
-                        ],
-                        'sqlite' => [
-                            'driver'  => 'sqlite',
-                            'options' => ['memory' => true],
-                        ],
+                        'mysql' => new \Cycle\Database\Config\MySQLDriverConfig(
+                            connection: new \Cycle\Database\Config\MySQL\TcpConnectionConfig(
+                                database: (string) env('DB_DATABASE', 'app'),
+                                host: (string) env('DB_HOST', '127.0.0.1'),
+                                port: (int) env('DB_PORT', 3306),
+                                charset: 'utf8mb4',
+                                user: (string) env('DB_USERNAME', 'root'),
+                                password: (string) env('DB_PASSWORD', ''),
+                            ),
+                            timezone: (string) env('DB_TIMEZONE', 'Asia/Ho_Chi_Minh'),
+                        ),
                     ],
                 ];
             }
-            $driver = $dbConfig['default'] ?? env('DB_CONNECTION', 'mysql');
+
+            $driver = $dbConfig['default'] ?? 'default';
             $config = new DatabaseConfig($dbConfig);
             $manager = new DatabaseManager($config);
 

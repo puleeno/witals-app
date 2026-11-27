@@ -143,46 +143,22 @@ abstract class AdminController
         HTML;
     }
 
+    /**
+     * Build the nav group list, merging module-declared items (via each
+     * module.json `admin` block) with the built-in defaults.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    protected function navGroups(): array
+    {
+        $registry = new \App\Foundation\Admin\AdminNavRegistry($this->app);
+
+        return $registry->items();
+    }
+
     protected function adminNav(): string
     {
-        $groups = [
-            ['label' => 'Bảng điều khiển', 'url' => '/dashboard', 'icon' => '📊'],
-            'Kinh doanh' => [
-                'icon' => '🛍️',
-                'children' => [
-                    ['label' => 'Đơn hàng',      'url' => '/dashboard/orders',     'icon' => '🛒'],
-                    ['label' => 'Khách hàng',    'url' => '/dashboard/customers',  'icon' => '👥'],
-                    ['label' => 'Hóa đơn',       'url' => '/dashboard/invoices',   'icon' => '📄'],
-                    ['label' => 'Cộng tác viên', 'url' => '/dashboard/affiliates', 'icon' => '🤝'],
-                ]
-            ],
-            'Sản phẩm Số' => [
-                'icon' => '📦',
-                'children' => [
-                    ['label' => 'Gói Thành Viên', 'url' => '/dashboard/memberships', 'icon' => '💎'],
-                    ['label' => 'Software Licenses', 'url' => '/dashboard/licenses', 'icon' => '💻'],
-                    ['label' => 'Themes Manager', 'url' => '/dashboard/catalog?type=theme', 'icon' => '🎨'],
-                    ['label' => 'Plugins Repository', 'url' => '/dashboard/catalog?type=plugin', 'icon' => '🔌'],
-                    ['label' => 'Quản lý Dịch vụ', 'url' => '/dashboard/web-services', 'icon' => '🛠️'],
-                ]
-            ],
-            'Dịch vụ Hạ tầng' => [
-                'icon' => '☁️',
-                'children' => [
-                    ['label' => 'Quản lý Hosting',  'url' => '/dashboard/hosting',   'icon' => '🖥️'],
-                    ['label' => 'Quản lý Tên miền', 'url' => '/dashboard/domains',   'icon' => '🌐'],
-                    ['label' => 'Chứng chỉ SSL',    'url' => '/dashboard/infrastructure/ssl', 'icon' => '🔒'],
-                    ['label' => 'Email Hosting',    'url' => '/dashboard/infrastructure/email', 'icon' => '📧'],
-                ]
-            ],
-            'Hệ thống' => [
-                'icon' => '⚙️',
-                'children' => [
-                    ['label' => 'API Keys (Updater)', 'url' => '/dashboard/profile', 'icon' => '⚡'],
-                    ['label' => 'Webhooks',      'url' => '/dashboard/webhooks',   'icon' => '🪝'],
-                ]
-            ]
-        ];
+        $groups = $this->navGroups();
 
         $current = $_SERVER['REQUEST_URI'] ?? '';
         $html = '<div class="admin-nav-groups">';

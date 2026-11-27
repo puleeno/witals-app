@@ -156,6 +156,7 @@ class Application extends BaseApplication
             \App\Providers\ViewServiceProvider::class,
             \App\Providers\RouteServiceProvider::class,
             \App\Providers\AppServiceProvider::class,
+            \App\Providers\ModuleCrudServiceProvider::class,
         ]);
     }
 
