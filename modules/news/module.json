@@ -1,0 +1,31 @@
+{
+    "name": "news",
+    "version": "1.0.0",
+    "description": "Tin tức (news) — public list controller render bằng Stempler + dashboard CRUD.",
+    "type": "data",
+    "priority": 45,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\News\\Providers\\NewsServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\News\\": "src/"
+        }
+    },
+    "provides": ["news.data"],
+    "admin": {
+        "group": "Nội dung",
+        "group_icon": "📰",
+        "nav": { "label": "Tin tức", "url": "/dashboard/news", "icon": "📰" },
+        "crud": {
+            "table": "news",
+            "pk": "id_news",
+            "title": "Tin tức",
+            "title_field": "name",
+            "list_fields": ["name", "url", "active", "ngay_dang"],
+            "form_fields": ["name", "title", "url", "active", "intro", "content", "keywords", "description", "image"]
+        }
+    }
+}

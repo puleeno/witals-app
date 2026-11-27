@@ -132,3 +132,26 @@ Form thêm/sửa được sinh tự động từ cột trong `schema.json`
 - `modules/newsletter` — data module mẫu (CRUD + dashboard).
 - `modules/seo`, `modules/schema-org`, `modules/auto-index` — feature module
   (hook `render.head`, API riêng).
+
+## 8. Template engine (Stempler) cho controller
+
+Dự án dùng **Stempler** (RoadRunner) — compile ra PHP, cache ở
+`storage/framework/views`, hiệu năng cao. View đặt tại `resources/views`.
+
+- **Layout head/foot**: dùng engine native PHP (`layouts/head.php`,
+  `layouts/foot.php`) vì Stempler yêu cầu HTML cân bằng mỗi template.
+  Biến: `{{ }}`→`<?= htmlspecialchars($v ?? '', ENT_QUOTES) ?>`,
+  `{!! !!}`→`<?= $v ?? '' ?>`.
+- **Content**: template Stempler cân bằng (`news/index.stempler.php`) với
+  `@if`, `@foreach`, `{{ $var }}`.
+- **Render trong controller**:
+  ```php
+  $f = $this->app->make(\Witals\Framework\Contracts\View\Factory::class);
+  $html = $f->make('layouts/head', $data)->render()
+        . $f->make('news/index', $data)->render()
+        . $f->make('layouts/foot', $data)->render();
+  return Response::html($html);
+  ```
+- **Tên view**: bỏ đuôi file (`news/index` → `news/index.stempler.php`).
+  `@include('layouts/head')` cũng bỏ đuôi.
+- Stempler chỉ hỗ trợ `@include/@if/@foreach/@php/@json` (không có `@extends`).
