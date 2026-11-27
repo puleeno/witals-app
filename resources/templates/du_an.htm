@@ -1,0 +1,242 @@
+{slideshow}
+
+<div class="c30"></div>
+
+<div class="content-detail">
+
+    <div class="grid">
+
+    	<!-- START BLOCK : lstcat -->
+
+        <div class="project-intro">
+
+            {catintro}
+
+        </div>
+
+        <div class="c10"></div>
+
+        <div class="project-content">
+
+            {catcontent}
+
+            <div class="c10"></div>
+
+           
+
+        </div>
+
+		<div class="flex-container flex-space-between">
+
+        	<!-- START BLOCK : lstDuAn -->
+
+            <div class="cell-1-2 margin-bottom-40 mobile-cell-1-1 cell-project">
+
+            	<div><a href="{link_detail}">{image}</a></div>
+
+                <div class="c10"></div>
+
+                <div class="project-name"><a href="{link_detail}">{name}</a></div>
+
+                <div class="c10"></div>
+
+                <div align="center">
+
+                	<div style="display:inline-block; line-height:34px; margin-right:15px"><span class="icon-ngu"></span> {sophong} {_bedroom}</div>
+
+                    <div style="display:inline-block; line-height:34px"><span class="icon-dt"></span> {dientich} m<sup>2</sup></div>
+
+                </div>
+
+                <div class="c15"></div>
+
+            </div>
+
+            <!-- END BLOCK : lstDuAn -->
+
+        </div>
+
+        <!-- END BLOCK : lstcat -->
+
+        <!-- START BLOCK : detail -->
+
+        <div>
+
+        	<div class="flex-container  flex-space-between">
+
+	        	<div class="cell-1-2 mobile-cell-1-1 tab-cell-1-1">
+
+                	<div class="tab-ch-detail">
+
+                    	<a href="#matbang" class="active">{_mat_bang_can_ho}</a>
+
+                        <a href="#vitri">{_vi_tri_can_ho}</a>
+
+                    </div>
+
+                	<div style="border:solid 1px #e5e8df">
+
+                    	<div id="matbang" class="tab-image-ch" style="display:block">{imageadv}</div>
+
+                        <div id="vitri" class="tab-image-ch">{fileimage}</div>
+
+                    </div>
+
+                    <script>
+
+                    	$(function(){
+
+							$('.tab-ch-detail a').click(function(){
+
+								$('.tab-ch-detail a').removeClass('active');
+
+								$(this).addClass('active');
+
+								$('.tab-image-ch').stop().hide();
+
+								$($(this).attr('href')).stop().show();
+
+								return false;
+
+							})	
+
+						});
+
+                    </script>
+
+                </div>
+
+                <div class="cell-1-2 mobile-cell-1-1 tab-cell-1-1">
+
+                	<h1>{name}</h1>
+
+                    <div>
+
+                        <div style="display:inline-block; line-height:34px; margin-right:15px"><span class="icon-ngu"></span> {sophong} {_bedroom}</div>
+
+                        <div style="display:inline-block; line-height:34px"><span class="icon-dt"></span> {dientich} m<sup>2</sup></div>
+
+                    </div>
+
+                    <div class="c20"></div>
+
+                    <div>{intro}</div>
+
+                    <div class="c20"></div>
+
+                    <div class="box-tienich-chitiet">
+
+                    	<div style="font-family:Hel-B, Arial, Helvetica, sans-serif; font-size:18px; color:#6b6b6b; text-transform:uppercase">{_tien_ich_can_ho}</div>
+
+                        <div class="c15"></div>
+
+                    	<div class="flex-container flex-space-between">
+
+                        	<!-- START BLOCK : tienich -->
+
+                        	<div class="cell-1-3 pad-cell-1-2 mobile-cell-1-2 margin-bottom-5">
+
+                            	<i class="fa fa-check-circle-o" aria-hidden="true"></i> {tienich}
+
+                            </div>
+
+                            <!-- END BLOCK : tienich -->
+
+                            <div class="cell-1-3 pad-cell-1-2 mobile-cell-1-2"></div>
+
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="c30"></div>
+
+            
+
+            <script type="text/javascript" src="{dir_path}/highslide/highslide-with-gallery.js"></script>
+
+                <link rel="stylesheet" type="text/css" href="{dir_path}/highslide/highslide.css" />
+
+                <script type="text/javascript">
+
+                hs.graphicsDir = '{dir_path}/highslide/graphics/';
+
+                hs.align = 'center';
+
+                hs.transitions = ['expand', 'crossfade'];
+
+                hs.wrapperClassName = 'dark borderless floating-caption';
+
+                hs.fadeInOut = true;
+
+                hs.dimmingOpacity = .75;
+
+                if (hs.addSlideshow)
+
+                    hs.addSlideshow({
+
+                        interval: 5000,
+
+                        repeat: false,
+
+                        useControls: true,
+
+                        fixedControls: 'fit',
+
+                        overlayOptions: {
+
+                            opacity: .6,
+
+                            position: 'bottom center',
+
+                            hideOnMouseOut: true
+
+                        }
+
+                    });
+
+                </script>
+
+            
+
+            <h2 class="ha-can-ho"><span>{_hinh_anh_can_ho}</span></h2>
+
+            <div class="c20"></div>
+
+            <div class="c20"></div>
+
+            <div class="flex-container  flex-space-between">
+
+            	<!-- START BLOCK : lstimage -->
+
+            	<div class="cell-1-3 mobile-cell-1-2 margin-bottom-20" align="center">
+
+                	<div><a>{image}</a></div><div>{name}</div>
+
+                </div>    
+
+                <!-- END BLOCK : lstimage -->
+
+                <div class="cell-1-3 mobile-cell-1-2"></div>
+
+            </div>
+
+        </div>
+
+        <div class="c20"></div>
+
+        <!-- END BLOCK : detail -->
+
+    </div>
+
+    <div class="c20"></div>
+
+    
+
+</div>
+

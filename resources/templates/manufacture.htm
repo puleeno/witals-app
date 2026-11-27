@@ -1,0 +1,69 @@
+
+
+			<div class="c20"></div>
+             <div class="col-1-1">
+             	<div class="parner-title">Các đối tác cung cấp
+            	<a href="" class="partner-arrow-left fa fa-caret-square-o-left"></a>
+            	<a href="" class="partner-arrow-right fa fa-caret-square-o-right"></a>
+                </div>
+                <div class="c5"></div>
+             </div>
+           <div style="overflow:hidden; padding-right:2px">
+            <div class="swiper-container" style="height:65px;" id="parner">
+              <div class="swiper-wrapper">
+              	<!-- START BLOCK : manufacture -->
+                <div class="swiper-slide">
+                    <div class="project-home">
+                       <a href="{link}" target="_blank">{image}</a>
+                        
+                    </div>
+                  </div>
+                  <!-- END BLOCK : manufacture -->
+                  
+                </div>
+             </div> 
+             <div class="pagination"></div>
+             <div class="c20"></div>
+             </div>
+				<script>
+					var pview=7;
+					  if($(document).width()<=1160){
+						 var pview = 6; 
+					  }
+					  if($(document).width()<=980){
+						 var pview = 5; 
+					  }
+					  if($(document).width()<=768){
+						 var pview = 4; 
+					  }
+					  if($(document).width()<=680){
+						 var pview = 3; 
+					  }
+					  if($(document).width()<=480){
+						 var pview = 2; 
+					  }
+					   if($(document).width()<=320){
+						 var pview = 2; 
+					  }
+                  var mySwiper1 = new Swiper('#parner',{
+                    pagination: '.pagination',
+                    loop:true,
+                    grabCursor: true,
+                    paginationClickable: true,
+                     slidesPerView: pview,
+                    loop: true,
+                    autoplay:4000,
+					autoResize:false,
+					calculateHeight:true,
+					cssWidthAndHeight:true
+                  });
+                  $('.partner-arrow-left').on('click', function(e){
+                    e.preventDefault();
+                    mySwiper1.swipePrev();
+                  });
+                  $('.partner-arrow-right').on('click', function(e){
+                    e.preventDefault();
+                    mySwiper1.swipeNext();
+                  });
+                  
+                  </script>

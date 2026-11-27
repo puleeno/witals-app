@@ -1,0 +1,98 @@
+<div class="c20"></div>
+<div class="c10"></div>
+<div class="grid">
+    <div class="flex-container flex-space-between" style="position: relative;">
+        <div class="cell-1-4 hide-on-tab hide-on-mobile">
+
+
+            {leftcol}
+        </div>
+        <div class="cell-3-4 tab-cell-1-1">
+            <div class="c10"></div>
+            {pathpage}
+            <div class="c20"></div>
+
+
+            <!-- START BLOCK : newsCat -->
+            <h1 class="title-page"><a>{catname}</a></h1>
+            <div class="c20"></div>
+
+            <!-- START BLOCK : news_list -->
+            <div class="flex-container flex-space-between">
+
+                <div class="cell-news-1-3 mobile-cell-1-3">
+                    <a href="{link_detail}">{image}</a>
+                    <div class="c30"></div>
+                </div>
+                <div class="cell-news-2-3 mobile-cell-2-3">
+                    <h2 class="news-name" ><a href="{link_detail}">{name}</a></h2>
+                    <div class="intro-service  hide-on-mobile" align="justify">{intro}</div>
+                    <div class="c10"></div>
+                    <a class="view-detail" href="{link_detail}">{_detail}</a>
+                </div>
+            </div>
+            <div class="c20"></div>
+            <!-- END BLOCK : news_list --> 
+
+            <div class="c10"></div>
+            <div class="row">
+
+                <div class="col-1-1">
+                    <div class="line-gray hide-on-tab hide-on-mobile"></div>
+                    <div class="paging" style="border:none"><div class="c hide-on-tab hide-on-mobile"></div>{pages}</div>
+                </div>
+            </div>
+
+            <!-- END BLOCK : newsCat --> 
+            <!-- START BLOCK : newsDetail -->
+
+
+            <div class="c20"></div>
+            <h1 class="title-page" >{name}</h1>    
+            <div class="c10"></div>
+            <p class="intro-detail" >{intro}</p>
+
+            <div class="c10"></div>
+            <div class="content-detail">{content}</div>
+
+            <div class="c30"></div>
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style "> <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_counter addthis_pill_style"></a> </div>
+            <!-- AddThis Button END -->
+            <div class="c30"></div>
+
+            <div class="fb-comments"  data-width="100%" data-href="{link_detail}" data-numposts="5"></div>
+            <div class="c30"></div>
+
+            <h3 class="title-other-news" ><a>{_othernews}</a></h3>
+            <div class="c10" style="border-top:solid 2px #007cc2"></div>
+            <div class="c20"></div>
+            <div class="flex-container flex-space-between">
+                <!-- START BLOCK : lstOther -->
+                <div class="cell-1-2 tab-cell-1-1  margin-bottom-20">
+
+                    <div class="flex-container flex-space-between">
+                        <div class="cell-1-4" ><a href="{link_detail}">{image}</a></div>
+                        <div class="cell-3-4" >
+                            <h4 class="news-name-other">
+                                <a href="{link_detail}">{name}</a>
+                            </h4>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- END BLOCK : lstOther --> 
+
+            </div>
+
+            <div class="c10"></div>
+
+            <!-- END BLOCK : newsDetail -->
+            <div class="c10"></div>
+
+
+        </div>
+    </div>
+</div>
+
+

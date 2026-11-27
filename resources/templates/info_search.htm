@@ -1,0 +1,108 @@
+<div class="c20"></div>
+<div class="grid">
+	<div class="c20"></div>
+    <!-- START BLOCK : short_keyword -->
+    <div class="news-title" style="font-size: 14px; text-align: center;" >{_Keyword_too_short}</div>            
+    <!-- END BLOCK : short_keyword -->
+
+
+    <!-- START BLOCK : keywords -->
+    <div>
+        <h1 class="news-title" style="font-size: 14px;" >{_search_result} "{keywords}"</h1>
+    </div>            
+    <!-- END BLOCK : keywords -->
+
+    <!-- START BLOCK : no_result -->
+    <div class="c20"></div>
+    <div style="text-align: center; font-weight: bold">{_search_no_result}</div>
+    <div class="c10"></div>
+    <!-- END BLOCK : no_result -->
+    <div class="flex-container flex-space-between search-item-list">
+    
+        <!-- START BLOCK : item_list -->
+
+       
+        <div class="cell-1-1 " >
+            <h2 class="news-name" style="margin: 0px;">
+                <a  href="{link_detail}">{name}</a>
+            </h2>
+			<div class="cat-path">{_category} {cat_path}</div>
+			
+			<div class="c10"></div>
+			<div class="flex-container">
+				<div class="cell-1-12 tab-cell-1-4" >
+					<a  href="{link_detail}">{image}</a>
+				</div>
+				
+				<div class="cell-11-12 tab-cell-3-4" >
+				
+					
+					<div style="text-align:justify;padding-top:5px;">
+						{intro} 
+					</div>
+					
+				
+				</div>
+			
+			</div>
+			<div class="c30"></div>
+            
+        </div>
+
+
+        <!-- END BLOCK : item_list -->
+    </div>
+    <div class="paging">{pages}</div>            
+
+    <div class="c20"></div>
+
+
+   
+</div>
+
+
+
+<style>
+
+.search-result{
+	font-family:Arial;
+}
+
+    .highlight{
+        background-color: #ffff00;
+    }    
+
+    .result-title{
+        margin: 0px;
+        padding: 0px
+    }
+
+    .result-title a{
+        text-decoration: none;
+        font-size: 16px;
+        color: #222;
+    }    
+
+    .cat-path a{
+        color: #666;
+        font-size: 12px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+</style>
+
+<script type="text/javascript" src="{dir_path}/js/hightlight.js"></script>
+<!-- START BLOCK : highlight_list -->
+<script language="javascript">
+    $(function () {
+
+        $('.search-item-list').highlight('{keywords}');
+        $('.search-item-list').highlight('{h_keywords}');
+
+    });
+</script>
+<!-- END BLOCK : highlight_list -->
+
+
+

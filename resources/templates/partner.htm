@@ -1,0 +1,62 @@
+<!-- START BLOCK : partner -->
+<div style="position: relative;">
+
+    <div class="swiper-container" id="partner">
+
+        <a href="#" class="partner-prev"> <i class=" fa fa-chevron-left"></i> </a>
+        <a href="#" class="partner-next"><i class=" fa fa-chevron-right"></i></a>
+
+        <div class="swiper-wrapper"> 
+            <!-- START BLOCK : list_partner -->
+            <div class="swiper-slide">
+                {image}
+            </div>
+            <!-- END BLOCK : list_partner -->      
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var swiper_partner = new Swiper('#partner', {
+        slidesPerView: 5,
+        autoplay: {
+            delay: 2200,
+            disableOnInteraction: false,
+        },
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.partner-prev',
+            prevEl: '.partner-next',
+        },
+
+        speed: 400,
+
+        loop: true,
+        breakpoints: {
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            320: {
+                slidesPerView: 2,
+                spaceBetween: 10
+            }
+        }
+    });
+    $('#partner').on('mouseover', function () {
+        swiper_partner.autoplay.stop();
+    });
+    $('#partner').on('mouseout', function () {
+        swiper_partner.autoplay.start();
+    });
+
+
+</script>
+
+<!-- END BLOCK : partner -->

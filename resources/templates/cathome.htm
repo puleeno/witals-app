@@ -1,0 +1,65 @@
+
+
+	<h2 class="title-page"><span>{cat_name}</span></h2>
+    <div class="c10"></div>
+    <div class="c20"></div>
+    <div class="cat-home-intro"> {cat_intro}</div>
+
+
+    <div class="c20"></div>
+
+<div style="position: relative;">
+    <div class="c20"></div>
+    
+    <div class="cathome-next btn-next"> <img src="/images/btn-next.png"/> </div>
+    <div class="cathome-prev btn-prev"> <img src="/images/btn-prev.png"/> </div>
+
+    <div class="swiper-container catHome">
+        <div class="swiper-wrapper">
+            <!-- START BLOCK : cell_cat_home -->
+            <div class="swiper-slide">
+                <div class="cat-home-img">
+                    <div style="overflow: hidden;padding: 30px;"><a class="hvr-grow" href="{link}">{catimageadv}</a> </div>
+                </div>                
+                <div class="c"></div>
+                <h2 class="cat-home-name"><a href="{link}">{catname}</a></h2>
+            </div>
+            <!-- END BLOCK : cell_cat_home -->
+        </div>
+    </div>
+</div>
+
+<div class="c10"></div>
+
+<script>
+    var swiper_catHome = new Swiper('.catHome', {
+        slidesPerView: 5,
+        autoplay: {
+            delay: 2200,
+            disableOnInteraction: false,
+        },
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.cathome-next',
+            prevEl: '.cathome-prev',
+        },
+        speed: 400,
+        loop: true,
+        breakpoints: {
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 20
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 0
+            }
+        }
+    });
+    $('.catHome').on('mouseover', function () {
+        swiper_catHome.autoplay.stop();
+    });
+    $('.catHome').on('mouseout', function () {
+        swiper_catHome.autoplay.start();
+    });
+</script>

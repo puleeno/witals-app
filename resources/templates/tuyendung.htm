@@ -1,0 +1,492 @@
+
+{slideshow}
+<div class="c10"></div>
+
+<div class="grid">
+
+    {pathpage}
+    <div class="c20"></div>
+</div>  
+<div class="c10"></div>
+
+<div class="content-detail">
+
+
+
+
+    <!-- START BLOCK : catList  -->
+
+    <div class="grid">
+        <h1 class="title-page" style="text-align:center">{catname}</h1>
+        <div class="c10"></div>
+        <div class="title-line"><span style="margin: 0 auto;"> </span></div>
+        <div class="c20"></div>
+        <div style="margin: 0 auto; max-width: 800px;  text-align: center; font-family: Helve-B;">
+            {catcontent}
+            <div class="c20"></div>
+        </div>
+		<div class="c20"></div>
+    </div>
+    
+
+    <!-- START BLOCK : catItem  -->
+
+    <div class="info-wrapper">
+        <div class="grid">
+            
+			<div class="flex-container flex-space-between">
+		
+			<div class="cell-1-1 hide-on-pc hide-on-pad">
+                <a href="{link}">{image}</a>
+            </div>
+            
+            <!-- START BLOCK : imgleft  -->
+            <div class="cell-1-4 tab-cell-1-1 hide-on-tab hide-on-mobile">
+                <div class="img-circle wow fadeInLeft animated">
+					<a class="grow" href="{link}">{image}</a>
+                    
+                </div>
+            </div>
+			
+			<div class="cell-3-4 tab-cell-1-1">
+				<div class="">
+					<h2 class="sub-title-page wow fadeInRight animated" style="float:right; text-align:right">
+						<a class="grow" href="{link}">{name}</a>
+					</h2>
+					<div class="c10"></div>
+					<div class="title-line"><span style=" float: right; "> </span></div>
+					<div class="c10"></div>
+					<div class="cat-item-info wow zoomIn animated2">
+						{content}
+						<div class="c10"></div>
+						<a href="{link}">{_viewmore}</a>
+					</div>
+				</div>
+            </div>
+			
+            <!-- END BLOCK : imgleft  -->
+            
+            <!-- START BLOCK : imgright  -->
+			<div class="cell-3-4 tab-cell-1-1">
+				<div class="">
+					<h2 class="sub-title-page wow fadeInLeft animated" style="float:left; text-align:left">
+						<a class="grow" href="{link}">{name}</a>
+					</h2>
+					<div class="c10"></div>
+					<div class="title-line"><span> </span></div>
+					
+					<div class="c10"></div>
+					<div class="cat-item-info wow zoomIn animated2">
+						{content}
+						<div class="c10"></div>
+						<a href="{link}">{_viewmore}</a>
+					</div>
+				</div>
+            </div>
+			
+            <div class="cell-1-4 tab-cell-1-1 hide-on-tab hide-on-mobile">
+                <div class="img-circle wow fadeInRight animated">
+                    <a class="grow" href="{link}">{image}</a>
+                </div>
+            </div>
+            <!-- END BLOCK : imgright  -->
+            
+            
+        </div>
+			
+        </div>
+        <div class="c"></div>
+    </div>
+    <!-- END BLOCK : catItem  -->
+    <div class="c20"></div>
+    <!-- END BLOCK : catList  -->
+
+
+
+
+    <!-- START BLOCK : itemList  -->
+
+    <div class="grid">
+        
+		<div class="hide-on-tab hide-on-mobile">{menutab} </div>
+
+        <div class="c30 hide-on-tab hide-on-mobile"></div>		
+
+        <div class="c20"></div>
+
+        <h1 class="title-page">{catname}</h1>
+        <div class="c10"></div>
+        <div class="title-line"><span> </span></div>
+        <div class="c10"></div>
+        <div style="font-family: Helve-B;">
+            {catcontent}
+            <div class="c20"></div>
+        </div>
+
+        <div class="c20"></div>
+
+        <div class="flex-container flex-space-between">
+            <div class="cell-2-3 tab-cell-1-1">
+
+                <span style="text-transform: uppercase; color: #404040; font-size: 20px; font-family: Helve-B;">Cơ hội nghề nghiệp</span>
+                <div class="c10"></div>
+				<div class="c20 hide-on-tab hide-on-mobile"></div>
+
+                <div class="tuyendung-header hide-on-tab hide-on-mobile">
+                    <div class="flex-container flex-space-between">
+                        <div class="cell-4-10 tab-cell-1-1" style="text-align: left;">
+                            Vị trí tuyển dụng
+                        </div>
+                        <div class="cell-2-10 tab-cell-1-1" style="text-align: left;"> Tên công ty </div>
+                        <div class="cell-2-10 tab-cell-1-1"> Nơi làm việc </div>
+                        <div class="cell-2-10 tab-cell-1-1"> Ngày hết hạn </div>
+
+                    </div>
+                </div>
+				<div class="c20 hide-on-pc hide-on-pad" style="border-top: solid 2px #eb7203"></div>
+
+                <!-- START BLOCK : newsItem  -->
+                <div class="tuyendung-row">
+                    <div class="flex-container flex-space-between">
+                        <div class="cell-4-10 tab-cell-1-1">
+                            <h2 class="tuyendung-name">
+							<span class="hide-on-pc hide-on-pad">Vị trí tuyển dụng:</span>  <a href="{link_detail}">{name}</a> 
+							
+							</h2>
+                        </div>
+                        <div class="cell-2-10 tab-cell-1-1" style="text-align: left;">
+							<span class="hide-on-pc hide-on-pad">Tên công ty:</span> {tencongty} 
+						</div>
+                        <div class="cell-2-10 tab-cell-1-1" style="text-align: left;">
+							<span class="hide-on-pc hide-on-pad">Nơi làm việc:</span> {noilamviec} 
+						
+						</div>
+                        <div class="cell-2-10 tab-cell-1-1" style="text-align: left;">
+							<span class="hide-on-pc hide-on-pad">Ngày hết hạn:</span> {ngayhethan} 
+						</div>
+
+                    </div>
+                </div>
+
+
+                <!-- END BLOCK : newsItem  -->
+				<div class="c20"></div>
+				<div class="c20"></div>
+            </div>
+            <div class="cell-1-3 tab-cell-1-1">
+
+                <span style="text-transform: uppercase; color: #404040; font-size: 20px; font-family: Helve-B;">Liên hệ với chúng tôi</span>
+                <div class="c20"></div>
+                <div class="c20" style="border-top: solid 1px #eb7203"></div>
+
+                <p style="margin: 0px; padding: 0px;"><strong>Phòng Nhân Sự - An Phát Group </strong> </p>
+
+                <p style="margin: 0px; padding: 0px;">
+                    Tầng 16, Tòa nhà PV Oil, 148 Hoàng Quốc Việt, Quận Cầu Giấy, Hà Nội
+                </p>
+
+                <p class="tuyendung-hotline" >
+
+                    ĐT: (04).37634666 / 37634777 
+                </p>
+
+                <p style="margin: 0px; padding: 0px;">
+                    E: tuyendung@anphatgroup.com.vn
+                </p>
+
+
+
+            </div>
+
+
+
+        </div>
+        <div class="c20"></div>
+    </div>
+
+
+    <!-- END BLOCK : itemList  -->
+
+
+    <!-- START BLOCK : itemDetail  -->
+    <div class="grid">
+
+
+        <div class="hide-on-tab hide-on-mobile">{menutab} </div>
+
+        <div class="c20 hide-on-tab hide-on-mobile"></div>
+        <div class="c30 hide-on-tab hide-on-mobile"></div>
+
+        <h1 class="sub-title-page" style="text-align:left"> <a href="{link}">{name}</a> </h1>
+
+        <div class="title-line"><span> </span></div>
+        <div class="c10"></div>
+        <div class="c30 hide-on-tab hide-on-mobile"></div>
+
+        <div class="c20"></div>
+
+        <div class="box-tuyendung" >
+            <div class="box-tuyendung-title">Thông tin công ty</div>
+            <div class="c10"></div>
+            <div class="flex-container flex-space-between">
+                <div class="cell-2-12 tab-cell-1-1">{image}</div>
+                <div class="cell-10-12 tab-cell-1-1">
+                    {intro}
+                </div>
+            </div>
+
+
+            <div class="c10"></div>
+        </div>
+        <div class="c20"></div>
+        <div class="c30"></div>
+
+        <div class="box-tuyendung" >
+            <div class="box-tuyendung-title">Thông tin tuyển dụng</div>
+            <div class="c10"></div>
+            <div class="flex-container flex-space-between">
+                <div class="cell-2-12 tab-cell-1-1"></div>
+                <div class="cell-10-12 tab-cell-1-1">
+                    {content}
+                </div>
+            </div>
+
+            <div class="c10"></div>
+        </div>        
+
+        <div class="c20"></div>
+        <div class="c30"></div>
+
+        <div class="box-tuyendung" >
+            <div class="box-tuyendung-title">Thông tin liên hệ</div>
+            <div class="c10"></div>
+            <div class="flex-container flex-space-between">
+                <div class="cell-2-12 tab-cell-1-1"></div>
+                <div class="cell-10-12 tab-cell-1-1">
+                    {content2}
+                </div>
+            </div>
+            <div class="c10"></div>
+        </div>        
+
+
+        <div class="c20"></div>
+        <div class="c20"></div>
+
+        <a class="js-open-modal btn btn-ungtuyen" href="#" data-modal-id="popup_tuyendung"> Đăng ký ứng tuyển </a>
+
+
+        <div class="c20"></div>
+        <script type="application/ld+json">
+            {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage":{
+            "@type":"WebPage",
+            "@id":"{site_address}{link_detail}"
+            },
+            "headline": "{name}",
+            "image": {
+            "@type": "ImageObject",
+            "url": "{site_address}{image}",
+            "height": 600,
+            "width": 800
+            },
+            "datePublished": "{create_date}",
+            "dateModified": "{create_date}",
+            "author": {
+            "@type": "Person",
+            "name": "{user}"
+            },
+            "description": "{description}"
+            }
+        </script>
+        <div class="c20"></div>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style "> <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_counter addthis_pill_style"></a> </div>
+        <!-- AddThis Button END -->
+
+        <div class="c30"></div>
+        <h3 class="title-other-news" ><a>{_othernews}</a></h3>
+
+        <div class="c10"></div>
+        <ul class="other-article">
+            <!-- START BLOCK : lstOther -->
+            <li><h4 class="news-name-other"><span>■</span> <a href="{link_detail}">{name}</a></h4></li>
+            <!-- END BLOCK : lstOther --> 
+        </ul>
+        <div class="c10"></div>
+
+    </div>
+
+    <div id="popup_tuyendung" class="modal-box">
+        <header> 
+            <h3>Nộp hồ sơ ứng tuyển</h3>
+            <a href="#" style=" font-size: 16px; color: #FFF; " class="js-modal-close close">[X]</a>
+          </header>
+        
+        <div class="modal-body">
+            
+
+            <div class="td-form">
+                <form action="{dir_path}/index4.php?page=tuyendung" method="post" id="tuyendungForm" enctype="multipart/form-data" onSubmit="return check_null_td();">
+                    <input type="hidden" name="id_tuyendung" value="{link_detail}" />
+                    <input type="hidden" name="code" value="save" />
+                    <div class="tb_td">
+                        
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">Vị trí ứng tuyển: </div>
+                            <div class="td_td">{name}</div>
+                        </div>
+                        
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">Nơi công tác: </div>
+                            <div class="td_td">Hà nội</div>
+                        </div>
+                        
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">Liên hệ: </div>
+                            <div class="td_td">Phòng nhân sự An Phát Group</div>
+                        </div>
+                        
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg title-frm-reg2">
+								<span style="">Thông tin liên hệ của bạn: </span>  
+							
+							</div>
+                            <div class="td_td hide-on-tab hide-on-mobile"></div>
+                        </div>
+                        
+                        
+                        
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">{_fullname} (<span>*</span>)</div>
+                            <div class="td_td"><input class="txt notNull" name="td_name" type="text"></div>
+                        </div>
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">Email (<span>*</span>)</div>
+                            <div class="td_td"><input class="txt notNull" name="td_email" type="text"></div>
+                        </div>
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">{_phone} (<span>*</span>)</div>
+                            <div class="td_td"><input class="txt notNull" name="td_phone" type="text"></div>
+                        </div>
+                        
+                       
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">{_attach_file}</div>
+                            <div class="td_td"><input type="file" style="border: none; height: 25px; margin-top: 5px;" name="td_file"></div>
+                        </div>
+                        
+
+
+                        <div class="tr_td"  id="message_alert" style="display:none;">
+                            <div class="td_td1">&nbsp;</div>
+                            <div class="td_td red" id="message_text">
+
+                            </div>
+                        </div>
+                        <div class="tr_td">
+                            <div class="td_td1 title-frm-reg">&nbsp;</div>
+                            <div class="td_td">
+                                <a href="#" onClick="$('#tuyendungForm').submit(); return false" class="btn-submit-tuyendung">Nộp hồ sơ</a>
+                            </div>
+                        </div>
+                         
+                        <div class="c20"></div>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        $(function () {
+
+            var appendthis = ("<div class='modal-overlay js-modal-close'></div>");
+
+            $('a[data-modal-id]').click(function (e) {
+                e.preventDefault();
+                $("body").append(appendthis);
+                $(".modal-overlay").fadeTo(500, 0.7);
+                //$(".js-modalbox").fadeIn(500);
+                var modalBox = $(this).attr('data-modal-id');
+                $('#' + modalBox).fadeIn($(this).data());
+            });
+
+
+            $(".js-modal-close, .modal-overlay").click(function () {
+                $(".modal-box, .modal-overlay").fadeOut(500, function () {
+                    $(".modal-overlay").remove();
+                });
+                return false;
+            });
+
+            $(window).resize(function () {
+                $(".modal-box").css({
+                    top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+                    left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+                });
+            });
+
+            $(window).resize();
+
+        });
+    </script>
+
+    <script>
+
+        function check_null_td() {
+
+
+            ok = true;
+            $('#tuyendungForm .notNull').removeClass("error");
+            $('#tuyendungForm .notNull').each(function () {
+                if ($(this).val() == '') {
+                    $(this).addClass("error");
+                    ok = false;
+                }
+            });
+
+
+            if (ok == true) {
+                $('#tuyendungForm').append('<div class="ajax-loading"><i class="fa fa-spinner fa-spin"></i></div>');
+                $('#td_form').ajaxSubmit({
+                    target: '#tuyendungForm',
+                    success: function (data) {
+                        $('.ajax-loading').remove();
+                        $('#imgCaptcha').attr('src', '{dir_path}/lib/imagesercurity.php?x');
+
+                    }
+
+                });
+                return false;
+            } else {
+                $('#message_alert').show();
+                $('#message_alert #message_text').html('<i class="fa fa-warning"></i> Bạn cần nhập đủ thông tin vào những trường bôi đỏ !');
+            }
+            return ok;
+        }
+
+    </script>
+
+
+
+    <!-- END BLOCK : itemDetail  -->
+
+    <div class="c30"></div>
+    <div class="c20"></div>
+
+</div>
+
+
+
+
+
+
+

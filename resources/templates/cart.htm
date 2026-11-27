@@ -1,0 +1,610 @@
+
+<style>
+
+
+    .item-cart{
+        font-size: 14px;
+    }
+
+    .hd-cart{
+        background: #f1f2f2;
+        padding: 12px 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .cart-title-number {
+        width: 40px;
+        height: 40px;
+        margin-bottom: -2px;
+        float: left;
+        background: #005aa0;
+        -webkit-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        color: #FFF;
+        font-size: 20px;
+    }
+
+    .cart-title {
+        margin-left: 25px;
+        padding-left: 25px;
+    }
+    .cart-title-name{
+        text-transform: uppercase;
+        line-height: 40px;
+        FONT-SIZE: 18px;
+        margin: 0px;
+        padding: 0px;
+        font-weight: normal;
+    }
+    .member-regis-title {
+        font-size: 24px;
+        color: #e74847;
+    }
+
+    .btn_red_bg {
+            color: #FFF;
+            font-size: 18px;
+            padding: 12px 50px;
+            border-radius: 5px;
+            text-decoration: none;
+            float: left;
+            border: none;
+            background: #005aa0;
+
+    }
+
+    .cart-size{
+        float: left;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 4px 5px;
+        width: 30px;
+        height: 30px;
+        border: solid 1px #666;
+        border-radius: 3px;
+    }
+
+    .cart-color{
+        float:left;
+        margin-right:10px;
+        text-transform:uppercase;
+        line-height:30px;
+        border: solid 1px #DDD;
+        border-radius: 3px;
+        padding:0px 15px;
+    }
+
+    .cart-image img{
+        display: block;
+        margin-right: 10px;
+    }
+
+    .giamgia-zone{
+
+        border: solid 1px #DDD;
+        padding: 10px;
+        padding-top: 0px;
+        background: #EFEFEF;
+        border-radius: 3px;
+    }
+
+    .giamgia-zone label{
+        line-height: 26px;
+    }
+
+    .giamgia-zone input{
+        height: 26px;
+        padding-left: 3px;
+        color: #0000FF;
+        font-weight: bold;
+        font-size: 16px;
+
+    }
+
+    .total-payment {
+        color: #333;
+        font-family:"Muli-B";
+        font-weight: normal;
+        font-size: 16px;
+        padding: 10px;
+        float: right;
+    }
+    .total-payment span{
+        color: #ea313e;
+        font-size: 20px;
+    }
+
+
+    .line-frm{
+        line-height: 30px;
+    }
+
+    .line-frm input{
+        height: 30px;
+        margin: 0px;
+        margin-bottom: 5px;
+        padding-left: 3px;
+    }
+
+    .cart-name{
+        text-transform: uppercase;
+        font-size: 16px;
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+
+
+    .quantity .fa{
+        color: #FFF;
+        font-size: 22px;
+        background: #005aa0;
+        display: block;
+        float: left;
+        padding: 3px 5px 1px 5px;
+        margin-left: 5px;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    .txt-quantity{
+        text-align:center; width:60px;
+        height: 26px;
+    }
+
+    .buy-other{
+        display: block;
+        float: left;
+        text-decoration: none;
+        padding: 8px 20px 7px 40px;
+        border: solid 1px #005aa0;
+        border-radius: 5px;
+        color: #005aa0;
+        font-weight: bold;
+        font-size: 16px;
+        margin-left: 20px;
+        cursor: pointer;
+        background: url(../images/cart-icon.png) 5px no-repeat;
+    }
+
+    .step-02{
+        padding: 0px 20px;
+        font-size: 14px;
+    }
+    .contact_input{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .contact_input input{
+        height: 36px;
+        border-radius: 5px;
+        border:solid 1px #999;
+        background: #EEE;
+    }
+
+    .contact_input textarea{
+        width: 100%;
+        border-radius: 5px;
+        border:solid 1px #999;
+        background: #EEE;
+    }
+
+    .error{
+        border: solid 1px #FF0000 !important;
+        color: #111;
+    }
+
+    .remove-cart{
+        color: #FF0000;
+        font-size: 20px;
+    }
+
+    .msgbox {
+        padding: 0px 0px 10px 20px;
+        font-size: 16px;
+    }
+
+    .form_error{
+        color: #FF0000;
+    }
+
+
+    .price-mobile{
+        display:none;
+    }
+
+    @media handheld, only screen and (max-width: 767px) {
+
+        .price-mobile{
+            display:block;
+            float: right;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .cart-name{
+            text-transform: inherit;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .quantity{
+            float: left;
+        }
+        .buy-other{
+            float: right;
+        }
+        .btn_red_bg{
+            float: right;
+            margin-bottom: 10px;
+        }
+    }
+
+</style>
+
+<script src="/js/jquery.form.min.js"></script>
+
+
+<div class="c20"></div>
+
+<div class="grid" >
+
+
+<div style="background: #FFF;     " >
+
+    <!--
+    <h1 class="page-name">{_cart_check_out} </h1>
+    <div class="c5"></div>
+    -->
+    <div class="c15"></div>
+    <div style="margin-left: 20px;">
+        <div class="cart-title-number">01</div>
+        <div class="cart-title">
+            <h1 class="fl cart-title-name">
+                Giỏ hàng
+            </h1>
+            <div class="c"></div>
+        </div>
+    </div>
+
+    <div class="c15"></div>
+
+
+    <div class="flex-container flex-space-between hd-cart hide-on-mobile">
+        <div class="cell-6-12 col-hd-cart">Thông tin sản phẩm</div>
+        <div class="cell-2-12 col-hd-cart hd-mb">Đơn giá</div>
+        <div class="cell-3-12 col-hd-cart">Thành tiền</div>
+        <div class="cell-1-12 col-hd-cart">Xóa</div>
+        <div class="c"></div>
+    </div>
+
+    <div class="c10"></div>
+
+    <div id="giohang_row">
+        <!-- START BLOCK : giohang_row -->
+        <div class="c5"></div>
+        <div class="flex-container flex-space-between item-cart">
+
+            <div class="cell-6-12 mobile-cell-1-1">
+
+                <div class="flex-container flex-space-between">
+
+                    <div class="cell-1-5">
+                        <a href="{link_detail}" class="cart-image" target="_blank">{giohang_image}</a>
+
+                    </div>
+
+                    <div class="cell-4-5">
+                        <a href="{link_detail}" class="cart-name" title="View product" target="_blank">{giohang_name}</a>
+                        <div class="c5"></div>
+                        <div class="quantity">
+                            <div class="price-mobile">{giohang_thanhtien}&nbsp;VNĐ&nbsp;{donvitinh}</div>
+                            <div style="float: left;">
+                                Số lượng: <input type='text' class="txt-quantity" name='quantity[]' ref="{id_product}" value='{giohang_soluong}'>
+                            </div>
+                            <div style="float: left; margin-left: 10px;">
+                                <i class="fa fa-plus" onClick="increaseQty($(this));"></i>
+                                <i class="fa fa-minus" onClick="decreaseQty($(this));"></i>
+                            </div>
+
+                            <div class="c10"></div>
+                            <div>
+                                <div class="cart-color">{color} </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <input type='hidden' name='id_product[]' value='{id_product}'/>
+                <div class="c10"></div>
+            </div>
+            <div class="cell-2-12 hide-on-mobile cart-price hd-mb">{giohang_price} VNĐ&nbsp;{donvitinh}  <span style="font-weight:bold; color:#F00;">{giohang_giam}</span> </div>
+            <div class="cell-3-12 hide-on-mobile cart-price">{giohang_thanhtien}&nbsp;VNĐ&nbsp;{donvitinh}</div>
+
+            <div class="cell-1-12 mobile-cell-1-1" style="text-align:left;">
+                <a class="remove-cart" href="#" ref="{id_product}" onClick="delItemCart($(this)); return false;">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+
+            </div>
+
+        </div>
+        <div class="c5"></div>
+        <div style="border-bottom:solid 1px #CCC"></div>
+        <div class="c5"></div>
+        <!-- END BLOCK : giohang_row -->
+
+        <div class="c10"></div>
+
+        <div class="total-payment " align="right">Tổng cộng: <span>{giohang_tongtien} đ</span></div>
+    </div>
+        <div class="c10"></div>
+
+
+    <script>
+
+        function increaseQty(obj) {
+            var current_input = obj.parent().parent().find(".txt-quantity");
+            var current_quantity = parseInt(current_input.val());
+            current_input.val(current_quantity+1);
+
+            updateItemQuantity(current_input.val(), current_input.attr("ref"));
+        }
+
+        function decreaseQty(obj) {
+            var current_input = obj.parent().parent().find(".txt-quantity");
+            var current_quantity = parseInt(current_input.val()) - 1;
+            if (current_quantity < 1){
+                current_quantity = 1;
+            }
+            else{
+                current_input.val(current_quantity);
+                updateItemQuantity(current_input.val(), current_input.attr("ref"));
+            }
+        }
+
+
+        $('#giohang_row').on('change', '.txt-quantity', function () {
+            updateItemQuantity($(this).val(), $(this).attr("ref"));
+        });
+
+
+        function delItemCart(obj) {
+
+
+            if (confirm("Xóa sản phẩm này khỏi giỏ hàng ?") == false) {
+                return false;
+            }
+
+            var id_prod = obj.attr("ref");
+            $('#giohang_row').fadeTo('fast', 0.5);
+            $("#giohang_row").load("/index4.php?page=cart&code=del&uid=" + id_prod, function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success")
+                    $('#giohang_row').fadeTo('fast', 1);
+            });
+        }
+        function updateItemQuantity(newquantity, id_prod) {
+            $('#giohang_row').fadeTo('fast', 0.5);
+            $("#giohang_row").load("/index4.php?page=cart&code=update&uid=" + id_prod + "&uqty=" + newquantity, function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success")
+                    $('#giohang_row').fadeTo('fast', 1);
+            });
+        }
+
+        $(".buy-other").click(function () {
+
+            window.history.back();
+            return false;
+        });
+
+    </script>
+
+    <div class="c20"></div>
+    <form action="{dir_path}/index4.php?page=cart&lang={lang}" method="post" id="cartform" onSubmit="return check_cart();">
+        <input type="hidden"  name="code" value="save" />
+
+        <div class="step-02">
+
+            <div class="cart-title-number">02</div>
+            <div class="cart-title">
+                <div class="fl cart-title-name">
+                    Xác nhận đặt hàng
+                </div>
+                <div class="c"></div>
+            </div>
+
+            <div class="c20"></div>
+
+            <em> {_comment_alert} </em>
+            {message}
+
+            <div class="flex-container flex-space-between">
+
+                <div class="cell-1-2 mobile-cell-1-1">
+                    <div class="contact_input">
+                        <input name="yourname" type="text" class="txt-contact notNull" id="yourname" placeholder="{_fullname}*"  />
+                    </div>
+                </div>
+
+                <div class="cell-1-2 mobile-cell-1-1">
+                    <div class="contact_input">
+                        <input name="phone" type="text" class="txt-contact notNull" placeholder="{_phone}*"  />
+                    </div>
+                </div>
+
+                <div class="cell-1-2 mobile-cell-1-1">
+                    <div class="contact_input">
+                        <input name="email" type="text" class="txt-contact"  id="email" placeholder="Email "  />
+                    </div>
+                </div>
+
+                <div class="cell-1-2 mobile-cell-1-1">
+                    <div class="contact_input">
+                        <input name="address" type="text" class="txt-contact" placeholder="{_address}"  />
+                    </div>
+                </div>
+
+                <div class="contact_input">
+                    <textarea name="other_request" rows="5" placeholder="{_content}" style="height:60px;" class="txt-contact" ></textarea>
+                </div>
+
+                <div class="cell-1-3 mobile-cell-1-1">
+
+                    <div class="cart-title-name" > Hình thức thanh toán </div>
+                    <div class="c10"></div>
+
+                    <label class="">
+                        <input type="radio" name="httt" value="1" checked /> Chuyển khoản ngân hàng
+                    </label>
+                    <div class="c10"></div>
+
+                    <label class="">
+                        <input type="radio" name="httt" value="2" /> Thanh toán trực tuyến
+                    </label>
+                    <div class="c10"></div>
+
+                    <label class="">
+                        <input type="radio" name="httt" value="3" /> Thanh toán COD
+                    </label>
+                    <div class="c10"></div>
+
+
+                </div>
+
+                <div class="cell-2-3 mobile-cell-1-1">
+                    <!--
+                    <i>Trong trường hợp chuyển khoản. Quý khách vui lòng chuyển khoản vào một trong số tài khoản sau đây: </i>
+                    <div class="c5"></div>
+                    <ul class="box-thanh-toan-ngan-hang" >
+
+                    <li>Ngân hàng Vietcombank - STK: 11 - Tại Vietcombank chi nhánh Chương dương - CTK: Công ty TNHH
+                    </li>
+
+
+
+                    <li> Ngân hàng BIDV - STK: 1221 0000 - Tại  - CTK:
+                    </li>
+
+                    </ul>
+                    -->
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="c10"></div>
+            <a type="button" onClick="$('#cartform').submit(); return false;" href="#" class="btn_red_bg"> MUA HÀNG </a>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+        <div class="c10"></div>
+
+
+
+
+        <div class="c10"></div>
+        <div class="msgbox"></div>
+
+    </form>
+
+
+</div>
+
+
+<div class="c20"></div>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        $('.txt-quantity').change(function () {
+            $("#cart-list-form").submit();
+        });
+
+    });
+
+    function check_cart() {
+        ok = true;
+        $('#cartform .notNull').removeClass("error");
+        $('#cartform .notNull').each(function () {
+            if ($(this).val() == '') {
+                $(this).addClass("error");
+                ok = false;
+            }
+        });
+
+
+
+        if (ok == true) {
+            $('#cartform').ajaxSubmit({
+                beforeSubmit: function (a, f, o) {
+                    $('#cartform').fadeTo('fast', 0.3);
+                    $('.waiting').show();
+                    o.dataType = 'html';
+                },
+                success: function (data) {
+                    $('#cartform').fadeTo('fast', 1);
+                    $('.waiting').hide();
+
+                    if (data > 0) {
+
+                        var radioValue = $("input[name='httt']:checked").val();
+                        var redir_url = "/cart-success/";
+                        if (radioValue == 2) redir_url = "/payment/?idt=" + data;
+
+                        $(".msgbox").removeClass("form_error");
+                        $(".msgbox").addClass("form_success");
+                        $(".msgbox").html('{_cart_success}');
+                        $('#cartform')[0].reset();
+                        clearForm: true;
+                        //alert('{_cart_success}');
+                        $(location).attr('href', redir_url);
+                    } else if (data == -1) {
+                        $(".msgbox").addClass("form_error");
+                        $(".msgbox").html('{_captcha_invalid}');
+                    } else {
+                        $(".msgbox").html(data);
+                    }
+
+                }
+            });
+        } else {
+            $(".msgbox").addClass("form_error");
+            $(".msgbox").html('{_check_field}');
+        }
+        return false;
+    }
+
+</script>
+

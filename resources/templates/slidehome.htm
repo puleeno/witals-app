@@ -1,0 +1,172 @@
+<!-- START BLOCK : show_slideshow -->
+
+<div>
+    <div class="swiper-container" id="slide_home">
+        <div class="homeslide-next">  </div>
+        <div class="homeslide-prev">  </div>
+        <div class="swiper-wrapper"> 
+            <!-- START BLOCK : slide_home_item -->
+            <div class="swiper-slide">
+                {image}
+                
+                <!--
+                <div class="grid hide-on-tab hide-on-mobile" style="position:relative; display: none; ">
+                    <div class="slide-home-item">
+                        <h2>{name}</h2>
+                        <div class="c10"></div>
+                        <div class="slide-home-desc">
+                            {description}
+                        </div>
+                        <div class="c10"></div>
+                    </div>
+                    <a class="slide-detail " href="{link}" target="{target}">Xem chi tiết</a>
+                </div>
+                <div class="c"></div>
+                -->
+            </div>
+            <!-- END BLOCK : slide_home_item -->      
+        </div>
+        <div class="c"></div> 
+    </div>
+
+</div>
+
+
+<div class="c"></div>
+<script>
+    $(function () {
+        var swiper_slide_home = new Swiper('#slide_home', {
+            loop: true,
+            slidesPerView: 1,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            spaceBetween: 0,
+            navigation: {
+                nextEl: '.homeslide-prev',
+                prevEl: '.homeslide-next',
+            },
+            speed: 500,
+            spaceBetween: 0,
+        });
+        /*
+         $('#slide_home').on('mouseover', function () {
+         swiper_slide_home.autoplay.stop();
+         });
+         $('#slide_home').on('mouseout', function () {
+         swiper_slide_home.autoplay.start();
+         });  
+         */
+    });
+</script>
+
+
+<!-- END BLOCK : show_slideshow -->
+
+<!-- START BLOCK : slidemobile111 -->
+<div class="hide-on-pc hide-on-pad">
+    <div class="swiper-container" id="slidemobile">
+		 <div class="swiper-pagination"></div>
+		 
+        <div class="swiper-wrapper"> 
+            <!-- START BLOCK : slidemobile_item -->
+            <div class="swiper-slide">
+                {image}
+            </div>
+            <!-- END BLOCK : slidemobile_item -->      
+        </div>
+        <div class="c"></div> 
+    </div>
+
+</div>
+	
+
+	<div class="c"></div>
+<script>
+    $(function () {
+        var swiper_slidemobile = new Swiper('#slidemobile', {
+            loop: true,
+            slidesPerView: 1,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            spaceBetween: 0,
+            pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			  },
+            speed: 500,
+            spaceBetween: 0,
+        });
+    });
+</script>
+<!-- END BLOCK : slidemobile111 -->
+
+
+<!-- START BLOCK : slidechild -->
+<div class="img-poster" style="position:relative">
+    <!-- START BLOCK : nopic111 -->
+    
+    <div><img src="/uploaded/default.png" width="100%" alt="thelegend" style="display:block" /></div>
+    <!-- END BLOCK : nopic111 --> 
+	
+	
+    <!-- START BLOCK : piccat -->
+	<a class="hide-on-tab" href="{name}">
+    {image}
+	</a>
+    <!-- END BLOCK : piccat --> 
+	
+	<!-- START BLOCK : pic_mobile -->
+	<a  class="hide-on-pc hide-on-pad" href="{name}">
+    {image}
+	</a>
+    <!-- END BLOCK : pic_mobile --> 
+	
+	
+	
+    <!-- START BLOCK : slidecat -->
+    <div style="position: relative;">
+        <div class="swiper-container" id="slide_cat">
+            <div class="homeslide-next">  </div>
+            <div class="homeslide-prev">  </div>
+            <div class="swiper-wrapper"> 
+                <!-- START BLOCK : list_slide -->
+                <div class="swiper-slide" style="position:relative">
+                	
+                    <a href="{link}" target="{target}">{image}</a>
+                </div>
+                <!-- END BLOCK : list_slide -->      
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            var swiper_slide_cat = new Swiper('#slide_cat', {
+                loop: true,
+                slidesPerView: 1,
+                autoplay: {
+                    delay: 2200,
+                    disableOnInteraction: false,
+                },
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.homeslide-prev',
+                    prevEl: '.homeslide-next',
+                },
+                speed: 500,
+                spaceBetween: 0,
+            });
+        });
+        $('#slide_cat').on('mouseover', function () {
+            swiper_slide_cat.autoplay.stop();
+        });
+        $('#slide_cat').on('mouseout', function () {
+            swiper_slide_cat.autoplay.start();
+        });
+    </script>    
+    <!-- END BLOCK : slidecat --> 
+</div>
+<!-- END BLOCK : slidechild --> 

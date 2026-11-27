@@ -1,0 +1,221 @@
+<div class="grid">
+	
+	<div class="c20"></div>
+	<div class="c20"></div>
+	
+	<div class="cart-title">
+	
+		<h1 style="font-size:24px; text-align:center; margin:0px; padding:10px; ">
+
+			THANH TOÁN ĐƠN HÀNG
+
+		</h1>
+
+		<div class="c10"></div>
+	</div> 
+	
+	<div class="c10" style="border-top: solid 1px #CCC;"></div>
+	<div class="c15"></div>
+
+	
+    <div style=" font-family: Arial;    width: 100%;" >
+
+        <div class="flex-container flex-space-between">
+
+
+            <div class="cell-1-2 tab-cell-1-1">
+			
+				
+			
+				<h3 style="padding:0px; margin:0px;">Nội dung thanh toán</h3>
+                <div class="c10"></div>
+				
+				<form action="/vnpay_php/vnpay_create_payment.php" id="create_form" method="post">     
+					
+					
+					<input type="hidden" name="order_type" value="billpayment"/>
+					
+					<input type="hidden" name="order_id" id="order_id" value="{order_no}"/>
+					<input type="hidden" name="amount" id="amount" value="{amount}"/>
+					
+
+					
+					Mã hóa đơn : <strong style="font-size: 20px; color: #e50000; "> {order_no} </strong> 
+					
+					
+					
+					<div class="c5"></div>
+					Tổng tiền thanh toán: <strong style="font-size: 20px; color: #e50000; "> {total_amount} <i>vnđ</i> </strong> 
+					
+					
+					
+					<div class="c20"></div>
+                    <label for="order_desc">Nội dung thanh toán</label>
+					<div class="c5"></div>
+                    <textarea class="txt-contact " cols="20" id="order_desc" name="order_desc" rows="3">Thanh toan don hang {order_no} </textarea>
+					<div class="c10"></div>
+					
+                    <label for="bank_code">Ngân hàng</label>
+					<select name="bank_code" id="bank_code" class="txt-contact ">
+						<option value="">Không chọn</option>
+						<option value="NCB"> Ngan hang NCB</option>
+						<option value="AGRIBANK"> Ngan hang Agribank</option>
+						<option value="SCB"> Ngan hang SCB</option>
+						<option value="SACOMBANK">Ngan hang SacomBank</option>
+						<option value="EXIMBANK"> Ngan hang EximBank</option>
+						<option value="MSBANK"> Ngan hang MSBANK</option>
+						<option value="NAMABANK"> Ngan hang NamABank</option>
+						<option value="VNMART"> Vi dien tu VnMart</option>
+						<option value="VIETINBANK">Ngan hang Vietinbank</option>
+						<option value="VIETCOMBANK"> Ngan hang VCB</option>
+						<option value="HDBANK">Ngan hang HDBank</option>
+						<option value="DONGABANK"> Ngan hang Dong A</option>
+						<option value="TPBANK"> Ngân hàng TPBank</option>
+						<option value="OJB"> Ngân hàng OceanBank</option>
+						<option value="BIDV"> Ngân hàng BIDV</option>
+						<option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
+						<option value="VPBANK"> Ngan hang VPBank</option>
+						<option value="MBBANK"> Ngan hang MBBank</option>
+						<option value="ACB"> Ngan hang ACB</option>
+						<option value="OCB"> Ngan hang OCB</option>
+						<option value="IVB"> Ngan hang IVB</option>
+						<option value="VISA"> Thanh toan qua VISA/MASTER</option>
+					</select>
+					
+					<div class="c10"></div>
+					
+                    <label for="language">Ngôn ngữ</label>
+					<select name="language" id="language" class="txt-contact ">
+						<option value="vn">Tiếng Việt</option>
+						<option value="en">English</option>
+					</select>
+					
+					<div class="c20"></div>
+					
+					<h2 style="padding:0px; margin:0px;">{dieukhoan_name}</h2>
+					<div class="c10"></div>
+					<div class="box-dieukhoan" >
+						{dieukhoan_content}
+					</div>
+					<div class="c20"></div>
+					<label class="agree_lbl">
+						<input type="checkbox" name="agree" id="agree" value="1" /> Tôi đồng ý với các điều khoản thanh toán trên
+					</label>
+					
+					<div class="c20"></div>
+					
+
+                    <button type="submit" class="btn-payment" id="btnPopup">Thanh toán </button>
+                    
+
+                </form>			
+			
+
+				<link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
+				<script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
+				<script type="text/javascript">
+				
+					$("#agree").change(function () {
+						$('.agree_lbl').removeClass("error_lbl");
+
+					});
+				
+					$("#btnPopup").click(function () {
+						
+						if ( !$('#agree').is(":checked") ) {
+							$('.agree_lbl').addClass("error_lbl");
+							return false;						
+						}
+					
+						var postData = $("#create_form").serialize();
+						var submitUrl = $("#create_form").attr("action");
+						$.ajax({
+							type: "POST",
+							url: submitUrl,
+							data: postData,
+							dataType: 'JSON',
+							success: function (x) {
+								if (x.code === '00') {
+									if (window.vnpay) {
+										vnpay.open({width: 768, height: 600, url: x.data});
+									} else {
+										location.href = x.data;
+									}
+									return false;
+								} else {
+									alert(x.Message);
+								}
+							}
+						});
+						return false;
+					});
+				</script>
+
+
+            </div>
+			
+			<div class="cell-2-4 tab-cell-1-1">
+			
+				<div class="pay-method">
+                    Dịch vụ thanh toán trực tuyến của cho phép chấp nhận thanh toán thẻ qua Internet. Các loại thẻ sau được chấp nhận:
+                    <div class="c10"></div>					
+                    <img  src="/images/logo-bank.png"/>
+                </div>
+                <div class="c20"></div>	
+
+
+            </div>
+
+        </div>
+
+        <div class="c20"></div>
+
+        <!--
+        <input name="input" type="button" id="payment_btn" class="btn_red_bg" value="Tiếp tục" />
+        -->
+
+
+    </div>
+
+    <div class="c20"></div>
+
+    <div class="c20"></div>
+    <div class="c20"></div>
+
+
+</div>
+
+<script>
+    $("#quocte_btn").hide();
+    $('input[type=radio][name=pay_method]').change(function () {
+        if (this.value == 'noidia') {
+            $("#noidia_btn").show();
+            $("#quocte_btn").hide();
+        } else if (this.value == 'quocte') {
+            $("#noidia_btn").hide();
+            $("#quocte_btn").show();
+        } else {
+            $("#noidia_btn").hide();
+            $("#quocte_btn").hide();
+        }
+    });
+
+    $("#agree").change(function () {
+        $('.agree_lbl').removeClass("error_lbl");
+
+    });
+
+    $("#noidia_btn, #quocte_btn").click(function () {
+        if ($('#agree').is(":checked")) {
+            return true;
+        } else {
+            $('.agree_lbl').addClass("error_lbl");
+            return false;
+        }
+
+
+
+    });
+
+
+</script>

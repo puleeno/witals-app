@@ -1,0 +1,52 @@
+<!-- START BLOCK : partner -->
+<div style="position: relative;">
+    
+    <div class="partner-next btn-next"> <img src="/images/btn-next.png"/> </div>
+    <div class="partner-prev btn-prev"> <img src="/images/btn-prev.png"/> </div>
+    
+    <div class="swiper-container" id="partner">
+        <div class="swiper-wrapper"> 
+            <!-- START BLOCK : list_partner -->
+            <div class="swiper-slide">
+                {image}
+            </div>
+            <!-- END BLOCK : list_partner -->      
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var swiper_partner = new Swiper('#partner', {
+        slidesPerView: 4,
+        autoplay: {
+            delay: 2600,
+            disableOnInteraction: false,
+        },
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.partner-prev',
+            prevEl: '.partner-next',
+        },
+
+        speed: 400,
+
+        loop: true,
+        breakpoints: {
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 30
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            }
+        }
+    });
+
+
+
+</script>
+
+<!-- END BLOCK : partner -->

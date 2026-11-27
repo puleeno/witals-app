@@ -1,0 +1,256 @@
+
+
+<div class="img-poster" >
+
+    
+	
+	<div class="grid" style="position:relative">
+	<form action="" method="GET" >
+	<div class="tra-cuu-form">
+		<div class="tra-cuu-form-title">Tra cứu thông tin</div>
+		<div class="c10"></div>
+		Nhập mã IMEI sản phẩm hoặc số điện thoại, sau đó click tra cứu dữ liệu bảo hành
+		<div class="c10"></div>
+		<input class="txt-contact" name="imei" type="text" placeholder = "IMEI hoặc Số điện thoại"/>
+		<div class="c20"></div>
+		<input class="btn-contact" type="submit" value="Tra cứu" />
+		<div class="c20"></div>
+		
+	</div>
+	</div>
+	
+	</form>
+	<div class="hide-on-tab">
+		<img style="display:block" src="/uploaded/pic-cat/pic-baohanh.png" alt="" width="100%">
+	</div>
+</div>
+
+<div class="c"></div>
+{pathpage}
+<div class="c"></div>
+
+
+
+<div class="c20"></div>
+<div class="grid">
+
+<!-- START BLOCK : Baohanh -->
+
+<div style="border:solid 1px #999; padding:10px;">
+	<div class="flex-container flex-space-between hide-on-tab" style="font-family:'Muli-B' ; text-align:center; ">
+		
+		<div class="cell-1-10 tab-cell-1-1">
+			Mã hàng
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			IMEI
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			Ngày bảo hành
+		</div>
+		
+		<div class="cell-1-10 tab-cell-1-1">
+			Hạn bảo hành
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			Số phiếu bán
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			Mã khách hàng
+		</div>
+		
+		
+	</div>
+	<div class="c10"></div>
+	<div class="c10" style="border-top:solid 1px #ddd;"></div>
+	
+	<!-- START BLOCK : lstBaohanh -->
+	<div class="flex-container flex-space-between" style=" text-align:center; " >
+		
+		<div class="cell-1-10 tab-cell-1-1">
+			{ma_hang}
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			{imei}
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			{ngay_bh}
+		</div>
+		
+		<div class="cell-1-10 tab-cell-1-1">
+			12 tháng
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			{so_phieu_ban}
+		</div>
+		
+		<div class="cell-2-10 tab-cell-1-1">
+			{makh}
+		</div>
+		
+	</div>
+	
+	<!-- END BLOCK : lstBaohanh -->
+	
+	<!-- START BLOCK : khongthayBaohanh -->
+	<div style="text-align:center;">
+		<div class="c20"></div>
+		Không tìm thấy thông tin bảo hành !
+		<div class="c10"></div>
+	</div>
+	
+	<!-- END BLOCK : khongthayBaohanh -->
+	
+</div>	
+<!-- END BLOCK : Baohanh -->
+
+
+<div class="c20"></div>
+
+<a name="map_here"/>
+<h2 class="title-cat-home"  > Điểm bảo hành của KATA </h2>
+<div class="c5"></div>
+<div class="title-cat-line" ></div>
+<div class="c10"></div>
+<div class="cat-content">
+
+{catintro} 
+
+</div>
+<div class="c10"></div>
+
+
+<div class="c20"></div>
+
+<div class="contact_input" style="margin-bottom:0px;" >
+
+	<form action="#map_here" method="GET">
+	
+	
+
+	<div class="flex-container flex-space-between">
+		<div class="cell-3-10 tab-cell-1-1">
+		
+			<select name="prv" id="tinhthanh" class="txt-contact"   >
+				<option value="">----Chọn tỉnh/thành phố----</option>
+				{listProvince}
+			</select>
+		</div>
+		
+		<div class="cell-3-10 tab-cell-1-1">
+			<select name="dst" id="quanhuyen" class="txt-contact "   >
+				<option value="">----Chọn quận huyện----</option>
+			</select>
+		</div>
+		
+		<div class="cell-3-10 tab-cell-1-1">
+			<input name="mapkw" type="text" class="txt-contact" placeholder="Từ khóa tìm kiếm" />
+		</div>
+		
+		<div class="cell-1-10 tab-cell-1-1">
+			
+			<input class="btn-contact" type="submit" value="Tìm kiếm" />
+			
+		</div>
+		
+	</div>
+	
+	<div class="c20"></div>
+	
+	</form>	
+	
+<script>
+
+	$('#tinhthanh').change(function() {
+			if ($('#tinhthanh').val() != 0) {
+				$('#quanhuyen').html('<option value="0">Đang nạp dữ liệu..</option>');
+				$('#quanhuyen').load('/index4.php?page=ajaxprovider&code=getDistrict&id=' + $('#tinhthanh').val()  );
+			} else {
+				$('#quanhuyen').html('<option value="0">Chọn quận/huyện..</option>');
+			}					
+	});
+
+</script>	
+	
+	
+</div>
+
+<div class="c10"></div>
+
+	<div class="flex-container flex-space-between">
+		
+		<div class="cell-1-2 tab-cell-1-1" style="height:500px">
+		
+			<Div id="gmap" style="width:100%; height:100%;"></Div> 
+		
+		</div>
+		
+		
+		<div class="cell-1-2 tab-cell-1-1">
+			
+			<div style="padding:15px; background:#0f75bc; color:#FFF; font-family:'Muli-B' ">Tìm thấy {record_count} kết quả  </div>
+			<div class="c"></div>
+			<div id="controls-tabs"></div>
+		</div>
+		
+		
+		
+	</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+    	
+    <div class="c10"></div>
+
+
+
+<script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7&key=AIzaSyAhIoex0kKP95rF9DwM_7tG65TzCGGytYA"></script>
+<script src="/js/maplace-0.1.3.js"></script>
+<script>
+var LocsA = [
+	<!-- START BLOCK : lstDaily -->
+	{
+		lat: {latitude},
+		lon: {longitude},
+		zoom: 15,
+		title: '<h3 class=\'titlemap\'>{dailyname}</h3>',
+		html: '<h3 class=\'titlemap\'>{dailyname}</h3><p class=\'address\'><i class=\'fa fa-map-marker\'></i> {address} </p> <p class=\'address\'><i class=\'fa fa-phone\'></i>Hotline: {phone} </p> <p class=\'address\'><i class=\'fa fa-envelope\'></i> Email: {email} </p>',
+		
+		icon: '/images/icon-loc.png',
+		animation: google.maps.Animation.DROP
+	},
+	<!-- END BLOCK : lstDaily --> 
+	
+];
+
+
+new Maplace({
+	locations: LocsA,
+	view_all:false,
+	map_div: '#gmap',
+	controls_div: '#controls-tabs',
+	controls_type: 'list',
+	controls_on_map: false,
+	show_infowindow: true,
+	start:0,
+	afterShow: function(index, location, marker) {
+	   //. $('#info').html(location.html);
+	}
+}).Load(); 
+
+</script>

@@ -1,0 +1,116 @@
+
+{slideshow}
+
+<div class="c5"></div>
+{pathpage}
+
+<div class="grid">
+    <div class="c20"></div>
+	
+	<div class="flex-container flex-space-between">
+
+		    <div class="cell-1-4 hide-on-tab hide-on-mobile" >
+                {leftcol}
+                <div class="c30"></div>
+            </div>
+			
+            <div class="cell-3-4 tab-cell-1-1"> 
+			
+				<!-- START BLOCK : listCat -->	
+				<!-- START BLOCK : cat_item_list -->
+				<h2 class="title-page"><a href="{link}">{name}</a></h2>
+				<div class="content-text">{content}</div>
+				<div class="c20"></div>
+				<div class="flex-container">
+					<!-- START BLOCK : catlistAlbum -->
+					<div class="cell-1-3  tab-cell-1-2 mobile-cell-1-1 margin-bottom-20">
+						<div><a href="{link_detail}">{image}</a></div>
+						<div class="album-name"><a href="{link_detail}">{name}</a></div>
+					</div>
+					<!-- END BLOCK : catlistAlbum -->
+					<div class="cell-1-3 tab-cell-1-2 mobile-cell-1-1"></div>
+					
+
+				</div>
+				<div style="border-bottom:solid 1px #d9d9d9"></div>
+				<div class="c20"></div>
+				<!-- END BLOCK : cat_item_list -->
+				<!-- END BLOCK : listCat -->
+				
+				
+				<!-- START BLOCK : albums -->
+				<h1 class="title-page"><a href="{link}">{catname}</a></h1>
+				<div class="content-text">{catcontent}</div>
+				<div class="c20"></div>
+				<div class="flex-container flex-space-between">
+					<!-- START BLOCK : listalbum -->
+					<div class="cell-1-3 tab-cell-1-2 mobile-cell-1-1" style="margin-bottom:40px;">
+						<div><a href="{link_detail}">{image}</a></div>
+						<div class="album-name"><a href="{link_detail}">{name}</a></div>
+					</div>
+					<!-- END BLOCK : listalbum -->
+					<div class="cell-1-3 mobile-cell-1-1 tab-cell-1-2 pad-cell-1-3"></div>
+					
+				</div>
+				<div class="paging">{pages}</div>
+				<div class="c30"></div>
+				<!-- END BLOCK : albums -->
+				
+				
+				<!-- START BLOCK : detail -->
+				<script type="text/javascript" src="{dir_path}/highslide/highslide-with-gallery.js"></script>
+				<link rel="stylesheet" type="text/css" href="{dir_path}/highslide/highslide.css" />
+				<script type="text/javascript">
+					hs.graphicsDir = '{dir_path}/highslide/graphics/';
+					hs.align = 'center';
+					hs.transitions = ['expand', 'crossfade'];
+					hs.outlineType = 'rounded-white';
+					hs.fadeInOut = true;
+					hs.dimmingOpacity = 0.75;
+					hs.addSlideshow({
+						interval: 5000,
+						repeat: false,
+						useControls: true,
+						fixedControls: 'fit',
+						overlayOptions: {
+							opacity: 0.75,
+							position: 'bottom center',
+							hideOnMouseOut: true
+						}
+					});
+				</script>
+				<h1 class="title-news-detail">{name}</h1> 
+				<div class="c10"></div>
+				<div class="intro-detail" >{intro}</div>
+				<div class="c10"></div>
+				<div class="content-detail">{content}</div>
+				
+				<div class="c20"></div>
+				
+				<div class="flex-container flex-space-between">
+					<!-- START BLOCK : slider_image -->
+					<div class="cell-1-4 tab-cell-1-2 mobile-cell-1-1 margin-bottom-20">
+						<a href="{bigimage_url}" onclick="return hs.expand(this)" class="hightslide">{image}</a>
+						<div class="highslide-caption">{image_desc}</div>
+						<div class="album-name">{name}</div>
+					</div>
+
+					<!-- END BLOCK : slider_image -->
+					<div class="cell-1-4 tab-cell-1-2 "></div>
+					<div class="cell-1-4 tab-cell-1-2 "></div>
+					<div class="cell-1-4 tab-cell-1-2 "></div>
+					
+				</div>
+				<div class="c30"></div>
+				
+				<!-- END BLOCK : detail -->
+
+            </div>
+
+
+
+        </div>
+
+    
+	<div class="c30"></div>
+</div>
