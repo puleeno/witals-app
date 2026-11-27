@@ -35,7 +35,7 @@ function menubar() {
                 $tpl1->assign("target", "target='_blank'");
 
             if (intval($rs['mega_menu'] > 0))
-                $tpl1->assign("mega_menu_li", 'style="position: initial;"');
+                $tpl1->assign("mega_menu_li", 'position: initial;');
 
 
             if (in_array($rs['id_category'], $arr))
@@ -222,7 +222,7 @@ function rightbar() {
                 $tpl1->assign("target", "target='_blank'");
 
             if (intval($rs['mega_menu'] > 0))
-                $tpl1->assign("mega_menu_li", 'style="position: initial;"');
+                $tpl1->assign("mega_menu_li", 'position: initial;');
 
             if (in_array($rs['id_category'], $arr))
                 $tpl1->assign("active", "active");
