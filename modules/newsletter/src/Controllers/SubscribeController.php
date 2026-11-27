@@ -50,6 +50,10 @@ class SubscribeController extends AbstractController
             $db->insert($table)->values([
                 'email'      => $email,
                 'name'       => trim((string) ($input['name'] ?? '')) ?: null,
+                'phone'      => trim((string) ($input['phone'] ?? '')),
+                'address'    => trim((string) ($input['address'] ?? '')),
+                'message'    => trim((string) ($input['message'] ?? '')),
+                'thu_tu'     => 0,
                 'created_at' => new \DateTimeImmutable('now'),
             ])->run();
         } catch (\Throwable $e) {
@@ -61,8 +65,8 @@ class SubscribeController extends AbstractController
 
     private function table(): string
     {
-        $override = $this->app->config('database.tables.newsletter_subscribers');
+        $override = $this->app->config('database.tables.newsletter');
 
-        return is_string($override) && $override !== '' ? $override : 'newsletter_subscribers';
+        return is_string($override) && $override !== '' ? $override : 'newsletter';
     }
 }

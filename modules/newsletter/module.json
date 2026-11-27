@@ -20,10 +20,10 @@
         "group_icon": "📣",
         "nav": { "label": "Newsletter", "url": "/dashboard/newsletter", "icon": "✉️" },
         "crud": {
-            "table": "newsletter_subscribers",
+            "table": "newsletter",
             "title": "Đăng ký nhận tin",
             "title_field": "email",
-            "list_fields": ["email", "name", "created_at"]
+            "list_fields": ["email", "phone", "created_at"]
         }
     }
 }
