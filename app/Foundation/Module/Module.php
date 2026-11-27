@@ -94,4 +94,20 @@ abstract class Module implements ModuleInterface
     {
         return $this->path;
     }
+
+    /**
+     * Resolve the physical table name for a logical name declared in this
+     * module's schema.json. Honours a config override at
+     * `database.tables.<logical>` so tables can be renamed without code
+     * changes. Use this everywhere the module touches the database.
+     */
+    public function table(string $logicalName): string
+    {
+        $override = $this->app->config('database.tables.' . $logicalName);
+        if (is_string($override) && $override !== '') {
+            return $override;
+        }
+
+        return $logicalName;
+    }
 }

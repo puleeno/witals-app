@@ -409,6 +409,7 @@ class RouteRegistry implements RouteRegistryInterface, ResettableInterface
         }
 
         $data = var_export([
+            'hash' => $this->routesHash(),
             'staticIndex' => $this->staticIndex,
             'dynamicIndex' => $this->dynamicIndex,
         ], true);
@@ -433,10 +434,36 @@ class RouteRegistry implements RouteRegistryInterface, ResettableInterface
             return false;
         }
 
+        // Invalidate the cache when the registered route set changed (e.g. a
+        // module/provider added routes at runtime, or a stale/empty cache file
+        // is left over from an earlier build). This makes route loading
+        // self-healing and guarantees module routes are always honoured.
+        $expectedHash = $this->routesHash();
+        if (!isset($data['hash']) || $data['hash'] !== $expectedHash) {
+            return false;
+        }
+
         $this->staticIndex = $data['staticIndex'];
         $this->dynamicIndex = $data['dynamicIndex'];
 
         return true;
+    }
+
+    /**
+     * Deterministic fingerprint of the current in-memory route set.
+     * Used to detect stale route caches.
+     */
+    protected function routesHash(): string
+    {
+        $lines = [];
+        for ($p = 0; $p <= self::PRIORITY_FALLBACK; $p++) {
+            foreach ($this->routes[$p] ?? [] as $route) {
+                $lines[] = $route['method'] . ' ' . $route['path'];
+            }
+        }
+        sort($lines);
+
+        return md5(implode("\n", $lines));
     }
 
     protected function countCaptureGroups(string $regex): int

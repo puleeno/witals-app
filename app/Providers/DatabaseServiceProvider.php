@@ -49,6 +49,7 @@ class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
             return new \App\Foundation\Database\ModuleSchemaManager(
                 $app->make(\Cycle\Database\DatabaseProviderInterface::class),
                 $app->make(\Psr\Log\LoggerInterface::class),
+                $app,
             );
         });
 
