@@ -1,0 +1,29 @@
+{
+    "name": "category",
+    "version": "1.0.0",
+    "description": "Danh mục (category) — quản lý từ dashboard qua generic CRUD (pk id_category).",
+    "type": "data",
+    "priority": 44,
+    "enabled": true,
+    "depends": [],
+    "providers": [],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Category\\": "src/"
+        }
+    },
+    "provides": ["category.data"],
+    "admin": {
+        "group": "Nội dung",
+        "group_icon": "📂",
+        "nav": { "label": "Danh mục", "url": "/dashboard/category", "icon": "📂" },
+        "crud": {
+            "table": "category",
+            "pk": "id_category",
+            "title": "Danh mục",
+            "title_field": "name",
+            "list_fields": ["name", "url", "active"],
+            "form_fields": ["name", "parentid", "active", "thu_tu", "url", "title", "keywords", "description", "data_type", "lang"]
+        }
+    }
+}

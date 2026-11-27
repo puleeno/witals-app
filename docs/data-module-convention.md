@@ -59,7 +59,11 @@ chỉ cần `module.json` (có `admin.crud`) + `schema.json` — CRUD tự sinh.
 - `admin.nav`: item menu (label, url, icon).
 - `admin.crud.table`: tên **logical** của bảng (đặt trong `schema.json`).
   Có thể override tên vật lý qua config `database.tables.<table>`.
+- `admin.crud.pk`: tên cột khoá chính (mặc định `id`). Bảng legacy hay dùng
+  `id_product`, `id_news`, `id_category`... — khai báo đúng để CRUD chạy.
 - `admin.crud.list_fields`: các cột hiển thị ở màn list.
+- `admin.crud.form_fields` (tuỳ chọn): giới hạn trường trong form thêm/sửa
+  (mặc định mọi cột trừ khoá chính + created_at/updated_at).
 
 ## 3. schema.json
 

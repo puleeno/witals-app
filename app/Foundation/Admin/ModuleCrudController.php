@@ -65,7 +65,7 @@ class ModuleCrudController extends AdminController
             foreach ($cols as $c) {
                 $body .= '<td>' . htmlspecialchars((string) ($row[$c] ?? ''), ENT_QUOTES) . '</td>';
             }
-            $id = (int) ($row['id'] ?? 0);
+            $id = (int) ($row[$def['pk']] ?? 0);
             $base = '/dashboard/' . $module;
             $body .= '<td class="admin-row-actions">'
                 . '<a href="' . $base . '/' . $id . '/edit" class="admin-btn admin-btn-sm">Sửa</a> '
@@ -101,7 +101,7 @@ class ModuleCrudController extends AdminController
         if ($def === null) {
             return Response::html($this->adminPage('Không tìm thấy', '<p>Module không hợp lệ.</p>'), 404);
         }
-        $row = $this->find($def['table'], $id);
+        $row = $this->find($def['table'], $def['pk'], $id);
 
         return $this->form($module, $row, '/dashboard/' . $module . '/' . $id, 'Cập nhật');
     }
@@ -114,9 +114,13 @@ class ModuleCrudController extends AdminController
         }
 
         $fields = '';
+        $allowed = is_array($def['form_fields']) ? $def['form_fields'] : null;
         foreach ($def['columns'] as $col) {
             $name = $col['name'];
-            if (in_array($name, ['id', 'created_at', 'updated_at'], true)) {
+            if (in_array($name, [$def['pk'], 'created_at', 'updated_at'], true)) {
+                continue;
+            }
+            if ($allowed !== null && !in_array($name, $allowed, true)) {
                 continue;
             }
             $value = htmlspecialchars((string) ($row[$name] ?? ''), ENT_QUOTES);
@@ -157,7 +161,9 @@ class ModuleCrudController extends AdminController
             return Response::html('<p>Module không hợp lệ.</p>', 404);
         }
         $data = $this->filterData($def, (array) $request->post());
-        $data['created_at'] = new \DateTimeImmutable('now');
+        if ($this->hasColumn($def, 'created_at')) {
+            $data['created_at'] = new \DateTimeImmutable('now');
+        }
         $this->insert($def['table'], $data);
 
         return Response::redirect('/dashboard/' . $module);
@@ -173,7 +179,7 @@ class ModuleCrudController extends AdminController
         if ($this->hasColumn($def, 'updated_at')) {
             $data['updated_at'] = new \DateTimeImmutable('now');
         }
-        $this->updateRow($def['table'], $id, $data);
+        $this->updateRow($def['table'], $def['pk'], $id, $data);
 
         return Response::redirect('/dashboard/' . $module);
     }
@@ -184,7 +190,7 @@ class ModuleCrudController extends AdminController
         if ($def === null) {
             return Response::html('<p>Module không hợp lệ.</p>', 404);
         }
-        $this->delete($def['table'], $id);
+        $this->delete($def['table'], $def['pk'], $id);
 
         return Response::redirect('/dashboard/' . $module);
     }
@@ -243,8 +249,10 @@ class ModuleCrudController extends AdminController
 
         return [
             'table'       => $table,
+            'pk'          => (string) ($crud['pk'] ?? 'id'),
             'title'       => (string) ($crud['title'] ?? $meta['admin']['nav']['label'] ?? $module),
             'list_fields' => $listFields,
+            'form_fields' => $crud['form_fields'] ?? null,
             'columns'     => $columns,
         ];
     }
@@ -260,10 +268,10 @@ class ModuleCrudController extends AdminController
     }
 
     /** @return array<string, mixed>|null */
-    private function find(string $table, int $id): ?array
+    private function find(string $table, string $pk, int $id): ?array
     {
         try {
-            $rows = $this->dbal->database()->select()->from($table)->where('id', $id)->limit(1)->fetchAll();
+            $rows = $this->dbal->database()->select()->from($table)->where($pk, $id)->limit(1)->fetchAll();
 
             return $rows[0] ?? null;
         } catch (\Throwable) {
@@ -279,18 +287,18 @@ class ModuleCrudController extends AdminController
         }
     }
 
-    private function updateRow(string $table, int $id, array $data): void
+    private function updateRow(string $table, string $pk, int $id, array $data): void
     {
         try {
-            $this->dbal->database()->update($table, $data, ['id' => $id])->run();
+            $this->dbal->database()->update($table, $data, [$pk => $id])->run();
         } catch (\Throwable) {
         }
     }
 
-    private function delete(string $table, int $id): void
+    private function delete(string $table, string $pk, int $id): void
     {
         try {
-            $this->dbal->database()->delete($table, ['id' => $id])->run();
+            $this->dbal->database()->delete($table, [$pk => $id])->run();
         } catch (\Throwable) {
         }
     }
@@ -317,7 +325,7 @@ class ModuleCrudController extends AdminController
      */
     private function filterData(array $def, array $input): array
     {
-        $skip = ['id', 'created_at', 'updated_at'];
+        $skip = [$def['pk'], 'created_at', 'updated_at'];
         $out = [];
         foreach ($def['columns'] as $col) {
             $name = $col['name'];

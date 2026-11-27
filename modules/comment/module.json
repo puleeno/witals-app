@@ -1,0 +1,18 @@
+{
+    "name": "comment",
+    "version": "1.0.0",
+    "description": "Product comments — submit handler (POST /comment/post). Render list still in legacy product page.",
+    "type": "data",
+    "priority": 43,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Comment\\Providers\\CommentServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Comment\\": "src/"
+        }
+    },
+    "provides": ["comment.data"]
+}
