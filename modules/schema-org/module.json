@@ -1,0 +1,20 @@
+{
+    "name": "schema-org",
+    "version": "1.0.0",
+    "description": "schema.org JSON-LD structured data injected into <head> via the shared render.head hook.",
+    "type": "feature",
+    "priority": 21,
+    "enabled": true,
+    "depends": ["seo"],
+    "providers": [
+        "Modules\\SchemaOrg\\Providers\\SchemaOrgServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\SchemaOrg\\": "src/"
+        }
+    },
+    "provides": [
+        "schema-org.render"
+    ]
+}
