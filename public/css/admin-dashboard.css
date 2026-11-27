@@ -1,0 +1,30 @@
+/* =========================================================================
+   Dashboard-specific styles (depends on admin-core.css tokens).
+   Enqueued by AdminController as "admin-dashboard".
+   ========================================================================= */
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--dc-gap);
+}
+
+.admin-stat-card {
+  background: var(--dc-surface);
+  border: 1px solid var(--dc-border);
+  border-radius: var(--dc-radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: 0.25s;
+}
+.admin-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25);
+}
+.admin-stat-card .stat-icon { font-size: 22px; }
+.admin-stat-card .stat-value { font-size: 30px; font-weight: 800; }
+.admin-stat-card .stat-label { color: var(--dc-text-muted); font-size: 14px; }
+
+#admin-app { margin-top: var(--dc-gap); }
+.spa-error { color: var(--dc-danger); }

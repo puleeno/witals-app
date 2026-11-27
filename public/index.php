@@ -46,7 +46,7 @@ $path = parse_url($requestUri, PHP_URL_PATH);
 $path = is_string($path) && $path !== '' ? $path : '/';
 
 /** Prefixes that must always be served by the Witals pipeline. */
-$witalsPrefixes = ['/dashboard', '/api', '/admin', '/health', '/info', '/_witals'];
+$witalsPrefixes = ['/dashboard', '/api', '/admin', '/health', '/info', '/login', '/logout', '/_witals'];
 
 $isWitalsRequest = false;
 foreach ($witalsPrefixes as $prefix) {

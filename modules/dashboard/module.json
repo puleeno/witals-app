@@ -1,0 +1,21 @@
+{
+    "name": "dashboard",
+    "version": "1.0.0",
+    "description": "Headless-CMS style admin dashboard (SPA shell served by RoadRunner).",
+    "type": "admin",
+    "priority": 10,
+    "enabled": true,
+    "route_prefix": "/dashboard",
+    "depends": [],
+    "providers": [
+        "Modules\\Dashboard\\Providers\\DashboardServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Dashboard\\": "src/"
+        }
+    },
+    "provides": [
+        "dashboard.context"
+    ]
+}
