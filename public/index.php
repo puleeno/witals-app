@@ -56,6 +56,23 @@ foreach ($witalsPrefixes as $prefix) {
     }
 }
 
+// Dynamic lane decision: if a module registered a controller/route for this
+// path (public routes that replace legacy), route it through Witals even when
+// the prefix is not in the static list above.
+if (!$isWitalsRequest) {
+    try {
+        // Boot so module routes are registered before we probe the registry.
+        $app->boot();
+        $registry = $app->make(\App\Http\Routing\Contracts\RouteRegistryInterface::class);
+        $req = \Witals\Framework\Http\Request::createFromGlobals();
+        if ($registry->match($req, null, $path) !== null) {
+            $isWitalsRequest = true;
+        }
+    } catch (\Throwable) {
+        // Ignore — fall back to legacy below.
+    }
+}
+
 // Static assets are served by the web server itself (Apache/Nginx/PHP built-in
 // server resolve them before this script runs). Everything else is a page.
 if (!$isWitalsRequest) {

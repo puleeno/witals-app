@@ -6,7 +6,9 @@
     "priority": 40,
     "enabled": true,
     "depends": [],
-    "providers": [],
+    "providers": [
+        "Modules\\Newsletter\\Providers\\NewsletterServiceProvider"
+    ],
     "autoload": {
         "psr-4": {
             "Modules\\Newsletter\\": "src/"

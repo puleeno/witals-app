@@ -1,17 +1,36 @@
-# Data Module Convention
+# Module Convention
 
-Hướng dẫn module-hoá một chức năng từ web cũ (`legacy/`) thành **data module**:
-tự quản lý dữ liệu của mình và **tự hiện lên dashboard** mà không cần viết route/controller.
+Hướng dẫn module-hoá một chức năng từ web cũ (`legacy/`) thành **module hoàn chỉnh**:
+tự quản lý dữ liệu, tự hiện lên dashboard, **và đăng ký controller thay thế legacy**
+(khi `/legacy` bị loại bỏ).
 
-## 1. Cấu trúc một data module
+## 0. Vòng đời một module
+
+Một module có thể đảm nhận trọn vẹn một feature:
+
+| Thành phần | Vai trò | Khai báo |
+|------------|---------|----------|
+| `schema.json` | Bảng dữ liệu (tự tạo/đồng bộ) | bắt buộc nếu có data |
+| `admin` block | CRUD + nav trên dashboard | trong `module.json` |
+| Controller + routes | **Thay thế trang/route legacy** | provider hoặc `module.json.routes` |
+| Hooks (`render.head`...) | Nhúng vào trang khác | `ModuleContext` |
+
+Khi `/legacy` bị gỡ, mọi URL public sẽ do controller của module phục vụ
+(Witals router ưu tiên hơn fallback legacy).
+
+## 1. Cấu trúc một module hoàn chỉnh
 
 ```
 modules/<name>/
-├── module.json   # khai báo + block "admin" để register vào dashboard
-└── schema.json   # khai báo bảng (ModuleSchemaManager tự tạo/đồng bộ)
+├── module.json                       # khai báo + admin block + providers
+├── schema.json                       # bảng dữ liệu
+└── src/
+    ├── Providers/<Name>ServiceProvider.php   # đăng ký route public (thay legacy)
+    └── Controllers/<Name>Controller.php      # controller public
 ```
 
-Không cần provider/controller — `ModuleCrudServiceProvider` tự lo CRUD + API.
+Nếu **chỉ cần quản lý data** (không có route public riêng): bỏ `providers`,
+chỉ cần `module.json` (có `admin.crud`) + `schema.json` — CRUD tự sinh.
 
 ## 2. module.json
 
@@ -85,15 +104,17 @@ Form thêm/sửa được sinh tự động từ cột trong `schema.json`
 
 ## 5. Khi module-hoá feature từ web cũ
 
-- **Nếu bảng legacy đã tồn tại** (vd `newsletter`, `product`, `article`):
+- **Bảng legacy đã tồn tại** (vd `newsletter`, `product`, `article`):
   khai báo `schema.json` **mirror đúng schema legacy** (đủ cột NOT NULL) để
   `ModuleSchemaManager` không phá dữ liệu cũ, và form CRUD có đủ trường.
   - *Lưu ý:* tránh trùng tên với bảng legacy nếu module cần schema riêng —
-    đặt tên khác (vd `newsletter_subscribers`) hoặc dùng override
-    `database.tables.<logical>`.
-- **Nếu là dữ liệu mới**: đặt tên bảng riêng, khai báo tự do.
-- Giữ nguyên phần render legacy (`legacy/modules/*.php`) để đảm bảo parity
-  HTML/CSS/JS; module chỉ đảm nhận **quản lý dữ liệu + dashboard**.
+    đặt tên khác hoặc dùng override `database.tables.<logical>`.
+- **Dữ liệu mới**: đặt tên bảng riêng, khai báo tự do.
+- **Controller thay legacy**: đăng ký route public trong provider của module
+  (vd `POST /newsletter/subscribe`). Witals router được ưu tiên hơn fallback
+  `legacy/site.php`, nên route mới sẽ thay thế hành vi legacy.
+- Khi `/legacy` bị gỡ hoàn toàn: chuyển toàn bộ `legacy/modules/*.php` thành
+  controller module tương ứng; xoá fallback legacy trong `public/index.php`.
 
 ## 6. Tuỳ biến nâng cao
 
