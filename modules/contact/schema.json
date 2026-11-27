@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "contact",
+            "columns": [
+                { "name": "id_contact", "type": "primary" },
+                { "name": "name",       "type": "string", "size": 255, "nullable": false },
+                { "name": "content",    "type": "text",   "nullable": false },
+                { "name": "xem",        "type": "integer", "nullable": false, "default": 0 },
+                { "name": "email",      "type": "string", "size": 255, "nullable": false },
+                { "name": "createdate", "type": "integer", "nullable": true }
+            ]
+        }
+    ]
+}
