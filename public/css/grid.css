@@ -1,0 +1,786 @@
+/*
+  Simple Grid
+  Learn More - http://dallasbass.com/simple-grid-a-lightweight-responsive-css-grid/
+  Project Page - http://thisisdallas.github.com/Simple-Grid/
+  Author - Dallas Bass
+  Site - dallasbass.com
+*/
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+
+[class*='cell-'] {
+    float: left;
+}
+
+.grid {
+    width: 100%;
+    max-width: 95vw;
+    margin: 0 auto;
+    padding: 0px 30px;
+}
+
+.grid-no-overflow-hiden {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 755px;
+    margin: 0 auto;
+}
+
+.grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.grid-pad {
+    padding-top: 0px;
+    padding-left: 10px;
+    /* grid-space to left */
+    padding-right: 10px;
+    /* grid-space to right: (grid-space-left - column-space) e.g. 20px-20px=0 */
+}
+
+.hide-on-pc {
+    display: none;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: space-between
+        /* space-around;*/
+}
+
+.flex-centered {
+    justify-content: center;
+}
+
+.flex-container-round {
+    justify-content: space-around;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+.align-center {
+   
+    align-items: center;
+}
+.flex-flex-end {
+    justify-content: flex-end;
+}
+
+.border-flex {
+    border: solid 1px #e4e4e4;
+    border-right: none;
+    border-bottom: none;
+}
+
+.cell-1-1 {
+    width: 100%;
+}
+
+.cell-1-5 {
+    width: 19.5%;
+    float: left;
+}
+
+.cell-2-5 {
+    width: 40%;
+}
+
+.cell-3-5 {
+    width: 60%;
+}
+
+.cell-4-5 {
+    width: 80%;
+}
+
+.cell-1-6 {
+    width: 15.5%;
+}
+
+.cell-2-6 {
+    width: 35%;
+}
+
+.cell-4-6 {
+    width: 64%;
+}
+
+.cell-5-6 {
+    width: 81%;
+}
+
+.col-left {
+    float: left;
+    width: 23%;
+}
+
+
+.col-right {
+    float: left;
+    width: 75%;
+}
+
+.cell-1-7 {
+    width: 13.8%;
+}
+
+.cell-1-8 {
+    width: 11.3%;
+}
+
+.cell-1-3 {
+    float: left;
+    width: 32%;
+}
+
+
+
+.cell-2-3 {
+    float: left;
+    width: 66.6%;
+}
+
+.cell-1-4 {
+    float: left;
+    width: 23.5%;
+}
+
+.cell-3-4-sp {
+    float: left;
+    width: 75%;
+}
+
+.cell-1-4-sp {
+    float: left;
+    width: 24%;
+}
+
+.cell-1-4-spd {
+    float: left;
+    width: 24.5%;
+}
+
+.cell-2-4 {
+    float: left;
+    width: 50%;
+}
+
+.cell-3-4 {
+    float: left;
+    width: 74%;
+}
+
+.cell-1-2 {
+    width: 49%;
+}
+
+.cellpro-46 {
+    width: 46%;
+}
+
+.cellpro-52 {
+    width: 52%;
+}
+
+
+.cell-info-1-2 {
+    width: 48.5%;
+}
+
+.cell-footer-1-3 {
+    width: 32.2%;
+}
+
+.cell-footer-1-4 {
+    width: 23%;
+}
+
+.cell-footer-3-4 {
+    width: 73%;
+}
+
+.cell-home-1-3 {
+    width: 32%;
+}
+
+/* SPECIAL IN ALLIA HOLIDAY */
+.cell-search-1-4 {
+    float: left;
+    width: 25.5%;
+}
+
+.cell-1-9 {
+    width: 10%;
+}
+
+
+.cell-image {
+    width: 36.9%;
+}
+
+
+/* .cell-image-left {
+    width: 36.80781758957655%;
+
+}
+
+.cell-image-right {
+    width: 62.64929424538545%;
+
+}
+
+.cell-image-left-con {
+    width: 58.40554592720971%;
+}
+
+.cell-image-right-con {
+    width: 40.38128249566724%;
+
+} */
+
+.cell-image-left {
+    width: 36.55559%;
+
+}
+
+.cell-image-right {
+    width: 62.64928%;
+
+}
+
+.cell-image-left-con {
+    width: 58.40555%;
+}
+
+.cell-image-right-con {
+    width: 40.58127%;
+
+}
+
+.cell-3-4-tour {
+    width: 74.42857142857143%;
+}
+
+.cell-1-4-tour {
+    width: 25.57142857142857%;
+}
+
+/* end */
+
+.cell-home-2-3 {
+    width: 65%;
+}
+
+.cell-home-1-4 {
+    width: 22%;
+}
+
+.cell-home-1-5 {
+    width: 15%;
+}
+
+.cell-1-10 {
+    width: 10%;
+}
+
+.cell-2-10 {
+    width: 20%;
+}
+
+.cell-3-10 {
+    width: 30%;
+}
+
+.cell-4-10 {
+    width: 40%;
+}
+
+.cell-5-10 {
+    width: 50%;
+}
+
+.cell-6-10 {
+    width: 60%;
+}
+
+.cell-7-10 {
+    width: 70%;
+}
+
+.cell-8-10 {
+    width: 80%;
+}
+
+.cell-9-10 {
+    width: 90%;
+}
+
+.cell-1-12 {
+    width: 8.33%;
+}
+
+.cell-2-12 {
+    width: 16%;
+}
+
+.cell-3-12 {
+    width: 23.5%;
+}
+
+.cell-4-12 {
+    width: 29%;
+}
+
+.cell-5-12 {
+    width: 41%;
+}
+
+.cell-6-12 {
+    width: 50%;
+}
+
+.cell-7-12 {
+    width: 57.5%;
+}
+
+
+.cell-8-12 {
+    width: 70%;
+}
+
+.cell-9-12 {
+    width: 74%;
+}
+
+.cell-10-12 {
+    width: 83%;
+}
+
+.cell-11-12 {
+    width: 91%;
+}
+
+.cell-news-1-3 {
+    width: 32%;
+}
+
+.cell-news-2-3 {
+    width: 65%;
+}
+
+.cell-news-1-4 {
+    width: 25%;
+}
+
+.cell-1-4-rl {
+    width: 25%;
+}
+
+.cell-news-3-4 {
+    width: 75%;
+}
+
+.cell-pro-left {
+    width: 55%;
+}
+
+.cell-pro-right {
+    width: 42%;
+}
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+
+@media handheld,
+only screen and (max-width: 1200px) {
+    .grid {
+        max-width: 100%;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 auto;
+    }
+}
+
+@media handheld,
+only screen and (max-width: 1115px) {
+    .nav li a {
+        padding: 0px 10px;
+    }
+}
+
+@media handheld,
+only screen and (max-width: 1024px) {
+    .grid {
+        max-width: 900px;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 auto;
+    }
+
+    .box-filter .box-content-fillter {
+        height: auto;
+    }
+
+    .pad-cell-1-1 {
+        width: 100%;
+    }
+
+    .pad-cell-1-2 {
+        width: 48%;
+    }
+
+    .pad-cell-2-3 {
+        width: 70%;
+    }
+
+    .pad-cell-1-3 {
+        width: 30%;
+    }
+
+    .pad-cell-1-4 {
+        width: 22%;
+    }
+
+    .hide-on-pc {
+        display: block;
+    }
+
+    .hide-on-pad {
+        display: none;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .menubar {
+        text-align: right;
+
+    }
+
+    /*end pad s*/
+}
+
+@media handheld,
+only screen and (max-width: 767px) {
+    .grid {
+        max-width: 100%;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 auto;
+    }
+
+    .hide-on-pc {
+        display: block;
+    }
+
+    .hide-on-pad {
+        display: block;
+    }
+
+    .hide-on-tab {
+        display: none;
+    }
+
+    .m-text-line-2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .m-text-line-3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .m-text-line-4 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+    }
+
+    .m-text-line-5 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+
+    .tab-cell-1-1 {
+        width: 100%;
+    }
+
+    .tab-cell-1-2 {
+        width: 48.5%;
+    }
+
+    .tab-cell-1-2--mb {
+        width: 49%;
+    }
+
+    .tab-cell-1-3 {
+        width: 30%;
+    }
+	
+    .tab-cell-2-3 {
+        width: 66%;
+    }	
+
+    .tab-cell-1-4 {
+        width: 22%;
+    }
+	
+    .tab-cell-3-4 {
+        width: 73%;
+    }	
+
+    .tab-cell-1-5 {
+        width: 18%;
+    }
+
+    .tab-cell-7-12 {
+        width: 55%;
+    }
+
+    .tab-cell-5-12 {
+        width: 42%;
+    }
+
+
+    .form-dangky {
+        padding: 20px;
+    }
+
+    .info-cat-intro {
+        padding: 0px;
+    }
+
+    .info-cat-content {
+        padding: 0px;
+    }
+
+    .info-cat-item {
+        padding: 0px;
+    }
+
+    .cell-tab-1-3,
+    .cell-tab-1-2 {
+        width: 30%;
+    }
+
+
+    .cat-home-intro {
+        padding: 0px;
+    }
+
+    .view-hover {
+        display: none !important;
+    }
+
+    .addcart-btn {
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .muangay-btn,
+    .buy-now {
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .tab-content {
+        display: block;
+    }
+
+    .modal-box {
+        width: 95%;
+    }
+
+    .form-dangky {
+        padding: 0px;
+    }
+
+    .footer-white {
+        padding: 10px;
+    }
+
+    .footer-title .fa {
+        display: block;
+    }
+
+    .partner-padding {
+        padding: 0;
+    }
+
+    .product-sub {
+        padding: 0px;
+    }
+
+    .author-detail-content {
+        margin-top: 0px;
+    }
+
+    .article-item-img {
+        margin: 0px;
+    }
+
+    .lang-flag {
+
+        width: 25px;
+        height: 25px;
+
+    }
+
+    .slide-home-item {
+        width: 100%;
+        padding: 0px 20px;
+    }
+
+    .slide-home-item h2 {
+        font-size: 26px;
+    }
+
+    .slide-home-desc {
+        font-size: 16px;
+    }
+
+    .btn-next,
+    .btn-prev {
+        display: none;
+    }
+	
+.addcart-btn, .buynow-btn {
+    width: 100%;
+    text-align: center;
+	margin-bottom:10px;
+}	
+
+.intro-detail img,.tocContent img{
+	width:100% !important;
+	height:auto !important
+}
+
+    /* end tab s  */
+}
+
+@media handheld,
+only screen and (max-width: 579px) {
+    .grid {
+        max-width: 420px;
+        min-width: 0;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 0 auto;
+    }
+
+    .bg-page {
+        max-width: 420px !important;
+    }
+
+    [class*='mobile-col-'] {
+        float: left;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        padding-left: 0px;
+        padding-right: 10px;
+        padding-bottom: 0px;
+    }
+
+    .hide-on-mobile {
+        display: none !important;
+    }
+
+    .mobile-cell-1-1 {
+        width: 100%;
+    }
+
+    .mobile-cell-1-2 {
+        width: 48%;
+    }
+
+    .mobile-cell-1-3 {
+        width: 32%;
+    }
+
+    .mobile-cell-2-3 {
+        width: 62%;
+    }
+
+    .slide-text-box {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .paging a {
+        padding: 6px 5px;
+        margin-right: 3px;
+    }
+
+    .tab-bottom-20 {
+        margin-bottom: 20px;
+    }
+
+    .tab-bottom-30 {
+        margin-bottom: 30px;
+    }
+
+    .info-home-content {
+        display: none;
+
+    }
+
+    .catname-slide {
+        font-size: 16px;
+    }
+
+}
