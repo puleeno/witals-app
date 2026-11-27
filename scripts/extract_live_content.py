@@ -250,8 +250,6 @@ def crumb_links(html: str) -> list[tuple[str, str]]:
 def local_paths() -> set[str]:
     xml = (ROOT / "live-mirror" / "sitemap.xml").read_text(encoding="utf-8", errors="replace")
     paths = {re.sub(r"^https?://[^/]+", "", u.strip()) for u in re.findall(r"<loc>\s*(.*?)\s*</loc>", xml)}
-    for f in PAGES.glob("*.html"):
-        pass
     # every internal link found in the mirrored pages
     for f in sorted(PAGES.glob("*.html")):
         html = f.read_text(encoding="utf-8", errors="replace")
