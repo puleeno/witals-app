@@ -273,6 +273,11 @@ class url_process {
     public function Url_Type($url) {
         global $DB, $dir_path, $dklang, $address_url, $site_address;
 
+        $qPos = strpos($url, '?');
+        $pathOnly = $qPos !== false ? substr($url, 0, $qPos) : $url;
+        if ($pathOnly !== '' && $pathOnly !== '/' && substr($pathOnly, -1) !== '/' && strpos(basename($pathOnly), '.') === false) {
+            $url = $pathOnly . '/' . ($qPos !== false ? substr($url, $qPos) : '');
+        }
 
         $uri = $url;
         $cateinfo = array();
