@@ -285,9 +285,37 @@ if (CMS_DEBUG) {
     header('X-Legacy-Page: ' . $page . '; id=' . $id . '; idc=' . $idc . '; file=' . basename($pageFile));
 }
 
+// Shared entity context so modules (seo, schema.org, ...) know what is being
+// rendered. Modules read this via ModuleContext and hook into render.head.
+if ($app !== null && class_exists(\App\Foundation\Modules\ModuleContext::class)) {
+    $moduleContext = $app->make(\App\Foundation\Modules\ModuleContext::class);
+    $moduleContext->share('entity', [
+        'url'  => $uri,
+        'type' => $cateinfo['data_type'] ?? '',
+        'id'   => $id,
+    ]);
+}
+
+// Render into a buffer so modules can inject additional <head> tags before
+// </head> without touching the legacy templates (output parity preserved when
+// no module contributes anything).
+ob_start();
 require __DIR__ . '/modules/header.php';
 require $pageFile;
 require __DIR__ . '/modules/footer.php';
+$rendered = (string) ob_get_clean();
+
+if ($app !== null && isset($moduleContext) && $moduleContext instanceof \App\Foundation\Modules\ModuleContext) {
+    $head = $moduleContext->render('render.head', ['url' => $uri]);
+    if ($head !== '') {
+        $pos = stripos($rendered, '</head>');
+        if ($pos !== false) {
+            $rendered = substr($rendered, 0, $pos) . $head . substr($rendered, $pos);
+        }
+    }
+}
+
+echo $rendered;
 
 // endcms.php (gzip/flush + exit) is intentionally not included: public/index.php
 // owns the shutdown of the request.
