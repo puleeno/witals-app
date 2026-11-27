@@ -12,7 +12,7 @@
 
 declare(strict_types=1);
 
-use Witals\Framework\Application;
+use App\Foundation\Application;
 use Witals\Framework\Contracts\RuntimeType;
 use App\Http\Kernel;
 

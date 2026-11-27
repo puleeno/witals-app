@@ -41,18 +41,18 @@ class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
 
     public function register(): void
     {
-        $this->singleton(\App\Foundation\Database\QueryInterceptor::class, function ($app) {
+        $this->app->singleton(\App\Foundation\Database\QueryInterceptor::class, function ($app) {
             return new \App\Foundation\Database\QueryInterceptor($app->make(\App\Foundation\Debug\DebugBar::class));
         });
 
-        $this->singleton(\App\Foundation\Database\ModuleSchemaManager::class, function ($app) {
+        $this->app->singleton(\App\Foundation\Database\ModuleSchemaManager::class, function ($app) {
             return new \App\Foundation\Database\ModuleSchemaManager(
                 $app->make(\Cycle\Database\DatabaseProviderInterface::class),
                 $app->make(\Psr\Log\LoggerInterface::class),
             );
         });
 
-        $this->singleton(DatabaseProviderInterface::class, function ($app) {
+        $this->app->singleton(DatabaseProviderInterface::class, function ($app) {
             $dbConfig = $app->config('database');
             if (!is_array($dbConfig) || empty($dbConfig)) {
                 $dbConfig = [
@@ -85,20 +85,20 @@ class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
             return new \App\Foundation\Database\DatabaseManagerProxy($manager, $driver);
         });
 
-        $this->singleton(\Cycle\Database\DatabaseInterface::class, function ($app) {
+        $this->app->singleton(\Cycle\Database\DatabaseInterface::class, function ($app) {
             return $app->make(DatabaseProviderInterface::class)->database();
         });
 
-        $this->singleton('wpdb', function ($app) {
+        $this->app->singleton('wpdb', function ($app) {
             return $app->make(\Cycle\Database\DatabaseInterface::class);
         });
 
-        $this->singleton(ORMInterface::class, function ($app) {
+        $this->app->singleton(ORMInterface::class, function ($app) {
             $dbal = $app->make(DatabaseProviderInterface::class);
             return $this->resolveOrm($app, $dbal);
         });
 
-        $this->singleton(\Cycle\ORM\EntityManagerInterface::class, function ($app) {
+        $this->app->singleton(\Cycle\ORM\EntityManagerInterface::class, function ($app) {
             return new \Cycle\ORM\EntityManager($app->make(ORMInterface::class));
         });
 

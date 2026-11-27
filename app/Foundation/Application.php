@@ -131,6 +131,10 @@ class Application extends BaseApplication
     {
         parent::registerCoreContainerAliases();
 
+        // Bind the concrete application class so type-hints on
+        // App\Foundation\Application resolve to this instance.
+        $this->instance(self::class, $this);
+
         // Initialize Module Manager
         $this->moduleManager = new ModuleManager($this);
         $this->instance(ModuleManager::class, $this->moduleManager);
