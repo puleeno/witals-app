@@ -90,6 +90,10 @@ class ProductController extends AbstractController
 
         $url = (string) ($item['url'] ?? '');
         $priceNum = (int) preg_replace('/\D/', '', (string) ($item['price'] ?? '0'));
+        $priceRaw = (float) ($item['price'] ?? 0);
+        $pricekmRaw = (float) ($item['pricekm'] ?? 0);
+        $priceFmt = $priceRaw > 0 ? number_format($priceRaw) . ' đ' : (string) ($item['price'] ?? 'Liên hệ');
+        $pricekmFmt = $pricekmRaw > 0 ? number_format($pricekmRaw) . ' đ' : '';
         $other = [];
         try {
             $rows = $this->dbal->database()
@@ -104,8 +108,8 @@ class ProductController extends AbstractController
                 $other[] = [
                     'name'        => $r['name'] ?? '',
                     'image'       => $r['image'] ?? '',
-                    'price'       => $r['price'] ?? '',
-                    'pricekm'     => $r['pricekm'] ?? '',
+                    'price'       => (float)($r['price'] ?? 0) > 0 ? number_format((float)$r['price']) . ' đ' : (string)($r['price'] ?? ''),
+                    'pricekm'     => (float)($r['pricekm'] ?? 0) > 0 ? number_format((float)$r['pricekm']) . ' đ' : '',
                     'link_detail' => $this->productBase() . '/' . (string) ($r['url'] ?? ''),
                     'link_cart'   => $this->addcartBase() . '/' . (string) ($r['url'] ?? ''),
                 ];
@@ -120,8 +124,8 @@ class ProductController extends AbstractController
             'image'        => $item['image'] ?? '',
             'ma'           => $item['ma'] ?? '',
             'hangsx'       => $item['hangsx'] ?? 'Xanhvina',
-            'price'        => $item['price'] ?? 'Liên hệ',
-            'pricekm'      => $item['pricekm'] ?? '',
+            'price'        => $priceFmt,
+            'pricekm'      => $pricekmFmt,
             'price_number' => $priceNum,
             'content'      => $item['content'] ?? '',
             'linkcart'     => $this->addcartBase() . '/' . $url,

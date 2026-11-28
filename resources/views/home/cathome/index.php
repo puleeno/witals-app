@@ -30,8 +30,8 @@ $newsBase = '/tin-tuc';
             <?php foreach ($items as $i):
                 $price = (float)($i['price'] ?? 0);
                 $pricekm = (float)($i['pricekm'] ?? 0);
-                $priceOut = $pricekm > 0 ? number_format($pricekm) . 'đ' : ($price > 0 ? number_format($price) . 'đ' : (string)($i['price'] ?? ''));
-                $pricekmOut = $pricekm > 0 ? number_format($price) . 'đ' : '';
+                $priceOut = $pricekm > 0 ? number_format($pricekm) . ' đ' : ($price > 0 ? number_format($price) . ' đ' : (string)($i['price'] ?? ''));
+                $pricekmOut = $pricekm > 0 ? number_format($price) . ' đ' : '';
                 $sale = '';
                 if ($pricekm > 0 && $price > 0) {
                     $disc = (int)floor((($price - $pricekm) / $price) * 100);
@@ -55,7 +55,7 @@ $newsBase = '/tin-tuc';
                             </a>
                         </h3>
                         <div class="c10"></div>
-                        <div class="producthot-item__intro text-line-2"><?= htmlspecialchars(strip_tags((string)($i['intro'] ?? '')), ENT_QUOTES) ?></div>
+                        <div class="producthot-item__intro text-line-2"><?= strip_tags((string)($i['intro'] ?? '')) ?></div>
                         <div class="producthot__price">
                             <span class="producthot__price-old"><?= htmlspecialchars($pricekmOut, ENT_QUOTES) ?></span>
                             <span class="producthot__price-current"><?= htmlspecialchars($priceOut, ENT_QUOTES) ?></span>
