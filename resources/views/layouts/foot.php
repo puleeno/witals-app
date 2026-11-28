@@ -295,7 +295,13 @@
 
 <script>
     $(function () {
-        $('.countcart').html('<?= htmlspecialchars($quantity ?? '', ENT_QUOTES) ?>');
+        $('.countcart').html('<?= htmlspecialchars((string)($quantity ?? ''), ENT_QUOTES) ?>');
+        // Đồng bộ badge từ nguồn cart Thật (ecommerce_cart), tránh JS cũ ghi đè.
+        $.getJSON('/api/cart/count', function (r) {
+            if (r && typeof r.count !== 'undefined') {
+                $('.countcart').html(r.count);
+            }
+        });
     });
 </script>
 

@@ -67,11 +67,12 @@ $tpl->assignGlobal("hotline", $SETTING->hotline);
 $tpl->assignGlobal("companyemail", $SETTING->companyemail);
 
 // cart badge in the top bar (same value the footer shows)
-$cart_arr_header = $_SESSION['cart_arr'] ?? [];
 $quantity_header = 0;
-foreach ($cart_arr_header as $rs) {
-    if (!is_array($rs)) { continue; }
-    $quantity_header += intval($rs['quantity'] ?? 0);
+$cart_ecom = $_SESSION['ecommerce_cart'] ?? [];
+if (is_array($cart_ecom)) {
+    foreach ($cart_ecom as $rs) {
+        $quantity_header += (int) (is_array($rs) ? ($rs['qty'] ?? 1) : 1);
+    }
 }
 $tpl->assignGlobal("quantity", $quantity_header);
 

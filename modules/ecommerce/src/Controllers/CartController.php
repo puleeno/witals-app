@@ -86,6 +86,23 @@ class CartController extends AbstractController
         return Response::redirect($this->path('cart', '/gio-hang'));
     }
 
+    /**
+     * GET /api/cart/count — số lượng cart (JSON) để JS đồng bộ badge.
+     */
+    public function count(Request $request): Response
+    {
+        $this->session->start();
+        $cart = $this->session->get(self::SESSION_KEY, []);
+        $n = 0;
+        if (is_array($cart)) {
+            foreach ($cart as $item) {
+                $n += (int) (is_array($item) ? ($item['qty'] ?? 1) : 1);
+            }
+        }
+
+        return Response::json(['count' => $n]);
+    }
+
     private function table(string $logical): string
     {
         $override = $this->app->config('database.tables.' . $logical);

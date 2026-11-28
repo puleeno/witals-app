@@ -30,6 +30,7 @@ class EcommerceServiceProvider extends ServiceProvider
         $router->get($cart, [CartController::class, 'index']);
         $router->get($addcart, [CartController::class, 'index']);
         $router->get($addcart . '/{id}', [CartController::class, 'add']);
+        $router->get('/api/cart/count', [CartController::class, 'count']);
     }
 
     /** @return array<string, string> */
