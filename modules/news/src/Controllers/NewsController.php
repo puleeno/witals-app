@@ -35,29 +35,24 @@ class NewsController extends AbstractController
             $items = [];
         }
 
+        return Response::html($this->render('news/index', [
+            'items'      => ['newsItem' => $items],
+            'page_title' => 'Tin tức',
+        ]));
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    private function render(string $view, array $data): string
+    {
         $factory = $this->app->make(\Witals\Framework\Contracts\View\Factory::class);
-        $data = [
-            'items'          => $items,
-            'page_title'     => 'Tin tức',
-            'site_name'      => (string) config('app.name', 'Xanhvina'),
-            'site_url'       => (string) config('app.url', ''),
-            'site_description' => '',
-            'site_keywords'  => '',
-            'langcode'       => 'vi',
-            'dir_path'       => '',
-            'lang_dir'       => '',
-            'hotline'        => (string) config('app.hotline', ''),
-            'quantity'       => 0,
-            'logo'           => '',
-            'menubar'        => '',
-            'slideshow'      => '',
-        ];
+        $site = $this->app->make(\App\Foundation\Site\SiteContext::class)->build();
+        $base = array_merge($site, $data);
 
-        $html = $factory->make('layouts/head', $data)->render()
-            . $factory->make('news/index', $data)->render()
-            . $factory->make('layouts/foot', $data)->render();
-
-        return Response::html($html);
+        return $factory->make('layouts/head', $base)->render()
+            . $factory->make($view, $base)->render()
+            . $factory->make('layouts/foot', $base)->render();
     }
 
     private function table(): string
@@ -65,5 +60,38 @@ class NewsController extends AbstractController
         $override = $this->app->config('database.tables.news');
 
         return is_string($override) && $override !== '' ? $override : 'news';
+    }
+
+    /**
+     * GET /tin-tuc/{id|slug} — chi tiết (id hoặc slug trong cột url).
+     */
+    public function show(Request $request, string $id): Response
+    {
+        $item = null;
+        try {
+            $db = $this->dbal->database();
+            $table = $this->table();
+            if (ctype_digit($id)) {
+                $rows = $db->select()->from($table)->where('id_news', (int) $id)->limit(1)->fetchAll();
+            } else {
+                $slug = rawurldecode($id);
+                $rows = $db->select()->from($table)->where('url', $slug)->limit(1)->fetchAll();
+            }
+            $item = $rows[0] ?? null;
+        } catch (\Throwable) {
+            $item = null;
+        }
+
+        if ($item === null) {
+            return Response::html($this->render('news/index', [
+                'items' => ['newsItem' => []], 'page_title' => 'Không tìm thấy tin tức',
+            ]), 404);
+        }
+
+        return Response::html($this->render('news/show', array_merge($item, [
+            'item'       => $item,
+            'items'      => ['lstOther' => []],
+            'page_title' => (string) ($item['name'] ?? ''),
+        ])));
     }
 }

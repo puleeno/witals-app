@@ -17,6 +17,7 @@ class NewsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $router = $this->app->make(RouterInterface::class);
-        $router->get('/news', [NewsController::class, 'index']);
+        $router->get('/tin-tuc', [NewsController::class, 'index']);
+        $router->get('/tin-tuc/{id}', [NewsController::class, 'show']);
     }
 }
