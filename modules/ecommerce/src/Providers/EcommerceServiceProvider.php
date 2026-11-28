@@ -28,6 +28,7 @@ class EcommerceServiceProvider extends ServiceProvider
         $router->get($products . '/{id}', [ProductController::class, 'show']);
 
         $router->get($cart, [CartController::class, 'index']);
+        $router->get($addcart, [CartController::class, 'index']);
         $router->get($addcart . '/{id}', [CartController::class, 'add']);
     }
 

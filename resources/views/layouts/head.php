@@ -74,7 +74,7 @@
                                 <?= htmlspecialchars($hotline ?? '', ENT_QUOTES) ?>
                             </a>
 
-                            <a href="/addcart/" class="headercart">
+                            <a href="/gio-hang" class="headercart">
                                 <div class="headercart__img">
                                     <i class="fas fa-shopping-cart"></i>
                                     <div class="headercart-notice countcart"><?= htmlspecialchars($quantity ?? '', ENT_QUOTES) ?></div>
@@ -120,7 +120,7 @@
 
 
 							<div class="cart-mobile" >
-								<a href="/addcart/">
+								<a href="/gio-hang">
 									<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/images/m-icon-cart.png"/>
 								</a>
 

@@ -1,5 +1,4 @@
 <?php $items = $items ?? []; $slider = $items['slider_image'] ?? []; $other = $items['other_products'] ?? []; ?>
-<div class="content" style="background:#FFF">
 
 <div class="c"></div>
 <div class="crumb"><div class="grid"><a href="/">Trang chủ</a> <i class="fa fa-angle-right"></i> <a href="/san-pham/">Sản phẩm</a></div><div class="c5"></div></div>
@@ -194,15 +193,6 @@
 
                 $(".addcart-btn").click(function () {
                     linkcart();
-                    var buy_now_url = $(this).attr("href");
-
-                    $.get(buy_now_url, function () {
-                        $(".countcart").fadeTo("fast", 1);
-                        $(".addcart-btn").html("Đã thêm vào giỏ hàng");
-                        $(".addcart-btn").fadeTo("slow", 1);
-                    });
-
-                    return false;
                 });
 
                 function linkcart() {
@@ -351,5 +341,6 @@
         <div class="c20"></div>
         <div class="c30"></div>
     </div>
+
 
 </div>

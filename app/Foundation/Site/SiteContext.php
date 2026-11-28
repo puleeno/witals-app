@@ -42,6 +42,26 @@ class SiteContext
         }
     }
 
+    private function cartCount(): int
+    {
+        try {
+            $session = $this->app->make(\Witals\Framework\Contracts\Session\SessionInterface::class);
+            $session->start();
+            $cart = $session->get('ecommerce_cart', []);
+            if (!is_array($cart)) {
+                return 0;
+            }
+            $n = 0;
+            foreach ($cart as $item) {
+                $n += (int) (is_array($item) ? ($item['qty'] ?? 1) : 1);
+            }
+
+            return $n;
+        } catch (\Throwable) {
+            return 0;
+        }
+    }
+
     /**
      * @return array<string, mixed>
      */
@@ -70,7 +90,7 @@ class SiteContext
             'twitter'          => (string) ($this->settingshow['twitter'] ?? ''),
             'instagram'        => (string) ($this->settingshow['instagram'] ?? ''),
             'copyright'        => (string) ($this->staticValue('copyright', 'content') ?: 'Copyright © 2023 by Xanhvina'),
-            'quantity'         => 0,
+            'quantity'         => $this->cartCount(),
             'logo'             => $this->buildLogo($dirPath),
             'menubar'          => $this->buildMenubar(),
             'slideshow'        => '',

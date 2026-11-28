@@ -30,6 +30,14 @@ class CartController extends AbstractController
             $cart = [];
         }
 
+        foreach ($cart as $k => $it) {
+            if (is_array($it)) {
+                $cart[$k]['link_detail'] = '/san-pham/' . (string)($it['link_detail'] ?? $it['url'] ?? '');
+                $cart[$k]['price_num'] = (float) preg_replace('/\D/', '', (string)($it['price'] ?? '0'));
+                $cart[$k]['color'] = $it['color'] ?? '';
+            }
+        }
+
         return Response::html($this->render('cart/index', [
             'cart'       => $cart,
             'page_title' => 'Giỏ hàng',
