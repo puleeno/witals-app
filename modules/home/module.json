@@ -1,0 +1,24 @@
+{
+    "name": "home",
+    "version": "1.0.0",
+    "description": "Trang chủ động — render theo danh sách section cấu hình (config.sections). Mỗi section là một component độc lập, có thể là HTML thô, view bất kỳ, danh sách sản phẩm/tin tức, slideshow... Dễ mở rộng.",
+    "type": "data",
+    "priority": 60,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Home\\Providers\\HomeServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Home\\": "src/"
+        }
+    },
+    "provides": ["home.page"],
+    "config": {
+        "path": "/",
+        "sections": [
+            { "type": "cathome" }
+        ]
+    }
+}
