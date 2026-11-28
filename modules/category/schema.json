@@ -1,0 +1,23 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "category",
+            "columns": [
+                { "name": "id_category", "type": "primary" },
+                { "name": "name",        "type": "string", "size": 255, "nullable": false },
+                { "name": "parentid",    "type": "integer", "nullable": true, "default": 0 },
+                { "name": "thu_tu",      "type": "integer", "nullable": true, "default": 0 },
+                { "name": "active",      "type": "integer", "nullable": true, "default": 1 },
+                { "name": "image",       "type": "string", "size": 255, "nullable": true },
+                { "name": "content",     "type": "text",   "nullable": true },
+                { "name": "keywords",    "type": "string", "size": 255, "nullable": true },
+                { "name": "description", "type": "text",   "nullable": true },
+                { "name": "url",         "type": "string", "size": 255, "nullable": true },
+                { "name": "title",       "type": "string", "size": 255, "nullable": true },
+                { "name": "data_type",   "type": "string", "size": 50,  "nullable": true },
+                { "name": "lang",        "type": "string", "size": 20,  "nullable": true }
+            ]
+        }
+    ]
+}

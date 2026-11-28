@@ -1,0 +1,54 @@
+
+
+/* hotline call now */
+
+.widget_wbt_call_now_widget { 
+    
+    display: block; 
+    width: 40px; 
+    position: fixed; 
+    bottom: 145px; 
+    left: 25px; 
+    z-index: 999999; 
+    padding: 0px; 
+    margin-bottom: 0px;
+}
+
+
+
+.widget_wbt_call_now_widget ul { display: block; width: 100%; padding-left: 0; margin-bottom: 0;}
+.widget_wbt_call_now_widget ul li { display: block; width: 45px; position: relative; margin-bottom: 10px; cursor: pointer;}
+.widget_wbt_call_now_widget ul li a { text-decoration: none;display: block;}
+.widget_wbt_call_now_widget ul li .fa { background-color: #ed1c24; display: block; width: 45px; height: 45px; text-align: center; line-height: 36px; -moz-box-shadow: 0 0 5px #888; -webkit-box-shadow: 0 0 5px#888; box-shadow: 0 0 5px #888; color: #fff; font-weight: 700; border-radius: 50%; position: relative; z-index: 2; border: 2px solid #fff;}
+.widget_wbt_call_now_widget ul li .fa-hotline { background: #70b81e url(/images/icon-call.svg) center center no-repeat; }
+.widget_wbt_call_now_widget ul li .fa-zalo { background: #ef0303 url(/images/icon-zalo.svg) center center no-repeat; }
+.widget_wbt_call_now_widget ul li .fa-messenger { background: #168efb url(/images/icon-messenger.svg) center center no-repeat; }
+.widget_wbt_call_now_widget ul li .fa-facebook { background: #369be5;}
+.animated.infinite { animation-iteration-count: infinite;}
+.tada { animation-name: tada;}
+.animated { animation-duration: 1s; animation-fill-mode: both; }
+.widget_wbt_call_now_widget ul li span { 
+    
+    display: inline-block; padding: 0; background-color: #ff6a00; color: #fff; border: 2px solid #fff; border-radius: 20px; height: 40px; line-height: 36px; position: absolute; top: 3px; left: 15px;  z-index: 0; width: 0; overflow: hidden; -webkit-transition: all 1s; transition: all 1s; background-color: #ff6a00; -moz-box-shadow: 0 0 5px #888; -webkit-box-shadow: 0 0 5px#888; box-shadow: 0 0 5px #888; font-weight: 400; white-space: nowrap; opacity: 0; padding-left: 0px;
+    
+}
+
+
+@media only screen and (min-width: 960px) {
+    .widget_wbt_call_now_widget ul li:hover span { width: 215px; padding-left: 40px; opacity: 1;}
+}
+
+@media only screen and (max-width: 959px) { 
+    .widget_wbt_call_now_widget ul { display: flex !important ; }
+    .widget_wbt_call_now_widget ul li~li { margin-left: 10px !important;}
+    .widget_wbt_call_now_widget ul li { margin-bottom: 0px !important; }
+    .widget_wbt_call_now_widget { bottom: 15px !important ; left: 15px !important; }
+}
+
+@keyframes tada {
+  0% { transform: scale3d(1,1,1);}
+  10%, 20% { transform: scale3d(.9,.9,.9) rotate3d(0,0,1,-3deg);}
+  30%, 50%, 70%, 90% { transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,3deg);}
+  40%, 60%, 80% { transform: scale3d(1.1,1.1,1.1) rotate3d(0,0,1,-3deg);}
+  100% { transform: scale3d(1,1,1);}
+}

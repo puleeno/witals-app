@@ -1,0 +1,82 @@
+<!-- START BLOCK : spnoibat -->
+<div class="c"></div>
+<div class="box-hot-product-home">
+	<div style="padding:10px;">
+    	<div style="position:relative" class="title-hot-pro">
+        	<div class="" style="float:left;">{catname}</div>
+            <a href="" style="right:20px;" class="hotpro-arrow hotpro-{id}-arrow-left fa fa-chevron-circle-left"></a>
+            <a href="" class="hotpro-arrow hotpro-{id}-arrow-right fa fa-chevron-circle-right"></a>
+            <div class="c"></div>
+        </div>
+        <div class="c10"></div>
+<div class="swiper-container" style="height:230px;" id="hotpro_{id}">
+  <div class="swiper-wrapper">
+  	<!-- START BLOCK : products -->
+    	<div class="swiper-slide">
+            <div class="product-hot-cell">
+               <div class="image-pro" style="background:#FFF">
+                    {km}
+                   <a href="{link_detail}">{image}</a>
+                </div>
+                <h3 class="pro-name"><a href="{link_detail}">{name}</a></h3>
+               <div ><strong><s>{pricekm}</s></strong></div>
+            	<div class="price">{price}</div>
+          </div>
+      </div>
+    <!-- END BLOCK : products -->   
+    </div>
+    </div>
+ </div> 
+ <div class="pagination"></div>
+ <div class="c20"></div>
+ 
+ <script>
+					var pview{id}=5;
+					  if($(document).width()<=1160){
+						 var pview{id} = 5; 
+					  }
+					  if($(document).width()<=980){
+						 var pview{id} = 4; 
+					  }
+					  if($(document).width()<=768){
+						 var pview{id} = 3; 
+					  }
+					  if($(document).width()<=680){
+						 var pview{id} = 2; 
+					  }
+					  if($(document).width()<=480){
+						 var pview{id} = 2; 
+					  }
+					   if($(document).width()<=320){
+						 var pview{id} = 1; 
+					  }
+                  var mySwiperhotpro_{id} = new Swiper('#hotpro_{id}',{
+                    pagination: '.pagination',
+                    loop:true,
+                    grabCursor: false,
+                    paginationClickable: false,
+                     slidesPerView: pview{id},
+                    loop: true,
+                    autoplay:4000,
+					autoResize:false,
+					calculateHeight:true,
+					cssWidthAndHeight:true
+                  });
+                  $('.hotpro-{id}-arrow-left').on('click', function(e){
+                    e.preventDefault();
+                    mySwiperhotpro_{id}.swipePrev();
+                  });
+                  $('.hotpro-{id}-arrow-right').on('click', function(e){
+                    e.preventDefault();
+                    mySwiperhotpro_{id}.swipeNext();
+                  });
+                  
+   		$('.product-hot-cell').click(function(){
+			
+		});
+   </script>
+ </div>
+ 
+ <div class="c"></div>
+<div class="c20 hide-on-mobile"></div>
+<!-- END BLOCK : spnoibat --> 

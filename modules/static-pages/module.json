@@ -1,0 +1,32 @@
+{
+    "name": "static-pages",
+    "version": "1.0.0",
+    "description": "Trang tĩnh (static pages) — tái dùng category (data_type=info) + bảng info. CRUD dashboard + render frontend thay legacy info.php.",
+    "type": "data",
+    "priority": 46,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\StaticPages\\Providers\\StaticPagesServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\StaticPages\\": "src/"
+        }
+    },
+    "provides": ["static-pages.data"],
+    "admin": {
+        "data_type": "Trang tĩnh",
+        "group_icon": "📄",
+        "group": "Nội dung",
+        "nav": { "label": "Trang tĩnh", "url": "/dashboard/static-pages", "icon": "📄" },
+        "crud": {
+            "table": "info",
+            "pk": "id_info",
+            "title": "Trang tĩnh",
+            "title_field": "name",
+            "list_fields": ["name", "url", "id_category", "active", "thu_tu"],
+            "form_fields": ["name", "title", "url", "id_category", "active", "intro", "content", "keywords", "description", "image", "thu_tu"]
+        }
+    }
+}

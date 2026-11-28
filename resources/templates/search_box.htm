@@ -1,0 +1,136 @@
+<!-- START BLOCK : search_box -->
+
+<div class="box-content-fillter  hide-with-menu ">
+    <form action="{dir_path}/{lang_dir}search/" id="searchForm" onSubmit="return submitSearch();">
+        <div class="label-fillter-box">{_searchsite}:</div>
+        <div class="fil-item">
+
+            <input class="textkeyword" name="qr" type="text" value="{qr}" placeholder="{_search_enter_keyword}">
+            <input type="hidden" name="pf" value="1"/>
+        </div>
+        <div class="fil-item">
+            <select class="fil-cbo" name="lv" id="cbolv">
+                <option value="0">{_project_field}</option>
+                {linhvuc_str}
+
+            </select>
+        </div>
+        <div class="fil-item">
+            <select class="fil-cbo" name="pv" id="cbopv" >
+                <option value="">{_project_location}</option>
+                {province_str}
+            </select>
+        </div>
+        <div class="fil-item" >
+            <select class="fil-cbo" name="dt" id="cbodt">
+                <option value="0">{_project_area}</option>
+                {dientich_str}
+            </select>
+        </div>
+        <div class="fil-item" >
+            <select class="fil-cbo" name="pd" id="cbopd">
+                <option value="0">{_project_accessories}</option>
+                {product_str}
+            </select>
+        </div>
+        <a href="#" onClick="$('#searchForm').submit(); return false;" class="btn-fillter">{_searchsite}</a>
+        <div class="c"></div>
+    </form>
+</div>
+
+<script>
+    function submitSearch(){
+        var seachDuan = $("#cbolv")[0].selectedIndex + $("#cbopv")[0].selectedIndex + $("#cbodt")[0].selectedIndex +$("#cbopd")[0].selectedIndex;
+        if (seachDuan > 0){
+            $("#searchForm").attr('action', '{dir_path}/{lang_dir}danh-sach-du-an/');
+        }
+    }
+    
+    
+    
+    
+</script>
+
+
+<!-- END BLOCK : search_box -->
+
+
+<!-- START BLOCK : search_box_mobile -->
+
+<div class="box-mobile-fillter">
+	<div style="margin:10px">
+    <form action="{dir_path}/{lang_dir}search/" id="searchFormMobile" onSubmit="return submitSearchMobile();">
+        <div style="text-transform: uppercase; color: #640203; font-weight: bold;">{_searchsite}:</div>
+        
+        <div class="c10"></div>
+        
+        <div class="item-search">
+
+            <input class="textkeyword" name="qr" type="text" value="{qr}" placeholder="{_search_enter_keyword}">
+            <input type="hidden" name="pf" value="1"/>
+        </div>
+        
+        <div class="c10"></div>
+        
+        <div class="item-search">
+            <select name="lv" id="m_cbolv">
+                <option value="0">{_project_field}</option>
+                {linhvuc_str}
+
+            </select>
+        </div>
+        
+        <div class="c10"></div>
+        
+        <div class="item-search">
+            <select name="pv" id="m_cbopv" >
+                <option value="">{_project_location}</option>
+                {province_str}
+            </select>
+        </div>
+        
+        <div class="c10"></div>
+        
+        <div class="item-search">
+            <select name="dt" id="m_cbodt">
+                <option value="0">{_project_area}</option>
+                {dientich_str}
+            </select>
+        </div>
+        
+        <div class="c10"></div>
+        
+        <div class="item-search" >
+            <select name="pd" id="m_cbopd">
+                <option value="0">{_project_accessories}</option>
+                {product_str}
+            </select>
+        </div>
+        
+        <div class="c10"></div>
+        
+        <div class="item-search" >
+            <a href="#" class="search-mobile-submit" onClick="$('#searchFormMobile').submit(); return false;" >{_searchsite}</a>
+        </div>
+        
+        
+        <div class="c"></div>
+    </form>
+    </div>
+</div>
+
+<script>
+    function submitSearchMobile(){
+        var seachDuan = $("#m_cbolv")[0].selectedIndex + $("#m_cbopv")[0].selectedIndex + $("#m_cbodt")[0].selectedIndex +$("#m_cbopd")[0].selectedIndex;
+        if (seachDuan > 0){
+            $("#searchFormMobile").attr('action', '{dir_path}/{lang_dir}danh-sach-du-an/');
+        }
+    }
+    
+    
+    
+    
+</script>
+
+
+<!-- END BLOCK : search_box_mobile -->

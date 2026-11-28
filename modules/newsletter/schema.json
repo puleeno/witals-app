@@ -1,0 +1,21 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "newsletter",
+            "columns": [
+                { "name": "id",         "type": "primary" },
+                { "name": "name",       "type": "string", "size": 255, "nullable": true },
+                { "name": "email",      "type": "string", "size": 255, "nullable": false },
+                { "name": "phone",      "type": "string", "size": 50,  "nullable": false, "default": "" },
+                { "name": "address",    "type": "string", "size": 255, "nullable": false, "default": "" },
+                { "name": "message",    "type": "text",   "nullable": false, "default": "" },
+                { "name": "thu_tu",     "type": "integer", "nullable": false, "default": 0 },
+                { "name": "created_at", "type": "datetime", "nullable": true }
+            ],
+            "indexes": [
+                { "name": "idx_newsletter_email", "columns": ["email"] }
+            ]
+        }
+    ]
+}

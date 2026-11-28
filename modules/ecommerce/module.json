@@ -1,0 +1,40 @@
+{
+    "name": "ecommerce",
+    "version": "1.0.0",
+    "description": "Ecommerce — dữ liệu sản phẩm, danh mục sản phẩm, giỏ hàng và thêm giỏ hàng. Path có thể đổi qua config.paths.",
+    "type": "data",
+    "priority": 47,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Ecommerce\\Providers\\EcommerceServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Ecommerce\\": "src/"
+        }
+    },
+    "provides": ["ecommerce.data", "ecommerce.cart"],
+    "config": {
+        "paths": {
+            "products": "/san-pham",
+            "cart": "/gio-hang",
+            "addcart": "/addcart"
+        }
+    },
+    "admin": {
+        "data_type": "Sản phẩm",
+        "group_icon": "📦",
+        "group": "Nội dung",
+        "group_icon": "🛒",
+        "nav": { "label": "Ecommerce", "url": "/dashboard/product", "icon": "🛒" },
+        "crud": {
+            "table": "product",
+            "pk": "id_product",
+            "title": "Sản phẩm",
+            "title_field": "name",
+            "list_fields": ["name", "price", "active"],
+            "form_fields": ["name", "id_category", "price", "km", "pricekm", "active", "intro", "content", "image", "url", "ma"]
+        }
+    }
+}

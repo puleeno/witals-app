@@ -1,0 +1,21 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "auto_index",
+            "columns": [
+                { "name": "id",              "type": "primary" },
+                { "name": "url",             "type": "string",   "size": 255, "nullable": false },
+                { "name": "entity_type",     "type": "string",   "size": 50,  "nullable": true },
+                { "name": "entity_id",       "type": "integer",  "nullable": true },
+                { "name": "status",          "type": "string",   "size": 20,  "nullable": false, "default": "pending" },
+                { "name": "response",        "type": "text",     "nullable": true },
+                { "name": "last_submitted_at","type": "datetime", "nullable": true }
+            ],
+            "indexes": [
+                { "name": "uq_auto_index_url", "columns": ["url"], "unique": true },
+                { "name": "idx_auto_index_status", "columns": ["status"] }
+            ]
+        }
+    ]
+}

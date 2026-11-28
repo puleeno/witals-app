@@ -1,0 +1,70 @@
+<div id="leftcol">
+	
+<div class="pageparentcontent">
+		<div class="titlepage">
+	    	<h1 class="text">{catname}</h1>
+	        <div class="c"></div>
+	    </div>
+        
+        <div style="padding:10px;">
+        	<div>{contentcontact}</div>
+    		<div class="c10"></div>
+        	<div>
+    			<div style="border:solid 1px #CCC; height:400px" id="map"></div>
+              		<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+				    <script>
+				      var infowindow = new google.maps.InfoWindow({ size: new google.maps.Size(150, 50) });
+						var map;
+						var latidude;
+						var longtidude;
+						var title;
+						title = '<div style="width:250px; min-height:50px;"><h2 style="font-size:12px; text-transform:uppercase; padding0px; margin:0px; padding-bottom:5px">{title}</h2><div>{address}</div></div>';
+						
+						function initializeMaps() {
+						    //geocoder = new google.maps.Geocoder();
+						    var latlng = new google.maps.LatLng({latitude}, {longitude});
+						    var myOptions = {
+						        zoom: 12,
+						        center: latlng,
+						        mapTypeId: google.maps.MapTypeId.ROADMAP
+						    };
+						    map = new google.maps.Map(document.getElementById("map"), myOptions);
+						    createMarkerMaps(latlng, title);
+						}
+						
+						function createMarkerMaps(latlng, html) {
+						
+						    var contentString = html;
+						    var marker = new google.maps.Marker({
+						        position: latlng,
+						        map: map,
+						        zIndex: Math.round(latlng.lat() * -100000) << 5
+						    });
+						
+						    infowindow.setContent(contentString);
+						    infowindow.open(map, marker);
+						
+						    google.maps.event.addListener(marker, 'click', function () {
+						        infowindow.setContent(contentString);
+						        infowindow.open(map, marker);
+						    });
+						    //    gmarkers.push(marker);
+						}
+					  
+				      google.maps.event.addDomListener(window, 'load', initializeMaps);
+				    </script>
+        	</div>
+        <div class="c10"></div>
+        <!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style ">
+			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+			<a class="addthis_button_tweet"></a>
+			<a class="addthis_button_pinterest_pinit"></a>
+			<a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
+			<a class="addthis_counter addthis_pill_style"></a>
+			</div>
+			<!-- AddThis Button END -->
+        <div class="c10"></div>
+  	</div>
+</div>
+</div>

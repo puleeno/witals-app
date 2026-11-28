@@ -41,40 +41,42 @@ class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
 
     public function register(): void
     {
-        $this->singleton(\App\Foundation\Database\QueryInterceptor::class, function ($app) {
+        $this->app->singleton(\App\Foundation\Database\QueryInterceptor::class, function ($app) {
             return new \App\Foundation\Database\QueryInterceptor($app->make(\App\Foundation\Debug\DebugBar::class));
         });
 
-        $this->singleton(\App\Foundation\Database\ModuleSchemaManager::class, function ($app) {
+        $this->app->singleton(\App\Foundation\Database\ModuleSchemaManager::class, function ($app) {
             return new \App\Foundation\Database\ModuleSchemaManager(
                 $app->make(\Cycle\Database\DatabaseProviderInterface::class),
                 $app->make(\Psr\Log\LoggerInterface::class),
+                $app,
             );
         });
 
-        $this->singleton(DatabaseProviderInterface::class, function ($app) {
+        $this->app->singleton(DatabaseProviderInterface::class, function ($app) {
             $dbConfig = $app->config('database');
-            if (!is_array($dbConfig) || empty($dbConfig)) {
+            if (!is_array($dbConfig) || empty($dbConfig) || empty($dbConfig['connections'])) {
+                // Build a valid Cycle config from environment variables.
                 $dbConfig = [
-                    'default' => env('DB_CONNECTION', 'mysql'),
-                    'databases' => ['default' => ['connection' => env('DB_CONNECTION', 'mysql')]],
+                    'default'     => 'default',
+                    'databases'   => ['default' => ['connection' => 'mysql']],
                     'connections' => [
-                        'mysql' => [
-                            'driver'  => 'mysql',
-                            'host'    => env('DB_HOST', '127.0.0.1'),
-                            'port'    => env('DB_PORT', 3306),
-                            'dbname'  => env('DB_DATABASE', 'app'),
-                            'user'    => env('DB_USERNAME', 'root'),
-                            'password' => env('DB_PASSWORD', ''),
-                        ],
-                        'sqlite' => [
-                            'driver'  => 'sqlite',
-                            'options' => ['memory' => true],
-                        ],
+                        'mysql' => new \Cycle\Database\Config\MySQLDriverConfig(
+                            connection: new \Cycle\Database\Config\MySQL\TcpConnectionConfig(
+                                database: (string) env('DB_DATABASE', 'app'),
+                                host: (string) env('DB_HOST', '127.0.0.1'),
+                                port: (int) env('DB_PORT', 3306),
+                                charset: 'utf8mb4',
+                                user: (string) env('DB_USERNAME', 'root'),
+                                password: (string) env('DB_PASSWORD', ''),
+                            ),
+                            timezone: (string) env('DB_TIMEZONE', 'Asia/Ho_Chi_Minh'),
+                        ),
                     ],
                 ];
             }
-            $driver = $dbConfig['default'] ?? env('DB_CONNECTION', 'mysql');
+
+            $driver = $dbConfig['default'] ?? 'default';
             $config = new DatabaseConfig($dbConfig);
             $manager = new DatabaseManager($config);
 
@@ -85,20 +87,20 @@ class DatabaseServiceProvider extends AbstractDatabaseServiceProvider
             return new \App\Foundation\Database\DatabaseManagerProxy($manager, $driver);
         });
 
-        $this->singleton(\Cycle\Database\DatabaseInterface::class, function ($app) {
+        $this->app->singleton(\Cycle\Database\DatabaseInterface::class, function ($app) {
             return $app->make(DatabaseProviderInterface::class)->database();
         });
 
-        $this->singleton('wpdb', function ($app) {
+        $this->app->singleton('wpdb', function ($app) {
             return $app->make(\Cycle\Database\DatabaseInterface::class);
         });
 
-        $this->singleton(ORMInterface::class, function ($app) {
+        $this->app->singleton(ORMInterface::class, function ($app) {
             $dbal = $app->make(DatabaseProviderInterface::class);
             return $this->resolveOrm($app, $dbal);
         });
 
-        $this->singleton(\Cycle\ORM\EntityManagerInterface::class, function ($app) {
+        $this->app->singleton(\Cycle\ORM\EntityManagerInterface::class, function ($app) {
             return new \Cycle\ORM\EntityManager($app->make(ORMInterface::class));
         });
 

@@ -1,0 +1,275 @@
+<!-- START BLOCK : menubar -->
+<ul class="nav  hide-on-tab hide-on-mobile">
+
+    <!-- START BLOCK : item_barmenu -->
+
+    <li class="{active} {homeactive}" style="background:url({imageadv}) center left no-repeat; {mega_menu_li} " > <a href="{link}" {target} class="">{name} {arrow_not}</a>
+
+        <!-- START BLOCK : has_sub_menu -->
+        <ul class="{mega_menu}">
+            <!-- START BLOCK : submenudrop -->
+            <li class="{active1}"><a href="{link1}" {target1}>{name1}</a>
+                <!-- START BLOCK : has_sub_menu2 -->
+                <ul>
+                    <!-- START BLOCK : submenudrop2 -->
+                    <li class=""><a href="{link2}" {target2}>{name2}</a> </li>
+                    <!-- END BLOCK : submenudrop2 --> 
+                </ul>
+                <!-- END BLOCK : has_sub_menu2 --> 
+            </li>
+            <!-- END BLOCK : submenudrop -->   
+        </ul>
+        <!-- END BLOCK : has_sub_menu -->  
+		
+		
+		<!-- START BLOCK : has_mega_menu -->
+        <ul class="mega-menu">
+			<div class="c20"></div>
+			<div style="display:inline-block; width:1000px;">
+				
+			 <div class="flex-container flex-centered">
+				<!-- START BLOCK : mega_menu_item -->
+				<div class="cell-1-6"> 
+					<div class="mega-menu-item"> 
+						<a class="hvr-grow" href="{link1}"> {imageadv} </a>
+						<div class="c10"></div>
+						<a class="mega-menu-item-link" href="{link1}">{name1}</a>
+					</div>
+				</div>
+				<!-- END BLOCK : mega_menu_item -->
+			</div>
+			
+			</div>
+			
+		</ul>
+        <!-- END BLOCK : has_mega_menu -->  
+
+
+    </li>
+    <!-- END BLOCK : item_barmenu --> 
+</ul> 
+<!-- END BLOCK : menubar --> 
+
+
+<!-- START BLOCK : lelftbar -->
+<ul class="nav lelftbar hide-on-tab hide-on-mobile">
+    <!-- START BLOCK : lelftbar_item -->
+    <li class="{active} " {mega_menu_li}> <a href="{link}" {target} class="">{name}</a>
+
+        <!-- START BLOCK : lelftbar_sub -->
+        <ul class="{mega_menu}">
+            <!-- START BLOCK : lelftbar_subitem -->
+            <li class="{active1}"><a href="{link1}" {target1}>{name1}</a> </li>
+            <!-- END BLOCK : lelftbar_subitem -->   
+        </ul>
+        <!-- END BLOCK : lelftbar_sub -->  
+    </li>
+    <!-- END BLOCK : lelftbar_item --> 
+</ul> 
+<!-- END BLOCK : lelftbar --> 
+
+
+<!-- START BLOCK : rightbar -->
+<ul class="nav rightbar hide-on-tab hide-on-mobile">
+    <!-- START BLOCK : rightbar_item -->
+    <li class="{active} " {mega_menu_li}> <a href="{link}" {target} class="">{name}</a>
+
+        <!-- START BLOCK : rightbar_sub -->
+        <ul class="{mega_menu}">
+            <!-- START BLOCK : rightbar_subitem -->
+            <li class="{active1}"><a href="{link1}" {target1}>{name1}</a> </li>
+            <!-- END BLOCK : rightbar_subitem -->   
+        </ul>
+        <!-- END BLOCK : rightbar_sub -->  
+    </li>
+    <!-- END BLOCK : rightbar_item --> 
+</ul> 
+<!-- END BLOCK : rightbar --> 
+
+
+<!-- START BLOCK : topmenu1 -->
+<!-- START BLOCK : item_topmenu1 -->
+{line} <span  class="toppage-item"><a href="{link}">{name} </a></span>
+<!-- END BLOCK : item_topmenu1 --> 
+<!-- END BLOCK : topmenu1 --> 
+
+<!-- START BLOCK : menutab -->
+<div class="menutab menu-tab-float">
+
+    <div class="flex-container flex-centered">
+        <!-- START BLOCK : menutabItem -->
+        <div class="menutab-1-{total_cell} tab-item {actived} ">
+            <a class="" href="{link}">{name}</a>
+        </div>
+        <!-- END BLOCK : menutabItem -->
+    </div>
+
+</div>
+<!-- START BLOCK : menutab -->
+
+
+<!-- START BLOCK : showmenumobile -->
+
+
+<nav id="menu">
+
+    <ul>
+
+		<li>
+		
+		<form action="/{lang_dir}search/" method="get" id="m_searchform">
+			<input name="qr" class="kw-mobile" placeholder="{_keywords}" type="text">
+			<a href="#" class="fa fa-search submit-search-mobile" onClick="$('#m_searchform').submit();
+		return false;"> </a>
+		</form>
+		
+		
+		</li>
+	
+        <!-- START BLOCK : m_level1 -->
+        <li><a class="" href="{link}">{name}</a>
+		
+		
+		<!-- START BLOCK : showlevel2 -->
+		<ul>
+		
+			<!-- START BLOCK : m_level2 -->
+			<li><a  href="{link1}">{name1}</a>
+				<!-- START BLOCK : showlevel3 -->
+				<ul>
+					<!-- START BLOCK : m_level3 -->
+					<li><a href="{link2}">- {name2}</a>
+						<!-- START BLOCK : showlevel4 -->
+						<ul>
+							<!-- START BLOCK : m_level4 -->
+							<li><a href="{link3}">{name3}</a></li>
+							<!-- END BLOCK : m_level4 -->     
+						</ul>
+						<!-- END BLOCK : showlevel4 -->     
+					</li>
+					<!-- END BLOCK : m_level3--> 
+				</ul>
+				<!-- END BLOCK : showlevel3 -->   
+					 
+			</li>
+			<!-- END BLOCK : m_level2 -->		
+		
+		</ul>
+		<!-- END BLOCK : showlevel2 -->
+		
+        
+		</li>
+        <!-- END BLOCK : m_level1 -->
+    </ul>
+</nav>
+<!-- END BLOCK : showmenumobile --> 
+
+<!-- START BLOCK : menufooter -->
+<ul class="menufooter">
+    <!-- START BLOCK : item_menu -->
+    <li><a href="{link}">{name}</a></li>
+    <!-- END BLOCK : item_menu --> 
+</ul>
+<!-- END BLOCK : menufooter --> 
+
+
+
+<!-- START BLOCK : menu_product -->
+<h2 class="title-left" >Danh mục sản phẩm</h2>
+<ul class="menuleft">
+    <!-- START BLOCK : item_menu_pro -->
+    <li class="{active}"><a href="{link}"><i class="fa fa-chevron-right" aria-hidden="true"></i>  {name} </a>
+        <ul class="{subshow}">
+            <!-- START BLOCK : r_level1 -->
+            <li class="{active1}"><a href="{link1}">{name1}</a>
+                <!-- START BLOCK : show_r_level2 -->
+                <ul class="{subshow}">
+                    <!-- START BLOCK : r_level2 -->
+                    <li class="{active2}"><a href="{link2}">{name2}</a></li>
+                    <!-- END BLOCK : r_level2 --> 
+                </ul>
+                <!-- END BLOCK : show_r_level2 --> 
+            </li>        
+            <!-- END BLOCK : r_level1 --> 
+        </ul>
+        <!-- END BLOCK : item_menu_pro --> 
+</ul>
+
+
+<!-- END BLOCK : menu_product --> 
+
+
+<!-- START BLOCK : mainmenu -->
+<!-- START BLOCK : item_menu_main -->
+<div class="main-menu-drop">
+    <div class="main-text"><a href="{link}">{name}</a></div>
+    <ul style="max-height:400px; overflow:auto">
+        <!-- START BLOCK : main_level1 -->
+        <li><a href="{link1}"><i class="fa fa-angle-double-right"></i>{name1}</a></li>
+        <!-- END BLOCK : main_level1 -->        
+    </ul>
+</div>
+<div class="hd-mua-hang-top" style="background:#f5791f;"><a href="#">{hdmuaname}</a>
+    <div class="drop">
+        {hdmuacontent}
+    </div>
+</div>
+<!-- END BLOCK : item_menu_main -->  
+
+<!-- END BLOCK : mainmenu --> 
+<!-- START BLOCK : mainmenu1 -->
+<a href="{link}" class="main hide-on-mobile">{name}</a>
+<!-- END BLOCK : mainmenu1 --> 
+
+
+<!-- START BLOCK : footercol -->
+
+<div class="footer-title hide-on-tab ">  {name}  </div>
+<div class="footer-title footer-title-mobile hide-on-pc hide-on-pad " rel="{idcat}">  {name} </div>
+
+<div class="c5 hide-on-tab"></div>
+
+<ul class="menuboxfooter" id="boxcol{idcat}">
+    <!-- START BLOCK : subcol --> 
+    <li><a href="{link1}"> <i class="fa fa-angle-right"></i> {name1}</a></li>
+    <!-- END BLOCK : subcol --> 
+</ul>
+<div class="c10"></div>
+
+
+<!-- END BLOCK : footercol --> 
+
+
+
+<!-- START BLOCK : menu_left -->
+<div class="title-left"> <a href="{cat_link}">{cat_name}</a></div>
+
+<ul class="menuleft">
+    <!-- START BLOCK : menu_left_item -->
+    <li class="{actived}"> 
+        <a href="{link}"><i class="fa fa-chevron-right"></i> {name} {has_sub_icon} </a>
+        <!-- START BLOCK : sub_menu_left -->
+        <ul class="{subId}">
+            <!-- START BLOCK : sub_menu_left_item -->
+            <li class="{actived}"> 
+                <a href="{link}">{name}</a>
+            </li>        
+            <!-- END BLOCK : sub_menu_left_item -->
+        </ul>
+        <!-- START BLOCK : sub_menu_left -->
+
+    </li>        
+    <!-- END BLOCK : menu_left_item -->
+</ul>
+<div class="c20"></div>
+
+
+<script>
+    $(".show-sub-menu").click(function () {
+        $("." + $(this).attr("id")).slideDown();
+        return false;
+    });
+</script>
+
+
+<!-- END BLOCK : menu_left --> 

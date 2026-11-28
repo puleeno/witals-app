@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "comments",
+            "columns": [
+                { "name": "id_comment", "type": "primary" },
+                { "name": "comment",    "type": "text",    "nullable": true },
+                { "name": "createdate", "type": "integer", "nullable": false },
+                { "name": "active",     "type": "integer", "nullable": false, "default": 0 },
+                { "name": "thu_tu",     "type": "integer", "nullable": false, "default": 0 },
+                { "name": "name",       "type": "string",  "size": 255, "nullable": true },
+                { "name": "email",      "type": "string",  "size": 255, "nullable": true },
+                { "name": "phone",      "type": "string",  "size": 50,  "nullable": true },
+                { "name": "parentid",   "type": "integer", "nullable": true },
+                { "name": "table_name", "type": "string",  "size": 50,  "nullable": true },
+                { "name": "id_item",    "type": "string",  "size": 50,  "nullable": true },
+                { "name": "id_value",   "type": "string",  "size": 50,  "nullable": true },
+                { "name": "user_like",  "type": "integer", "nullable": true, "default": 0 },
+                { "name": "star_rate",  "type": "integer", "nullable": true, "default": 3 },
+                { "name": "id_admin",   "type": "integer", "nullable": true }
+            ]
+        }
+    ]
+}

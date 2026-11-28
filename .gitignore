@@ -8,3 +8,4 @@ rr.exe
 composer.lock
 *.log
 composer.lock
+node_modules

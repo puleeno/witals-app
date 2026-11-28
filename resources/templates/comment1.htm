@@ -1,0 +1,332 @@
+<script src="{dir_path}/js/jquery.form.min.js"></script>
+<script src="{dir_path}/js/jquery.quick.pagination.min.js"></script>
+
+
+<div class="content-tab-scroll" id="comment">
+
+    <div class="c10"></div>
+    
+
+    <div class="c10"></div>
+
+    <div class="reply_comment_form1" id="box_comment_pro">
+
+        <form action="{dir_path}/index4.php?page=comment" method="post" onSubmit="return check_null_form('commentform');" id="commentform">
+            <input type="hidden" name="commentpost" value="1" />
+
+            <input type="hidden" name="table_name" value="{table_name}"/>
+            <input type="hidden" name="id_item_name" value="{id_item_name}"/>
+            <input type="hidden" name="id_value" value="{id_value}"/>
+			<input type="hidden" name="lang" value="{lang}"/>
+            <input type="hidden" name="parentid" value="0" />
+
+            <div class="col-1-4  mobile-width-100 "><input class="txt-comment showinput notNull inputemail" name="inputemail" type="text" placeholder="{_your_email}"></div>
+            <div class="col-1-4  mobile-width-100"><input class="txt-comment showinput notNull inputname" name="inputname" type="text" placeholder="{_fullname}"></div>                
+
+            <div class="col-1-4  mobile-width-100"><input class="txt-comment showinput  inputname" name="inputphone" type="text" placeholder="{_phone}"></div>
+            <div class="col-1-4" style="display: none;">
+                <a href="#" class="showinput thoatCookie " onClick="eraseCookie('member_name');
+                        eraseCookie('member_email');
+                        $('.reply_comment_form1').slideUp();
+                        return false;"><i style="font-size: 16px;" class="fa fa-sign-out"></i></a>                
+            </div>
+            <div class="c"></div>
+
+            <div class="frm-commnet">
+
+                <div class="avatar-comment"></div>
+
+                <div>
+                    <textarea name="inputcomment" id="inputcomment" class="notNull inputcomment" rows="4" style="width:100%; height:50px; "></textarea>
+                </div>
+
+
+                <div class="c5"></div>
+
+                <div  style="float: right; text-align: right; padding-right: 0px; width: 200px; ">
+                    
+                    <div  style="text-align:right">
+                        <button class="btn-comment" onClick="$('#commentform').submit();
+                                return false;" style="white-space:nowrap">Gửi nhận xét</button>
+                    </div>
+
+                </div>
+
+
+                <div class="c"></div>
+
+                <div class="message_error" id="message_success" style="display:none;">{_comment_alert}</div>
+
+                <div class="showmessage_respon">
+
+                </div>
+                <div id="msg_comment"></div>
+                <div class="c"></div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="c10"></div>
+
+    <div id="show_comment_estate" style="position:relative">
+
+        <ul class="pagination" style="list-style: none; padding-left: 0px;">
+            <!-- START BLOCK : lstComment -->
+            <li>
+                <div class="comment-item-list" >
+
+
+                    <div style="color: #444;"><span style="font-weight:bold; font-size: 14px; color: #222; "> {name} </span> - {createdate} - ({email}) </div>
+                    <div style=" padding:0px 0px 10px 0px">
+                        <div>{comment}</div>
+                        <div class="c5"></div>
+
+                    </div>
+                </div>
+
+                <div style="border-bottom:solid 1px #EEE"></div>
+                <div class="c10"></div>
+            </li>
+            <!-- END BLOCK : lstComment --> 
+        </ul>
+
+        <div class="c5"></div>
+        <div class="paging">{pages}</div>            
+
+    </div>
+
+
+
+</div>
+
+<script>
+    $(function() {
+
+        $("ul.pagination").quickPagination({pagerLocation: "bottom", pageSize: "5"});
+
+
+        $('.simplePagerNav a').click(function() {
+            var topcomment = $('#comment').position();
+            $("html, body").animate({scrollTop: (topcomment.top - 100)}, "slow");
+            return false;
+        });
+
+
+
+        $('#count_comment').text('{number_comment}');
+        $('.reply_comment').click(function() {
+            $('.reply_comment_form').slideUp();
+            $($(this).attr('href')).slideDown();
+
+            $('.inputname').val(readCookie('member_name'));
+            $('.inputemail').val(readCookie('member_email'));
+
+            if (readCookie('member_name'))
+                $('.reply_comment_form .thoatCookie').show();
+            else
+                $('.reply_comment_form .thoatCookie').hide();
+
+
+            return false;
+        });
+    })
+</script>
+
+
+<style>
+    .simplePagerNav{
+        float: right;
+
+    }
+
+    .simplePagerNav a{
+        text-decoration: none;
+        color: #666;
+    }    
+
+    .simplePagerNav li {
+        float: left;
+        list-style: none;
+        font-weight: bold;
+        border: 1px solid #00904c;
+        padding: 1px 6px;
+        margin-left: 10px;
+    }
+
+    .currentPage {
+        background: #00904c;
+        color: #FFF;
+    }
+
+    .currentPage a{
+        color: #FFF;
+    }
+
+</style>
+
+
+<style>
+
+    .liked-comment{
+        text-decoration: none;
+        color: #666;
+    }
+
+    .alert-error{
+        color: #d20000;
+    }
+
+    .isadmin{
+        background-color: #FF0;
+        padding: 3px 10px;
+        border-radius: 3px;
+        order: solid 1px #CCC;
+        text-transform: uppercase;
+    }        
+    .thoatCookie{
+        text-decoration: none;
+        background: #00904c;
+        line-height: 30px;
+        color: #FFF;
+        padding: 8px 10px;
+    }
+</style>
+
+<script>
+
+
+    function like(obj) {
+        var datalike = obj.attr('data-like');
+        var datavalue = obj.attr('data-value');
+        obj.parent().load('/index4.php?page=comment&code=like&idcomment=' + datalike + '&v=' + datavalue, function(response, status, xhr) {
+
+            if (status == "success") {
+            }
+            if (status == "error") {
+
+            }
+        });
+    }
+
+    function check_null_form(objForm) {
+        var ok = true;
+        $('#' + objForm + ' .notNull').each(function() {
+            if ($(this).val() == '') {
+                ok = false;
+                $(this).addClass('border-error');
+                $('.message-success').hide();
+                $('.message-error').show();
+            }
+        });
+        if ($('#' + objForm + ' .inputcomment').val().length < 7) {
+            ok = false;
+            alert("{_comment_short_alert}");
+            $('#' + objForm + ' .inputcomment').focus();
+            $('#' + objForm + ' .message-success').hide();
+            $('#' + objForm + ' .message-error').show();
+        }
+
+        if (ok == true) {
+            if (objForm == 'commentform')
+                $('.reply_comment_form1').append('<div class="ajaxloading"><i class="fa fa-circle-o-notch fa-spin" ></i></div>');
+            else
+                $('.reply_comment_form').append('<div class="ajaxloading"><i class="fa fa-circle-o-notch fa-spin" ></i></div>');
+
+            $('#' + objForm).ajaxSubmit({
+                //target:        '#msg_comment',
+                success: function(formData) {
+
+                    $('.ajaxloading').remove();
+                    $('#' + objForm + ' .showmessage_respon').html('');
+                    $('#' + objForm + ' .showmessage_respon').html(formData).show();
+                    $('.imgCaptcha').attr('src', '{dir_path}/lib/imagesercurity.php?x=' + $.now());
+
+                    var str1 = formData;
+                    var str2 = "captcha";
+                    if (str1.indexOf(str2) == -1) {
+                        $('#' + objForm)[0].reset();
+
+                        $('#' + objForm + ' .commentarea').hide();
+
+                    }
+                }
+
+            });
+            createCookie('member_name', $('#' + objForm + ' .inputname').val(), 30);
+            createCookie('member_email', $('#' + objForm + ' .inputemail').val(), 30);
+
+            return false;
+        }
+        return false;
+    }
+
+</script>
+
+<script>
+
+
+
+    $(function() {
+        $('#inputcomment').on("keypress", function() {
+            showinputcomment();
+        });
+        $('#inputcomment').change(function() {
+            showinputcomment();
+        });
+    });
+    function showinputcomment() {
+        if ($('#inputcomment').val().length > 6) {
+            /*
+            $('.showinput').show();
+            $('.inputname').val(readCookie('member_name'));
+            $('.inputemail').val(readCookie('member_email'));
+            if (readCookie('member_name'))
+                $('.thoatCookie').show();
+            else
+                $('.thoatCookie').hide();
+            */
+        }
+    }
+    function hideinputcomment() {
+        /*
+         
+         $('.showinput').hide();
+         
+         */
+    }
+
+    /*Cookie*/
+    function createCookie(name, value, days) {
+        var expires;
+
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = encodeURIComponent(name) + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ')
+                c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0)
+                return decodeURIComponent(c.substring(nameEQ.length, c.length));
+        }
+        return null;
+    }
+
+    function eraseCookie(name) {
+        createCookie(name, "", -1);
+    }
+
+
+</script>

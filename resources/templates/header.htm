@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>{site_name}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
+
+        <meta name="theme-color" content="#0099ff"/>
+        <meta http-equiv="Content-Language" content="{langcode}" />
+        <meta name="description" content="{site_description}" />
+        <meta name="keywords" content="{site_keywords}" />
+		{canonical}
+        <meta property="og:url" name="og:url" content="{site_url}" data-app/>
+        <meta property="og:type" name="og:type" content="website" data-app/>
+        <meta property="og:description" name="og:description" content="{site_description}" data-app/>
+        <meta property="og:title" name="og:title" content="{site_name}" data-app/>
+        {site_image}
+
+
+        <link href="/favicon.png" rel="shortcut icon" />
+
+        <link rel="stylesheet" type="text/css" href="{dir_path}/css/font.css?v=20261127b"/>
+        <link rel="stylesheet" type="text/css" href="{dir_path}/css/style.css?v=20261127b"/>
+        <link rel="stylesheet" type="text/css" href="{dir_path}/css/grid.css?v=20261127b"/>
+        <link rel="stylesheet" type="text/css" href="{dir_path}/css/widget-call-left.css?v=20261127b"/>
+        <link rel="stylesheet" type="text/css" href="{dir_path}/css/fontawesome-5.12.1/css/all.min.css?v=20261127b"/>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.css"/>
+
+        <script src="{dir_path}/js/script.js?v=20261127b"></script>
+
+		{toppage}
+
+		{header_tag}
+
+    </head>
+    <body>
+
+	{bodypage}
+
+        <div id="page">
+
+            <div class="header-search topheader hide-on-pad hide-on-tab">
+                <div class="grid">
+                    <div class="flex-container">
+                        <div class="cell-7-12 d-flex">
+
+                            <div class="logo logo-pc">
+                                {logo}
+                            </div>
+
+
+                            <div class="header__form">
+                                <form id="searchform" method="get" action="/{lang_dir}search/" class="header__search">
+                                    <div class="header__search-input-wrap">
+                                        <input class="header__search-input keysearch" type="text" name="qr" value="{qr}" placeholder="Nhập để tìm kiếm sản phẩm" autocomplete="off">
+                                            <ul class="searchresult" style="display: none;"></ul>
+                                    </div>
+                                    <a class="btn-search" onclick="$('#searchform').submit(); return false;" href="#">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </a>
+                                </form>
+								<script src="{dir_path}/js/autocomplete.js"></script>
+                            </div>
+                        </div>
+
+                        <div class="cell-5-12 d-flex">
+                            <a href="tel:{hotline}" class="header-hotline">
+                                Hotline:
+                                {hotline}
+                            </a>
+
+                            <a href="/gio-hang" class="headercart">
+                                <div class="headercart__img">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <div class="headercart-notice countcart">{quantity}</div>
+                                </div>
+                                Giỏ hàng
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <header class="header hide-on-pad hide-on-tab">
+
+                <div class="grid">
+                    <div class="menubar">
+                        {menubar}
+                        <div class="c"></div>
+                    </div>
+
+                </div>
+                <div class="c"></div>
+            </header>
+
+            <div class="header-mobile hide-on-pc ">
+
+					<div class="flex-container flex-space-between">
+                        <div class="cell-1-3">
+                            <a class="menu-mobile " href="#menu">
+								<img src="{dir_path}/images/m-icon-menu.png"/>
+							</a>
+
+                        </div>
+
+						<div class="cell-1-3" style="text-align:center;">
+                            <a href="/{lang_dir}">
+								{logo}
+							</a>
+						</div>
+
+						<div class="cell-1-3">
+
+
+							<div class="cart-mobile" >
+								<a href="/gio-hang">
+									<img src="{dir_path}/images/m-icon-cart.png"/>
+								</a>
+
+								 <span class="countcart">{quantity}</span>
+							</div>
+
+                        </div>
+					</div>
+                <div class="c"></div>
+            </div>
+
+
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".show-search-mobile").click(function () {
+                        $(".search-mobile").stop().slideToggle("slow");
+                    });
+                });
+            </script>
+
+            <div class="content" style="background:#FFF">
+
+            <div>{slideshow}</div>
+            <div class="c"></div>

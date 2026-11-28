@@ -1,0 +1,128 @@
+/* =========================================================================
+   DigitalCore Admin — design tokens + base layout
+   Static file (no build). Enqueued by AdminController as "admin-core".
+   All values are CSS custom properties so modules can theme consistently.
+   ========================================================================= */
+:root {
+  --dc-bg: #06080c;
+  --dc-surface: #12161f;
+  --dc-surface-2: #1a1f2b;
+  --dc-border: rgba(255, 255, 255, 0.08);
+  --dc-text: #f1f5f9;
+  --dc-text-muted: #94a3b8;
+  --dc-primary: #6366f1;
+  --dc-primary-2: #4f46e5;
+  --dc-accent: #a855f7;
+  --dc-success: #22c55e;
+  --dc-warning: #f59e0b;
+  --dc-danger: #ef4444;
+  --dc-radius: 16px;
+  --dc-radius-sm: 10px;
+  --dc-gap: 24px;
+  --dc-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body.admin-admin {
+  margin: 0;
+  font-family: var(--dc-font);
+  background: var(--dc-bg);
+  color: var(--dc-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.admin-admin-layout { display: flex; min-height: 100vh; }
+
+.admin-sidebar {
+  width: 260px;
+  flex: 0 0 260px;
+  background: var(--dc-surface);
+  border-right: 1px solid var(--dc-border);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 8px 10px 18px;
+}
+.admin-sidebar-brand span { color: var(--dc-primary); }
+
+.admin-nav-groups { display: flex; flex-direction: column; gap: 6px; }
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--dc-radius-sm);
+  color: var(--dc-text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.admin-nav-item:hover { background: var(--dc-surface-2); color: var(--dc-text); }
+.admin-nav-item.active {
+  background: linear-gradient(135deg, var(--dc-primary), var(--dc-primary-2));
+  color: #fff;
+}
+
+.sidebar-footer { margin-top: auto; }
+.nav-user-profile {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px; border-radius: var(--dc-radius-sm); background: var(--dc-surface-2);
+}
+.nav-user-profile .avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center; color: #fff; font-weight: 700;
+}
+.nav-user-profile .info { display: flex; flex-direction: column; line-height: 1.2; }
+.nav-user-profile .name { font-weight: 700; font-size: 14px; }
+.nav-user-profile .role { color: var(--dc-text-muted); font-size: 12px; }
+.logout-btn {
+  margin-left: auto; background: none; border: none; color: var(--dc-text-muted); cursor: pointer;
+}
+
+.admin-main-wrapper { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.admin-main-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 28px; border-bottom: 1px solid var(--dc-border);
+}
+.admin-breadcrumbs a { color: var(--dc-text-muted); text-decoration: none; }
+.header-actions { display: flex; align-items: center; gap: 14px; }
+.header-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--dc-surface); border: 1px solid var(--dc-border);
+  padding: 8px 12px; border-radius: var(--dc-radius-sm); color: var(--dc-text-muted);
+}
+.header-search input { background: none; border: none; color: var(--dc-text); outline: none; }
+.header-notif { position: relative; color: var(--dc-text-muted); }
+.header-notif .pulse {
+  position: absolute; top: -2px; right: -2px; width: 8px; height: 8px;
+  background: var(--dc-danger); border-radius: 50%;
+}
+
+.admin-content-area { padding: 28px; flex: 1; }
+.page-title { font-size: 24px; font-weight: 800; margin: 0 0 24px; }
+
+.admin-btn {
+  display: inline-block; padding: 10px 18px; border-radius: var(--dc-radius-sm);
+  text-decoration: none; font-weight: 700;
+}
+.admin-btn-primary { background: var(--dc-primary); color: #fff; }
+
+.admin-admin-footer {
+  margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--dc-border);
+  display: flex; justify-content: space-between; color: var(--dc-text-muted); font-size: 13px;
+}
+
+@media (max-width: 860px) {
+  .admin-sidebar { display: none; }
+}

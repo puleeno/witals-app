@@ -1,0 +1,22 @@
+
+@font-face {
+    font-family:Kanit-B;
+    src: url('fonts/Muli-Bold.ttf');
+    font-display: swap;
+    font-weight: normal;
+}
+
+
+@font-face {
+    font-family:Kanit;
+    src: url('fonts/Muli-Regular.ttf');
+    font-display: swap;
+    font-weight: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family:Kanit-L;
+    src: url('fonts/Muli-Light.ttf');
+    font-display: swap;
+}

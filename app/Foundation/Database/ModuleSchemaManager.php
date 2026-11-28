@@ -92,8 +92,29 @@ class ModuleSchemaManager
     public function __construct(
         private readonly DatabaseProviderInterface $dbal,
         private readonly LoggerInterface $logger,
+        private readonly ?\App\Foundation\Application $app = null,
     ) {
         $this->forceSync = $this->shouldForceSync();
+    }
+
+    /**
+     * Resolve the physical table name for a logical name declared in
+     * schema.json. A config override at `database.tables.<logical>` wins;
+     * otherwise the logical name is used verbatim.
+     *
+     * This lets any module rename its tables without touching schema.json —
+     * e.g. config('database.tables.customers') = 'xvn_customers'.
+     */
+    public function resolveTableName(string $logicalName): string
+    {
+        if ($this->app !== null) {
+            $override = $this->app->config('database.tables.' . $logicalName);
+            if (is_string($override) && $override !== '') {
+                return $override;
+            }
+        }
+
+        return $logicalName;
     }
 
     // =========================================================================
@@ -178,6 +199,9 @@ class ModuleSchemaManager
         if (!$tableName) {
             throw new \InvalidArgumentException('Table definition must have a "name" field.');
         }
+
+        // Apply config override (database.tables.<logical>) to the physical name.
+        $tableName = $this->resolveTableName($tableName);
 
         $db    = $this->dbal->database();
         $table = $db->table($tableName)->getSchema();
@@ -475,6 +499,9 @@ class ModuleSchemaManager
             if (!$column || !$references) {
                 continue;
             }
+
+            // Resolve the referenced table through the same config override.
+            $references = $this->resolveTableName($references);
 
             $onDelete = strtoupper($fkDef['on_delete'] ?? 'NO ACTION');
             $onUpdate = strtoupper($fkDef['on_update'] ?? 'NO ACTION');

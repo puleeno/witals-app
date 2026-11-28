@@ -1,0 +1,161 @@
+<style>
+	.btn-cart-3,.btn-cart-2,.btn-cart-1{
+		padding:8px 0px;
+		width:100%;
+		border:none;
+		color:#FFF;
+		white-space:pre-wrap;
+		font-weight:bold;
+	}
+	.btn-cart-1{
+		background: #f5791f;
+		border:solid 2px #f5791f;	
+	}
+	.btn-cart-2{
+		background: #999;	
+		border:solid 2px #999;
+	}
+	.btn-cart-3{
+		background: #00904c;
+		border:solid 2px #00904c;	
+	}
+	.cart-price{
+		color:#333;
+		font-weight:bold;	
+	}
+	.total-payment{
+		color:#333;
+		font-weight:bold;
+		font-size:16px;	
+	}
+	
+	.cart-message,.cart-message-error {
+		color: #468847;
+		background-color: #dff0d8;
+		border-color: #d6e9c6;
+		text-align:center;
+		padding: 8px 35px 8px 14px;
+		margin-bottom: 20px;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		background-color: #fcf8e3;
+		border: 1px solid #fbeed5;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	.cart-message-error{
+		color: #b94a48;
+		background-color: #f2dede;
+		border-color: #eed3d7;
+	}
+	.cart-title{
+		background:#EEE;
+		padding:8px 5px;	
+		font-weight:bold;
+		margin-bottom:10px;
+		font-size:14px;
+	}
+	.cart-note{
+		 white-space:nowrap; font-size:12px; color:#666; font-weight:normal;
+	}
+	.cart-info-text{
+		width:100%;
+		height:30px;	
+	}
+	.cart-info-textarea{
+		width:100%;
+		height:80px;	
+	}
+	.cart-label{
+		font-weight:bold;	
+	}
+	.cart-red{
+		color:#FF0000;	
+	}
+	.border-cc{
+		border-bottom:solid 1px #eee;	
+		clear:both;
+		padding:5px 0px;
+	}
+	a.fa-trash{
+		color:#333;
+		text-decoration:none;	
+	}
+	a.fa-trash:hover{
+		color:#FF0000;	
+	}
+</style>
+<div class="col-9-12 pad-col-1-1 tab-col-1-1 mobile-col-1-1 pc-paddingright-15">
+	<div class="c20"></div>
+<!-- START BLOCK : viewcart -->
+	 <div class="cart-message">{_your_order_has_been_sent}</div>
+     	<div style="font-size:16px; font-weight:bold; text-transform:uppercase;">{_order_infomation}</div>
+        <div class="c15"></div>
+    	<div id="checkout_cart_1">
+            <div class="cart-title">
+                {_customer_infomation}
+                <div class="c"></div>
+            </div>
+            <div>
+                <div class="col-3-12 cart-label">{_fullname}:</div>
+                <div class="col-5-12">{name}</div>
+                <div class="border-cc"></div>
+            </div>
+            <div class="c5 hide-on-mobile"></div>
+            <div>
+                <div class="col-3-12 cart-label">{_phone}: </div>
+                <div class="col-5-12">{phone}</div>
+                <div class="border-cc"></div>
+            </div>
+            <div class="c5 hide-on-mobile"></div>
+            <div>
+                <div class="col-3-12 cart-label">Email:</div>
+                <div class="col-5-12">{email}</div>
+                <div class="border-cc"></div>
+            </div>
+            <div class="c5 hide-on-mobile"></div>
+            <div>
+                <div class="col-3-12 cart-label">{_address}:</div>
+                <div class="col-5-12">{address}</div>
+                <div class="border-cc"></div>
+            </div>
+            <div class="c5 hide-on-mobile"></div>
+            <div>
+                <div class="col-3-12 cart-label">{_content}:</div>
+                <div class="col-5-12">{addinfo}</div>
+            </div>
+            <div class="c15"></div>
+        </div>
+
+	<div class="c20"></div>
+    <div class="cart-title">
+        {_product_list}
+        <div class="c"></div>
+    </div>
+    <div class="c10"></div>
+    <!-- START BLOCK : list_row_cart -->
+        <div class="col-3-12" align="center" style="min-height:10px;"><a href="{link}" target="_blank">{image}</a></div>
+        <div class="col-9-12">
+            <div class="col-4-12"><a href="{link_detail}" class="vtip" title="View product" target="_blank"><strong>{name}</strong></a></div>
+            <div class="col-3-12 cart-price">{_giasp}: {price} VNĐ&nbsp;{donvitinh}</div>
+            <div class="col-2-12">{_soluong}: {quantity}</div>
+            <div class="col-3-12 cart-price">{_thanhtien}: {total}&nbsp;VNĐ&nbsp;{donvitinh}</div>
+        </div>
+        <div class="c5"></div>
+        <div style="border-bottom:solid 1px #CCC"></div>
+        <div class="c5"></div>
+    <!-- END BLOCK : list_row_cart -->
+    <div class="col-6-12 hide-on-mobile" style="height:10px;"></div><div class="col-6-12 total-payment">{_tongthanhtoan}: {final} VNĐ</div>
+    <div class="c15"></div>
+    <div>
+    	 <div class="addthis_toolbox addthis_default_style ">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                <a class="addthis_button_tweet"></a>
+                <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
+                <a class="addthis_counter addthis_pill_style"></a>
+
+        </div>
+        <div class="c15"></div>
+    </div>
+  <!-- END BLOCK : viewcart -->
+  </div>

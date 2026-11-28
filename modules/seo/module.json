@@ -1,0 +1,21 @@
+{
+    "name": "seo",
+    "version": "1.0.0",
+    "description": "SEO metadata: edit-screen fields + <head> rendering via shared ModuleContext hooks.",
+    "type": "feature",
+    "priority": 20,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Seo\\Providers\\SeoServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Seo\\": "src/"
+        }
+    },
+    "provides": [
+        "seo.service",
+        "seo.edit_fields"
+    ]
+}

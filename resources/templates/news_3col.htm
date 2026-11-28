@@ -1,0 +1,64 @@
+<div class="crumb">
+    <a href="{dir_path}/{lang_dir}" ><i class="fa fa-home"></i></a> <i class="fa fa-angle-right"></i> {pathpage}
+</div>
+<div class="c5"></div>
+<div class="col-3-4 cright">
+    
+                     <!-- START BLOCK : newsCat -->	
+    <div class="borderboxgray" style="position:relative" id="boxdownload">
+    <div class="col-1-1">
+        <div class="c20"></div>
+        <div>{cat_content}</div>
+    </div>
+			<div class="tabledownload">
+            	<div class="cell-d-1 title">{_ngay}</div>
+                <div class="cell-d-2 title">{_phongban}</div>
+                <div class="cell-d-4 title">{_tenthongbao}</div>
+                <!-- START BLOCK : news_list -->
+                    <div class="cell-d-1">{createdate}</div>
+                    <div class="cell-d-2" style="text-align:center">{catname}</div>
+                    <div class="cell-d-4"><a href="{link_detail}" title="{name}">{name}</a></div>
+                <!-- END BLOCK : news_list -->
+                    <div class="c10"></div>
+                    <div class="paging">{pages}</div>
+                
+            </div>
+        </div>
+    <!-- END BLOCK : newsCat -->
+    
+    
+        
+    <!-- START BLOCK : newsDetail --> 
+    <div class="col-1-1" style="padding-left:0px;">
+        <div class="c10"></div>
+        <h1 class="news-name" style="font-size:18px; font-weight:bold">{name}</h1>
+        {createdate}
+        <h2 class="intro-detail">{intro}</h2>
+        <div class="content-detail">{content}</div>
+        <div class="c10"></div>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style ">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
+            <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+		{comments}
+        <!-- AddThis Button END -->
+        <div class="c10"></div>
+        <h2 class="title-other-news">{_othernews}</h2>
+        
+        <div class="c5"></div>
+        <ul class="other-article">
+            <!-- START BLOCK : newsest -->
+            <li><a href="{link_detail}"><i class="fa fa-caret-right"></i> {name} {createdate}</a></li>
+            <!-- END BLOCK : newsest --> 
+            <!-- START BLOCK : newsold_list -->
+            <li> <a href="{link_detail}"><i class="fa fa-caret-right"></i> {name} {createdate}</a></li>
+            <!-- END BLOCK : newsold_list --> 
+        </ul>
+    </div>
+    <!-- END BLOCK : newsDetail --> 
+    <div class="c10"></div>
+    
+</div>

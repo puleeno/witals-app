@@ -1,0 +1,85 @@
+<div class="col-4-5 box-shadown" style="padding-right:0">
+<div class="c"></div>
+    <div class="crumb crumb-about hide-on-mobile">
+        <a href="{dir_path}/" >{_home}</a> <i class="fa fa-angle-right"></i> {pathpage}
+    </div>
+    <Div class="c5"></Div>
+    <div class="pageparentcontent paddingleft20"> 
+    	<div style="position:relative">
+        <!-- START BLOCK : message -->
+        <div class="c20"></div>
+        <div class="alert-message">{_send_question_success}</div>
+        <!-- END BLOCK : message -->
+        
+        <!-- START BLOCK : message_err_captcha -->
+        <div class="alert-message">{_send_question_err_cap}</div>
+        <!-- END BLOCK : message_err_captcha -->
+        
+        
+        
+        <div class="waiting" style="display:none;">Đang tải</div>
+        <div class="c20"></div>
+        <div class="frm-book">
+         <form method="post" action="" id="bookform" onSubmit="return check_null_book();">
+         	<input type="hidden" name="act" value="1" />
+             <div class="col-1-2"> 
+                 <input class="txt notNull" name="name" data-alert="Bạn cần nhập vào tên!" type="text" placeholder="Họ tên:" />
+                 <div class="c15"></div>
+                 <input class="txt notNull" type="text" name="phonenumber"  data-alert="Bạn cần nhập vào điện thoại!" placeholder="Điện thoại:" />
+                 <div class="c15"></div>
+                 <input class="txt notNull email" type="text" placeholder="Email:" name="email" data-alert="Bạn cần nhập vào Email!" />
+                 <div class="c15"></div>
+                 <textarea class="txt texta" placeholder="Câu hỏi cần tư vấn" name="question"></textarea>
+                 <div class="c15"></div>
+                 <div><strong>Captcha *: </strong><input name="sercurity" type="text" id="sercurity" style="width:100px" data-alert="{_captcha_code} !" class="txt notNull" />
+              <img src="{dir_path}/lib/imagesercurity.php" name="imgCaptcha" align="absmiddle" id="imgCaptcha" /></div>
+                 
+                 <div class="c10"></div>
+                 <div class="btt-book"><a href="#" onClick="$('#bookform').submit(); return false">Gửi câu hỏi</a></div>
+</div> 
+<div class="c10"></div>
+
+          </form>   
+         </div>
+        </div>
+    </div>
+    <div class="c10"></div>
+</div>
+<script src="/js/jquery.form.min.js"></script>
+<script>
+		$('#bookform input').change(function(){
+			check_null_book();
+		})
+		function check_null_book(){
+				
+			var ok=true;
+			$('.error').remove();
+			$('#bookform .notNull').each(function(){
+				if($(this).val()==''){
+					
+					$("<div class='error'>&nbsp; " + $(this).attr('data-alert') + "</div>").insertAfter($(this)); 	
+					
+					ok=false;
+					
+				}
+			});	
+			if(ok==true)
+			ok=EmailCheck();
+				
+			return ok;
+		}
+		function EmailCheck()
+		{
+			var ok = true;
+			 if($("#bookform .email").val()!=''){
+				checkEmail = $('#bookform .email').val();
+				if ((checkEmail.indexOf('@') < 0) || ((checkEmail.charAt(checkEmail.length-4) != '.') && (checkEmail.charAt(checkEmail.length-3) != '.'))) {
+					$("<div class='error'>Địa chỉ email không hợp lệ</div>").insertAfter($("#bookform .email")); 
+					ok= false;
+				} else{
+					$("#bookform .email").text("");
+				};
+			}		
+			return ok;	
+		}
+    </script>

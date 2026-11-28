@@ -1,0 +1,31 @@
+{
+    "name": "newsletter",
+    "version": "1.0.0",
+    "description": "Newsletter subscribers — data module managed from the dashboard via generic CRUD.",
+    "type": "data",
+    "priority": 40,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Newsletter\\Providers\\NewsletterServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Newsletter\\": "src/"
+        }
+    },
+    "provides": ["newsletter.data"],
+    "admin": {
+        "data_type": "Marketing",
+        "group_icon": "📣",
+        "group": "Marketing",
+        "group_icon": "📣",
+        "nav": { "label": "Newsletter", "url": "/dashboard/newsletter", "icon": "✉️" },
+        "crud": {
+            "table": "newsletter",
+            "title": "Đăng ký nhận tin",
+            "title_field": "email",
+            "list_fields": ["email", "phone", "created_at"]
+        }
+    }
+}

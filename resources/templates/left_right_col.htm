@@ -1,0 +1,144 @@
+
+
+{menuleft}
+
+<div class="c20"></div>
+<!-- START BLOCK : support_item111  -->
+<h2 class="title-left">{_online_support}</h2>
+<div class="box-left">
+	
+	<div class="support-item">
+		<div class="support-name">{name} </div>
+		<div class="c5"></div>
+		<div style="text-align: center;">
+			<a href="skype:{sky}?chat" title="{name}">
+				<img src="/images/skype-icon.png"/>
+			</a>
+		</div>
+		<div>Email: {nic} </div>
+		<div>Phone: {phone} </div>
+	</div>
+	
+</div>
+
+<!-- END BLOCK : support_item111  -->
+
+<!-- START BLOCK : advRight -->
+<div class="fixed-right hide-on-tab hide-on-mobile">
+<div class="c10"></div>
+
+<!-- START BLOCK : advRightSlide  -->
+<div class="qc-right">{image}</div>
+<!-- END BLOCK : advRightSlide  -->
+<script>
+
+	$(window).scroll(function (event) {
+	
+		var fixfooter = $('.footer').position();
+        if ( ($(this).scrollTop() > 150)) {
+		
+			if (($(this).scrollTop() < (fixfooter.top - $('.fixed-right').height()) )){
+				$('.fixed-right').css({'position': 'fixed', 'top': '0px', 'z-index': '9999', 'width': '282px'});
+			}else{
+				$('.fixed-right').css( { 'position' : 'absolute', 'top' :'','bottom' : '0px'} );	
+			}
+
+            
+        } else {
+            $('.fixed-right').css({'position': 'relative', 'top': '0px', 'z-index': '9999', 'width': '100%' });
+        }
+    });
+
+</script>
+
+</div>
+<!-- END BLOCK : advRight -->
+
+<!-- START BLOCK : news -->
+<div class="c20"></div>
+<div class="box-news-left hide-on-pc hide-on-pad">
+    <h3 class="title-left">
+        <a href="{link}">{catname}</a>
+    </h3>	   
+    <div class="c20"></div>
+    
+    <!-- START BLOCK : itemnews -->
+    <div class="flex-container flex-space-between">
+
+        <div class="cell-1-3">
+            <a href="{link_detail}">{image}</a>
+        </div>
+        <div class="cell-2-3">
+            <div class="news-home-item">
+                <h3 class="news-name-left"><a href="{link_detail}">{newsname}</a></h3>
+                
+            </div>
+        </div>
+
+    </div>
+    <div class="c10"></div>
+    <!-- END BLOCK : itemnews --> 
+    
+    
+</div>
+
+<!-- END BLOCK : news --> 
+
+<!-- START BLOCK : productRight -->
+<div class="c20"></div>
+<div class="box-news-left hide-on-pc hide-on-pad">
+    <h3 class="title-left">
+        <a href="{link}">{catname}</a>
+    </h3>	   
+    <div class="c20"></div>
+    
+    <!-- START BLOCK : itemProduct -->
+    <div class="flex-container flex-space-between">
+
+        <div class="cell-1-3">
+            <a href="{link_detail}">{image}</a>
+        </div>
+        <div class="cell-2-3">
+            <div class="news-home-item">
+                <h3 class="news-name-left"><a href="{link_detail}">{name}</a></h3>
+            </div>
+			
+			<div class="c10" ></div>
+			<div class="pricekm"> {price}  </div>
+
+			<div class="price"><s>{pricekm} </s></div>			
+        </div>
+
+    </div>
+    <div class="c5" style="border-bottom:dotted 1px #CCC;" ></div>
+	<div class="c10"></div>
+    <!-- END BLOCK : itemProduct --> 
+    
+    
+</div>
+
+<!-- END BLOCK : productRight --> 
+
+
+
+<!-- START BLOCK : video -->
+<div class="c10"></div>
+<div class="c20"></div>
+
+<!-- START BLOCK : youtube -->
+<div style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden;"><iframe allowfullscreen="" frameborder="0" height="360" src="//www.youtube.com/embed/{videocode}?modestbranding=1&amp;fs=1&amp;rel=0" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" width="300"></iframe></div>
+
+<h3 class="video-home-name"><a href="{link_detail}"><i class="fa fa-video-camera" aria-hidden="true"></i> {name}</a></h3>
+<!-- END BLOCK : youtube -->
+<div class="c10"></div>
+
+<!-- START BLOCK : other_video11 -->
+<h3 class="album-home-name2"><a href="{link_detail}"><i class="fa fa-video-camera" aria-hidden="true"></i> {name}</a></h3>
+<div class="c10"></div>
+<!-- END BLOCK : other_video11 -->
+
+
+<!-- END BLOCK : video -->
+
+
+<div class="c10"></div>

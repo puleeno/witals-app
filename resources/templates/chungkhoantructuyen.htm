@@ -1,0 +1,62 @@
+            
+{slideshow}
+<div class="c10"></div>
+
+<div class="grid">
+
+    {pathpage}
+    <div class="c20"></div>
+</div>  
+<div class="c10"></div>
+
+<div class="content-detail">
+
+
+    <div class="grid">
+
+		<h1 class="title-page" >{catname}</h1>
+        <div class="c10"></div>
+		{catcontent}
+        <div class="c20"></div>
+		<div class="c20"></div>
+		
+		<div class="tab-round">
+			<div class="tab-name {aaa} " id="aaa">AAA</div>
+			<div class="tab-name {hii}" id="hii">HII</div>
+			<div class="c20" style="border-top:solid 2px #eb7203"></div>
+			
+			<div class="content-tab tab-aaa" style="{tab_aaa}">
+				<iframe frameborder="0" height="1402" src="http://s.vietstock.vn/AAA-an-phat-plastic-green-environment-jsc.htm" width="100%"></iframe>
+			</div>
+			
+			<div class="content-tab tab-hii" style="{tab_hii}">
+				<iframe frameborder="0" height="1402" src="http://s.vietstock.vn/HII-ctcp-nhua-va-khoang-san-an-phat-yen-bai.htm" width="100%"></iframe>
+			
+			</div>
+		
+		
+		</div>
+		
+		<script>
+			$(".tab-name").click(function(){
+				$(".tab-name").removeClass("tab-active");
+				$(this).addClass("tab-active");
+				
+				$(".content-tab").hide();
+				$(".tab-" + $(this).attr("id")).fadeIn();
+			});
+		
+		</script>
+		
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+

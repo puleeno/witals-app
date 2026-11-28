@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+User-agent: Googlebot-Image
+Allow: /images/
+Disallow: /admin/
+Disallow: /manager/
+Disallow: /index4.php
+Disallow: /addcart/
+Disallow: /addcart/*

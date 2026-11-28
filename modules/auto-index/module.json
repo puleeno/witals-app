@@ -1,0 +1,20 @@
+{
+    "name": "auto-index",
+    "version": "1.0.0",
+    "description": "Auto index: submits URLs to Google Index API and tracks submission status. Defensive no-op without credentials.",
+    "type": "feature",
+    "priority": 30,
+    "enabled": true,
+    "depends": ["seo"],
+    "providers": [
+        "Modules\\AutoIndex\\Providers\\AutoIndexServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\AutoIndex\\": "src/"
+        }
+    },
+    "provides": [
+        "auto-index.service"
+    ]
+}

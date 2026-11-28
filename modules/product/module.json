@@ -1,0 +1,31 @@
+{
+    "name": "product",
+    "version": "1.0.0",
+    "description": "Sản phẩm (product) — list + detail render bằng Stempler + dashboard CRUD.",
+    "type": "data",
+    "priority": 46,
+    "enabled": false,
+    "depends": [],
+    "providers": [
+        "Modules\\Product\\Providers\\ProductServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Product\\": "src/"
+        }
+    },
+    "provides": ["product.data"],
+    "admin": {
+        "group": "Nội dung",
+        "group_icon": "📦",
+        "nav": { "label": "Sản phẩm", "url": "/dashboard/product", "icon": "📦" },
+        "crud": {
+            "table": "product",
+            "pk": "id_product",
+            "title": "Sản phẩm",
+            "title_field": "name",
+            "list_fields": ["name", "price", "active"],
+            "form_fields": ["name", "id_category", "price", "km", "pricekm", "active", "intro", "content", "image", "url", "ma"]
+        }
+    }
+}

@@ -1,0 +1,190 @@
+            
+{slideshow}
+<div class="c10"></div>
+
+<div class="grid">
+
+    {pathpage}
+    <div class="c20"></div>
+</div>  
+<div class="c10"></div>
+
+<div class="content-detail">
+    <div class="grid">
+        
+		<div class="hide-on-tab hide-on-mobile">
+			{menutab}
+		</div>
+		
+        <div class="c30 hide-on-tab hide-on-mobile"></div>
+        <div class="c20"></div>
+
+        <h1 class="title-page" style="text-align:center">{catname}</h1>
+        <div class="c10"></div>
+        <div class="title-line"><span style="margin: 0 auto;"> </span></div>
+        <div class="c20"></div>
+
+
+
+        <div class="c20"></div>
+        <div class="leader-line">
+            <span>SÁNG LẬP VIÊN</span>
+            <div style="border-bottom: solid 1px #eb7203; margin-top: -16px;"></div>
+        </div>
+        <div class="c30"></div>
+        <div class="c20"></div>
+
+        <div class="flex-container flex-centered ">
+        <!-- START BLOCK : itemList2  -->
+            <div class="cell-1-4 tab-cell-1-2">
+                <div class="leader-intro" >
+                    <a class="js-open-modal btn" href="#" data-modal-id="popup_{stt}"> {image} </a>
+                    <div class="c10"></div>
+                    {name}
+                    <div class="c5"></div>
+                    {branch}
+                </div>
+            </div>
+        <!-- END BLOCK : itemList2  -->
+        </div>
+
+        <div class="c20"></div>
+        <div class="c20"></div>
+        
+        <div class="flex-container flex-space-between ">
+            <div class="cell-1-4 tab-cell-1-1"></div>
+        <!-- START BLOCK : itemList1  -->
+            <div class="cell-1-4 tab-cell-1-2">
+                <div class="leader-intro wow fadeIn animated" >
+                    <a class="js-open-modal btn" href="#" data-modal-id="popup_{stt}"> {image} </a>
+                    <div class="c10"></div>
+                    {name}
+                    <div class="c5"></div>
+                    {branch}
+                </div>
+            </div>
+        <!-- END BLOCK : itemList1  -->
+            <div class="cell-1-4 tab-cell-1-1"></div>
+        </div>
+        
+        <div class="c20"></div>
+        <div class="c30"></div>
+        <div class="c30"></div>        
+
+        <div class="leader-line">
+            <span>LÃNH ĐẠO CHỦ CHỐT</span>
+            <div style="border-bottom: solid 1px #eb7203; margin-top: -16px;"></div>
+        </div>
+        <div class="c30"></div>
+        <div class="c20"></div>
+        <div class="flex-container flex-space-between">
+        <!-- START BLOCK : itemList0  -->
+            <div class="cell-1-4 tab-cell-1-2">
+                <div class="leader-intro wow fadeIn animated2" >
+                    <a class="js-open-modal btn" href="#" data-modal-id="popup_{stt}"> {image} </a>
+                    <div class="c10"></div>
+                    {name}
+                    <div class="c5"></div>
+                    {branch}
+                </div>
+            </div>
+        <!-- END BLOCK : itemList0  -->
+        </div>
+        <div class="c20"></div>
+
+
+        <!-- START BLOCK : itemDetail  -->
+        <div id="popup_{stt}" class="modal-box">
+            <div class="modal-body">
+                <a href="#" class="js-modal-close close">[X]</a>
+            <div class="flex-container flex-space-between">
+                <div class="cell-5-12 tab-cell-1-1">
+                    {image}
+                </div>
+                <div class="cell-7-12 tab-cell-1-1">
+                    <h2 class="leader-name">{name}</h2>
+                    <div class="c10"></div>
+                    <div style="font-size: 16px; font-family: Helve-B;">
+                        {position}
+                        <div class="c10"></div>
+                        Sinh ngày: {dob}
+                    </div>
+                    
+                    
+                    <div class="c10"></div>
+                    <div class="c10" style="border-top: solid 1px #CCC;"></div>
+                    <strong>QUÁ TRÌNH HỌC TẬP:</strong>
+                    <div class="c10"></div>
+                    {intro}
+                    <div class="c10"></div>
+                    <strong>QUÁ TRÌNH CÔNG TÁC:</strong>
+                    <div class="c10"></div>
+                    <div class="leader-content">
+                        {content}
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- END BLOCK : itemDetail  -->        
+        <div class="c30"></div>
+        
+
+
+    </div>
+	
+		<div style="padding:0px 20px;" class="hide-on-pc hide-on-pad">
+			<div class="c20"></div>
+			<h3 class="title-other-news"><a>{_viewmore}:</a></h3>
+			<div class="c10"></div>
+			<ul class="other-article">
+				<!-- START BLOCK : otherCategory  -->
+				<li><h4 class="news-name-other"><span>■</span> <a href="{link}">{name}</a></h4></li>
+				<!-- END BLOCK : otherCategory  -->
+			</ul>		
+			<div class="c20"></div>
+		</div>	
+
+
+
+    <div class="c20"></div>
+
+
+</div>
+
+
+
+<script>
+    $(function () {
+
+        var appendthis = ("<div class='modal-overlay js-modal-close'></div>");
+
+        $('a[data-modal-id]').click(function (e) {
+            e.preventDefault();
+            $("body").append(appendthis);
+            $(".modal-overlay").fadeTo(500, 0.7);
+            //$(".js-modalbox").fadeIn(500);
+            var modalBox = $(this).attr('data-modal-id');
+            $('#' + modalBox).fadeIn($(this).data());
+        });
+
+
+        $(".js-modal-close, .modal-overlay").click(function () {
+            $(".modal-box, .modal-overlay").fadeOut(500, function () {
+                $(".modal-overlay").remove();
+            });
+            return false;
+        });
+
+        $(window).resize(function () {
+            $(".modal-box").css({
+                top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+                left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+            });
+        });
+
+        $(window).resize();
+
+    });
+</script>

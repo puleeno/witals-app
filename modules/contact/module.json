@@ -1,0 +1,31 @@
+{
+    "name": "contact",
+    "version": "1.0.0",
+    "description": "Contact form submissions — replaces legacy contact module (POST /contact/submit).",
+    "type": "data",
+    "priority": 41,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Contact\\Providers\\ContactServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Contact\\": "src/"
+        }
+    },
+    "provides": ["contact.data"],
+    "admin": {
+        "data_type": "Liên hệ",
+        "group_icon": "✉️",
+        "nav": { "label": "Liên hệ", "url": "/dashboard/contact", "icon": "✉️" },
+        "crud": {
+            "table": "contact",
+            "pk": "id_contact",
+            "title": "Liên hệ",
+            "title_field": "name",
+            "list_fields": ["name", "email", "xem", "createdate"],
+            "form_fields": ["name", "email", "content"]
+        }
+    }
+}

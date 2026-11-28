@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "seo_meta",
+            "columns": [
+                { "name": "id",          "type": "primary" },
+                { "name": "entity_type", "type": "string",  "size": 50,  "nullable": true },
+                { "name": "entity_id",   "type": "integer", "nullable": true },
+                { "name": "url",         "type": "string",  "size": 255, "nullable": false },
+                { "name": "title",       "type": "string",  "size": 255, "nullable": true },
+                { "name": "description", "type": "text",    "nullable": true },
+                { "name": "keywords",    "type": "string",  "size": 255, "nullable": true },
+                { "name": "canonical",   "type": "string",  "size": 255, "nullable": true },
+                { "name": "og_image",    "type": "string",  "size": 255, "nullable": true },
+                { "name": "robots",      "type": "string",  "size": 50,  "nullable": true },
+                { "name": "updated_at",  "type": "datetime", "nullable": true }
+            ],
+            "indexes": [
+                { "name": "uq_seo_url",         "columns": ["url"], "unique": true },
+                { "name": "idx_seo_entity",     "columns": ["entity_type", "entity_id"] }
+            ]
+        }
+    ]
+}

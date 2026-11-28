@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "tables": [
+        {
+            "name": "product",
+            "columns": [
+                { "name": "id_product",  "type": "primary" },
+                { "name": "id_category", "type": "integer", "nullable": true, "default": 0 },
+                { "name": "name",        "type": "string", "size": 255, "nullable": false },
+                { "name": "image",       "type": "string", "size": 255, "nullable": true },
+                { "name": "price",       "type": "string", "size": 50,  "nullable": true },
+                { "name": "km",          "type": "string", "size": 50,  "nullable": true },
+                { "name": "pricekm",     "type": "string", "size": 50,  "nullable": true },
+                { "name": "intro",       "type": "text",   "nullable": true },
+                { "name": "content",     "type": "text",   "nullable": true },
+                { "name": "active",      "type": "integer", "nullable": false, "default": 1 },
+                { "name": "url",         "type": "string", "size": 255, "nullable": true },
+                { "name": "ma",          "type": "string", "size": 50,  "nullable": true },
+                { "name": "ngay_dang",   "type": "integer", "nullable": true, "default": 0 },
+                { "name": "thu_tu",      "type": "integer", "nullable": true, "default": 0 },
+                { "name": "hit",         "type": "integer", "nullable": true, "default": 0 }
+            ]
+        }
+    ]
+}
