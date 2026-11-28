@@ -25,6 +25,7 @@ class HomeController extends AbstractController
         $context = $this->site->build();
         $config = $this->configSections();
 
+        $context['slideshow'] = $this->sections->render([['type' => 'slideshow']], $context);
         $body = $this->sections->render($config, $context);
 
         $factory = $this->app->make(\Witals\Framework\Contracts\View\Factory::class);

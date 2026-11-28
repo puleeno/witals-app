@@ -24,6 +24,7 @@
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/css/grid.css?v=20261127b"/>
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/css/widget-call-left.css?v=20261127b"/>
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/css/fontawesome-5.12.1/css/all.min.css?v=20261127b"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"/>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -143,5 +144,5 @@
 
             <div class="content" style="background:#FFF">
 
-            <div><?= $slideshow ?? '' ?></div>
+            <?= $slideshow ?? '' ?>
             <div class="c"></div>
