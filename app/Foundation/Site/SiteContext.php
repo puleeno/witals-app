@@ -187,7 +187,7 @@ class SiteContext
     /** @param array<int, array<string, mixed>> $submenu */
     private function renderSubMenu(array $submenu): string
     {
-        $out = '<ul class="submnu1">';
+        $out = '<ul class="">';
         foreach ($submenu as $rs1) {
             if ((int) ($rs1['id_category'] ?? 0) <= 0) {
                 continue;
