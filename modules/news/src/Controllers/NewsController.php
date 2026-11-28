@@ -36,7 +36,8 @@ class NewsController extends AbstractController
         }
 
         return Response::html($this->render('news/index', [
-            'items'      => ['newsItem' => $items],
+            'items'      => $items,
+            'cat'        => null,
             'page_title' => 'Tin tức',
         ]));
     }
@@ -84,7 +85,7 @@ class NewsController extends AbstractController
 
         if ($item === null) {
             return Response::html($this->render('news/index', [
-                'items' => ['newsItem' => []], 'page_title' => 'Không tìm thấy tin tức',
+                'items' => [], 'cat' => null, 'page_title' => 'Không tìm thấy tin tức',
             ]), 404);
         }
 

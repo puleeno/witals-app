@@ -15,9 +15,9 @@
                             <?= htmlspecialchars($footername ?? '', ENT_QUOTES) ?>
                         </div>
 
-                        <ul>
+                        <div class="textfooter">
                             <?= $textfooter ?? '' ?>
-                        </ul>
+                        </div>
 
 
 
@@ -171,13 +171,13 @@
 
                     <div style="position:relative;">
 						<input class="newsletter newsletter_b notNull" placeholder="Enter Captcha" name="sercurity"/>
-						<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/lib/imagesercurity.php?recaptcha=n" name="imgCaptcha" align="absmiddle" class="imgCaptcha newsletter-capt-img" style="height: 35px; position: absolute; top: 0px; right: 0px; " />
+						<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/lib/imagesercurity.php?recaptcha=n" alt="Captcha" class="imgCaptcha newsletter-capt-img" style="height: 35px; position: absolute; top: 0px; right: 0px; " />
 
 					</div>
 
 
 					<div class="c20"></div>
-                    <input name="input" type="button" onClick="$('#regform2').submit()" class="btn-send" value="<?= htmlspecialchars($_send ?? '', ENT_QUOTES) ?>" />
+                    <input name="input" type="button" onClick="$('#regform2').submit()" class="btn-send" value="<?= htmlspecialchars(($_send ?? '') ?: 'Gửi', ENT_QUOTES) ?>" />
 					<div class="c5"></div>
 					<div class="msgbox" style="font-size: 20px; text-align:center;"> </div>
                 </form>
@@ -214,7 +214,7 @@
                     <div class="c20"></div>
 
                     <input name="yourname" type="text" class="txt-contact notNull" placeholder="Họ tên (*)"
-                        id="yourname" />
+                        id="yourname2" />
                     <div class="c10"></div>
 
                     <input name="phone" type="text" class="txt-contact notNull" placeholder="Điện thoại (*)" />
@@ -222,7 +222,7 @@
                     <input name="address" type="text" class="txt-contact " placeholder="Địa chỉ" />
                     <div class="c10"></div>
 
-                    <select name="other_request" type="text" class="txt-contact">
+                    <select name="other_request" class="txt-contact">
                         <option value=""> Chọn hình thức tư vấn </option>
                         <option value="Tư vấn mua hàng"> Tư vấn mua hàng </option>
                         <option value="Tìm đại lý, cửa hàng gần nhất">Tìm đại lý, cửa hàng gần nhất </option>
@@ -232,7 +232,7 @@
 
                     <div style="position:relative;">
                         <input class="newsletter newsletter_b notNull" placeholder="Enter Captcha" name="sercurity" />
-                        <img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/lib/imagesercurity.php?recaptcha=n" name="imgCaptcha" align="absmiddle"
+                        <img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/lib/imagesercurity.php?recaptcha=n" alt="Captcha"
                             class="imgCaptcha newsletter-capt-img"
                             style="height: 35px; position: absolute; top: 0px; right: 0px; " />
 
@@ -240,7 +240,7 @@
 
 
                     <div class="c20"></div>
-                    <input name="input" type="button" onClick="$('#regform').submit()" class="btn-send" value="<?= htmlspecialchars($_send ?? '', ENT_QUOTES) ?>" />
+                    <input name="input" type="button" onClick="$('#regform').submit()" class="btn-send" value="<?= htmlspecialchars(($_send ?? '') ?: 'Gửi', ENT_QUOTES) ?>" />
                     <div class="c5"></div>
                     <div class="msgbox" style="font-size: 20px; text-align:center;"> </div>
                 </form>
@@ -319,9 +319,9 @@
 <div class="widget_wbt_call_now_widget">
     <div class="float-icon-hotline">
         <ul>
-            <li class="hotline_float_icon"><a id="messengerButton" href="tel:<?= htmlspecialchars($hotline ?? '', ENT_QUOTES) ?>"><i
+            <li class="hotline_float_icon"><a id="messengerButton1" href="tel:<?= htmlspecialchars($hotline ?? '', ENT_QUOTES) ?>"><i
                         class="fa fa-hotline animated infinite tada"></i><span>Hotline: <?= htmlspecialchars($hotline ?? '', ENT_QUOTES) ?></span></a></li>
-            <li class="hotline_float_icon"><a id="messengerButton" href="//zalo.me/0898596933" target="_blank"><i
+            <li class="hotline_float_icon"><a id="messengerButton2" href="//zalo.me/0898596933" target="_blank"><i
                         class="fa fa-zalo animated infinite tada"></i><span>Nhắn tin qua Zalo</span></a></li>
             <li class="hotline_float_icon"><a id="messengerButton" href="//m.me/565240863840888" target="_blank"><i
                         class="fa fa-messenger animated infinite tada"></i><span>Nhắn tin qua Facebook</span></a></li>

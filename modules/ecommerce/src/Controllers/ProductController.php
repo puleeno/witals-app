@@ -33,8 +33,22 @@ class ProductController extends AbstractController
             $items = [];
         }
 
+        $menu = [];
+        try {
+            $menu = $this->dbal->database()->select()->from($this->table('category'))
+                ->where('active', 1)
+                ->where('data_type', 'product')
+                ->orderBy('thu_tu', 'ASC')
+                ->orderBy('name', 'ASC')
+                ->fetchAll();
+        } catch (\Throwable) {
+            $menu = [];
+        }
+
         return Response::html($this->render('product/index', [
-            'items'      => ['product_item' => $items],
+            'items'      => $items,
+            'menu'       => $menu,
+            'cat'        => null,
             'page_title' => 'Sản phẩm',
         ]));
     }
@@ -63,20 +77,29 @@ class ProductController extends AbstractController
 
         if ($category !== null) {
             $items = [];
+            $menu = [];
             try {
-                $items = $this->dbal->database()
-                    ->select()->from($this->table('product'))
+                $db = $this->dbal->database();
+                $items = $db->select()->from($this->table('product'))
                     ->where('active', 1)
                     ->where('id_category', (int) ($category['id_category'] ?? 0))
                     ->orderBy('thu_tu', 'ASC')
                     ->limit(30)
+                    ->fetchAll();
+                $menu = $db->select()->from($this->table('category'))
+                    ->where('active', 1)
+                    ->where('data_type', 'product')
+                    ->orderBy('thu_tu', 'ASC')
+                    ->orderBy('name', 'ASC')
                     ->fetchAll();
             } catch (\Throwable) {
                 $items = [];
             }
 
             return Response::html($this->render('product/index', [
-                'items'      => ['product_item' => $items],
+                'items'      => $items,
+                'menu'       => $menu,
+                'cat'        => $category,
                 'cat_title'  => (string) ($category['name'] ?? ''),
                 'page_title' => (string) ($category['name'] ?? 'Danh mục'),
             ]));

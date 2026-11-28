@@ -211,9 +211,9 @@ class SiteContext
     /** @param array<int, array<string, mixed>> $submenu */
     private function renderMegaMenu(array $submenu): string
     {
-        $out = '<ul class="mega-menu"><div class="c20"></div><div style="display:inline-block; width:1000px;"><div class="flex-container flex-centered">';
+        $out = '<div class="mega-menu"><div class="c20"></div><div style="display:inline-block; width:1000px;"><div class="flex-container flex-centered">';
         foreach ($submenu as $rs1) {
-            $img = '<img  src="' . htmlspecialchars((string) ($rs1['imageadv'] ?? ''), ENT_QUOTES) . '" width="100%"/>';
+            $img = '<img src="' . htmlspecialchars((string) ($rs1['imageadv'] ?? ''), ENT_QUOTES) . '" alt="' . htmlspecialchars(strip_tags((string) ($rs1['name'] ?? '')), ENT_QUOTES) . '" style="width:100%"/>';
             $link = $this->menuLink((string) $rs1['url']);
             $out .= '<div class="cell-1-6"><div class="mega-menu-item">'
                 . '<a class="hvr-grow" href="' . htmlspecialchars($link, ENT_QUOTES) . '"> ' . $img . ' </a><div class="c10"></div>'
@@ -221,7 +221,7 @@ class SiteContext
                 . '</div></div>';
         }
 
-        return $out . '</div></div></ul>';
+        return $out . '</div></div></div>';
     }
 
     private function menuLink(string $url): string

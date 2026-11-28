@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+<html lang="vi">
     <head>
         <meta charset="utf-8"/>
         <title><?= htmlspecialchars($site_name ?? '', ENT_QUOTES) ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
 
         <meta name="theme-color" content="#0099ff"/>
-        <meta http-equiv="Content-Language" content="<?= htmlspecialchars($langcode ?? '', ENT_QUOTES) ?>" />
+        <meta name="language" content="<?= htmlspecialchars($langcode ?? '', ENT_QUOTES) ?>" />
         <meta name="description" content="<?= htmlspecialchars($site_description ?? '', ENT_QUOTES) ?>" />
         <meta name="keywords" content="<?= htmlspecialchars($site_keywords ?? '', ENT_QUOTES) ?>" />
 		<?= $canonical ?? '' ?>
@@ -105,15 +105,13 @@
 					<div class="flex-container flex-space-between">
                         <div class="cell-1-3">
                             <a class="menu-mobile " href="#menu">
-								<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/images/m-icon-menu.png"/>
+								<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/images/m-icon-menu.png" alt="Menu"/>
 							</a>
 
                         </div>
 
 						<div class="cell-1-3" style="text-align:center;">
-                            <a href="/<?= htmlspecialchars($lang_dir ?? '', ENT_QUOTES) ?>">
-								<?= $logo ?? '' ?>
-							</a>
+                            <?= $logo ?? '' ?>
 						</div>
 
 						<div class="cell-1-3">
@@ -121,7 +119,7 @@
 
 							<div class="cart-mobile" >
 								<a href="/gio-hang">
-									<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/images/m-icon-cart.png"/>
+									<img src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/images/m-icon-cart.png" alt="Giỏ hàng"/>
 								</a>
 
 								 <span class="countcart"><?= htmlspecialchars($quantity ?? '', ENT_QUOTES) ?></span>
@@ -145,4 +143,3 @@
             <div class="content" style="background:#FFF">
 
             <?= $slideshow ?? '' ?>
-            <div class="c"></div>

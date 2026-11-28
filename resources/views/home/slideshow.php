@@ -5,7 +5,7 @@
         <div class="swiper-wrapper">
             <?php foreach (($slides ?? []) as $s): ?>
             <div class="swiper-slide">
-                <img src="<?= htmlspecialchars((string)($s['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($s['name'] ?? ''), ENT_QUOTES) ?>" width="100%" style="display:block"/>
+                <img src="<?= htmlspecialchars((string)($s['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($s['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%;display:block"/>
             </div>
             <?php endforeach; ?>
         </div>

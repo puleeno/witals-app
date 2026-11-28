@@ -20,7 +20,7 @@ $newsBase = '/tin-tuc';
     <div class="grid">
         <div class="homecat-title">
             <div class="flashsale-header">
-                <img class="flas-sales" src="<?= htmlspecialchars($catimage, ENT_QUOTES) ?>" width="80" alt="">
+                <img class="flas-sales" src="<?= htmlspecialchars($catimage ?: 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=', ENT_QUOTES) ?>" width="80" alt="<?= htmlspecialchars((string)($catname ?? ''), ENT_QUOTES) ?>">
                 <h2><a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>"><?= htmlspecialchars((string)($cat['name'] ?? ''), ENT_QUOTES) ?></a></h2>
                 <div class="flashsale-timer"><div class="countdown"></div></div>
             </div>
@@ -44,7 +44,7 @@ $newsBase = '/tin-tuc';
                 <div class="producthome-item">
                     <div class="img-hv">
                         <a href="<?= htmlspecialchars($productBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" class="img-shine" title="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
-                            <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" width="100%">
+                            <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%">
                         </a>
                         <a class="addcart" href="<?= htmlspecialchars($addcartBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
                     </div>
@@ -90,7 +90,7 @@ $newsBase = '/tin-tuc';
             <div class="swiper-slide">
                 <div class="service-item">
                     <a href="<?= htmlspecialchars($newsBase . '/' . (string)($i['url'] ?? $i['id_news'] ?? ''), ENT_QUOTES) ?>">
-                        <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" width="100%" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
+                        <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" style="width:100%" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
                     </a>
                     <div class="service-item__content">
                         <h3 class="service-item__name">

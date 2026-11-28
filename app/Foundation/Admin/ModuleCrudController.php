@@ -54,6 +54,9 @@ class ModuleCrudController extends AdminController
         $cols = $def['list_fields'];
 
         $imageCol = $this->imageColumn($def);
+        $parentCol = $this->hasColumn($def, 'parentid') ? 'parentid' : null;
+        $titleField = (string) ($def['title_field'] ?? ($cols[0] ?? 'name'));
+        $depths = $parentCol !== null ? $this->depthMap($rows, $parentCol) : [];
 
         $head = $imageCol !== null ? '<th>Ảnh</th>' : '';
         foreach ($cols as $c) {
@@ -69,7 +72,11 @@ class ModuleCrudController extends AdminController
                 $body .= '<td><img class="admin-thumb" src="' . htmlspecialchars($src, ENT_QUOTES) . '" alt=""></td>';
             }
             foreach ($cols as $c) {
-                $body .= '<td>' . htmlspecialchars((string) ($row[$c] ?? ''), ENT_QUOTES) . '</td>';
+                $val = (string) ($row[$c] ?? '');
+                if ($parentCol !== null && $c === $titleField && ($depths[$row[$def['pk']] ?? 0] ?? 0) > 0) {
+                    $val = str_repeat('— ', (int) $depths[$row[$def['pk']]]) . $val;
+                }
+                $body .= '<td>' . htmlspecialchars($val, ENT_QUOTES) . '</td>';
             }
             $id = (int) ($row[$def['pk']] ?? 0);
             $base = '/dashboard/' . $module;
@@ -267,9 +274,13 @@ class ModuleCrudController extends AdminController
     private function rows(string $table): array
     {
         try {
-            return $this->dbal->database()->select()->from($table)->fetchAll();
+            return $this->dbal->database()->select()->from($table)->orderBy('thu_tu', 'ASC')->fetchAll();
         } catch (\Throwable) {
-            return [];
+            try {
+                return $this->dbal->database()->select()->from($table)->fetchAll();
+            } catch (\Throwable) {
+                return [];
+            }
         }
     }
 
@@ -307,6 +318,30 @@ class ModuleCrudController extends AdminController
             $this->dbal->database()->delete($table, [$pk => $id])->run();
         } catch (\Throwable) {
         }
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $rows
+     * @return array<int, int>
+     */
+    private function depthMap(array $rows, string $parentCol): array
+    {
+        $byId = [];
+        foreach ($rows as $r) {
+            $id = (int) ($r['id_category'] ?? $r['id'] ?? 0);
+            $byId[$id] = (int) ($r[$parentCol] ?? 0);
+        }
+        $depths = [];
+        foreach ($rows as $r) {
+            $id = (int) ($r['id_category'] ?? $r['id'] ?? 0);
+            $d = 0; $pid = (int) ($r[$parentCol] ?? 0); $g = 0;
+            while ($pid > 0 && $g++ < 20 && isset($byId[$pid])) {
+                $d++; $pid = $byId[$pid];
+            }
+            $depths[$id] = $d;
+        }
+
+        return $depths;
     }
 
     /**

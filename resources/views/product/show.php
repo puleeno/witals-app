@@ -44,9 +44,9 @@
                 <div class="swiper-container gallery-top swiper-container-initialized swiper-container-horizontal swiper-container-autoheight">
                     <div class="swiper-wrapper" style="height: 517px; transform: translate3d(-1054px, 0px, 0px); transition-duration: 0ms;">
                         <?php if ($slider === []): ?>
-                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="<?= htmlspecialchars((string)($image ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" width="100%"></div>
+                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="<?= htmlspecialchars((string)($image ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
                         <?php else: foreach ($slider as $i): ?>
-                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" width="100%"></div>
+                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
                         <?php endforeach; endif; ?>
                     </div>
                     <div class="swiper-button-next swiper-button-black" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"></div>
@@ -57,9 +57,9 @@
                 <div class="swiper-container gallery-thumbs-pro swiper-container-initialized swiper-container-horizontal swiper-container-free-mode swiper-container-thumbs">
                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
                         <?php if ($slider === []): ?>
-                        <div class="swiper-slide swiper-slide-active" style="width: 91.4px; margin-right: 15px;"><img src="<?= htmlspecialchars((string)($thumbimage ?? $image ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" width="100%"></div>
+                        <div class="swiper-slide swiper-slide-active" style="width: 91.4px; margin-right: 15px;"><img src="<?= htmlspecialchars((string)($thumbimage ?? $image ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
                         <?php else: foreach ($slider as $i): ?>
-                        <div class="swiper-slide" style="width: 91.4px; margin-right: 15px;"><img src="<?= htmlspecialchars((string)($i['thumb'] ?? $i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" width="100%"></div>
+                        <div class="swiper-slide" style="width: 91.4px; margin-right: 15px;"><img src="<?= htmlspecialchars((string)($i['thumb'] ?? $i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
                         <?php endforeach; endif; ?>
                     </div>
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
@@ -307,7 +307,7 @@
                     <div class="cell-1-4 tab-cell-1-2">
                         <div class="producthome-item">
                             <div class="img-hv">
-                                <a href="<?= htmlspecialchars((string)($i['link_detail'] ?? ''), ENT_QUOTES) ?>" class="img-shine"> <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" width="100%"> </a>
+                                <a href="<?= htmlspecialchars((string)($i['link_detail'] ?? ''), ENT_QUOTES) ?>" class="img-shine"> <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%"> </a>
                                 <div class="hvr-show">
                                     <a href="<?= htmlspecialchars((string)($i['link_cart'] ?? ''), ENT_QUOTES) ?>" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
                                 </div>
