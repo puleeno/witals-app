@@ -233,6 +233,12 @@ if (!empty($_GET['page'])) {
     $_GET['code'] = $cateinfo['code'] ?? '';
 
     $url_filename = $getUrl->get_filename($uri);
+    // Category URLs (no trailing slash, no dot) are listing pages, not detail
+    // pages — LiteSpeed strips the trailing slash, so get_filename() would
+    // otherwise return the category alias and trigger a false 404 below.
+    if ($url_filename !== '' && substr($uri, -1) !== '/' && strpos(basename($uri), '.') === false) {
+        $url_filename = '';
+    }
     $_GET['id'] = $getUrl->get_id_article($cateinfo['data_type'] ?? '', $url_filename);
     $idc = $_GET['idc'];
     $id = $_GET['id'];
