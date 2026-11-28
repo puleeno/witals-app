@@ -40,11 +40,12 @@ $renderMenu = function (array $rows, int $level = 0) use (&$renderMenu, $childre
 };
 $topMenu = $children(0);
 ?>
+
 <div class="img-poster" style="position:relative">
-    <a class="hide-on-tab" href=""><img src="<?= htmlspecialchars($catImage, ENT_QUOTES) ?>" alt="" style="width:100%"/></a>
+    <a class="hide-on-tab" href=""><img src="<?php echo htmlspecialchars((string) ($catImage), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" alt="" style="width:100%"/></a>
 </div>
 <div class="c"></div>
-<div class="crumb"><div class="grid"><a href="/">Trang chủ</a> <i class="fa fa-angle-right"></i> <a href="<?= htmlspecialchars($productBase . '/', ENT_QUOTES) ?>">Sản phẩm</a></div><div class="c5"></div></div>
+<div class="crumb"><div class="grid"><a href="/">Trang chủ</a> <i class="fa fa-angle-right"></i> <a href="<?php echo htmlspecialchars((string) ($productBase), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>/">Sản phẩm</a></div><div class="c5"></div></div>
 <div class="c10"></div>
 
 <div class="flashsale-wrapper">
@@ -52,14 +53,15 @@ $topMenu = $children(0);
         <div class="text-center"><div style="padding:10px 0px"></div></div>
         <div class="flex-container">
             <div class="cell-1-4 hide-on-tab">
-                <div class="title-left"><a href="<?= htmlspecialchars($productBase . '/', ENT_QUOTES) ?>">Sản phẩm</a></div>
-                <?= $renderMenu($topMenu) ?>
+                <div class="title-left"><a href="<?php echo htmlspecialchars((string) ($productBase), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>/">Sản phẩm</a></div>
+                <?php echo $renderMenu($topMenu); ?>
             </div>
             <div class="cell-3-4 tab-cell-1-1">
-                <div class="title-left"><?= htmlspecialchars((string)$catName, ENT_QUOTES) ?></div>
+                <div class="title-left"><?php echo htmlspecialchars((string) ($catName), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?></div>
                 <div class="c10"></div>
                 <div class="flex-container">
-                    <?php foreach ($items as $i):
+                    <?php foreach($items as $i): ?>
+                    <?php
                         $price = (float)($i['price'] ?? 0);
                         $pricekm = (float)($i['pricekm'] ?? 0);
                         $priceOut = $pricekm > 0 ? number_format($pricekm) . ' đ' : ($price > 0 ? number_format($price) . ' đ' : (string)($i['price'] ?? ''));
@@ -75,26 +77,26 @@ $topMenu = $children(0);
                     <div class="cell-1-4 tab-cell-1-2">
                         <div class="producthome-item">
                             <div class="img-hv">
-                                <a href="<?= htmlspecialchars($productBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" class="img-shine" title="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
-                                    <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%">
+                                <a href="<?php echo htmlspecialchars((string) ($productBase), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>/<?php echo htmlspecialchars((string) ($i['url'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" class="img-shine" title="<?php echo htmlspecialchars((string) ($i['name'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>">
+                                    <img src="<?php echo htmlspecialchars((string) ($i['image'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" alt="<?php echo htmlspecialchars((string) ($i['name'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" style="width:100%"/>
                                 </a>
-                                <a class="addcart" href="<?= htmlspecialchars($addcartBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
+                                <a class="addcart" href="<?php echo htmlspecialchars((string) ($addcartBase), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>/<?php echo htmlspecialchars((string) ($i['url'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
                             </div>
                             <div class="producthot-box">
                                 <h3>
-                                    <a href="<?= htmlspecialchars($productBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" class="producthot-item__name text-line-2" title="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
-                                        <?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>
+                                    <a href="<?php echo htmlspecialchars((string) ($productBase), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>/<?php echo htmlspecialchars((string) ($i['url'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" class="producthot-item__name text-line-2" title="<?php echo htmlspecialchars((string) ($i['name'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>">
+                                        <?php echo htmlspecialchars((string) ($i['name'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>
                                     </a>
                                 </h3>
                                 <div class="c10"></div>
-                                <div class="producthot-item__intro text-line-2"><?= strip_tags((string)($i['intro'] ?? '')) ?></div>
+                                <div class="producthot-item__intro text-line-2"><?php echo strip_tags((string)($i['intro'] ?? '')); ?></div>
                                 <div class="producthot__price">
-                                    <span class="producthot__price-old"><?= htmlspecialchars($pricekmOut, ENT_QUOTES) ?></span>
-                                    <span class="producthot__price-current"><?= htmlspecialchars($priceOut, ENT_QUOTES) ?></span>
+                                    <span class="producthot__price-old"><?php echo htmlspecialchars((string) ($pricekmOut), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?></span>
+                                    <span class="producthot__price-current"><?php echo htmlspecialchars((string) ($priceOut), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?></span>
                                 </div>
                             </div>
                             <div class="c10"></div>
-                            <?= $sale ?>
+                            <?php echo $sale; ?>
                         </div>
                     </div>
                     <?php endforeach; ?>

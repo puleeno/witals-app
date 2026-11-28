@@ -7,8 +7,6 @@
 <div class="c5"></div>
     Nội dung bạn yêu cầu không tìm thấy ! <br/>
 
-    <strong> Bạn vui lòng <a href="/<?= htmlspecialchars($lang_dir ?? '', ENT_QUOTES) ?>">bấm vào đây</a>  để quay về trang chủ. </strong>
-
-</div>
+    <strong> Bạn vui lòng <a href="/<?php echo htmlspecialchars((string) ($lang_dir ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>">bấm vào đây</a>  để quay về trang chủ. </strong>
 
 </div>

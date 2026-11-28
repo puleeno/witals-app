@@ -3,9 +3,9 @@
         <div class="homeslide-next">  </div>
         <div class="homeslide-prev">  </div>
         <div class="swiper-wrapper">
-            <?php foreach (($slides ?? []) as $s): ?>
+            <?php foreach(($slides ?? []) as $s): ?>
             <div class="swiper-slide">
-                <img src="<?= htmlspecialchars((string)($s['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($s['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%;display:block"/>
+                <img src="<?php echo htmlspecialchars((string) ($s['image'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" alt="<?php echo htmlspecialchars((string) ($s['name'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'utf-8'); ?>" style="width:100%;display:block"/>
             </div>
             <?php endforeach; ?>
         </div>

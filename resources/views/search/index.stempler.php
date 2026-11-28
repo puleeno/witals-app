@@ -1,50 +1,49 @@
-<?php /** @var array<int,array<string,mixed>> $items */ ?>
 <div class="c20"></div>
 <div class="grid">
     <div class="c20"></div>
-    <?php if ($short): ?>
+    @if($short)
         <div class="news-title" style="font-size: 14px; text-align: center;" >Từ khóa quá ngắn</div>
-    <?php else: ?>
+    @else
         <div>
-            <h1 class="news-title" style="font-size: 14px;" >Kết quả tìm kiếm "<?= htmlspecialchars($keywords, ENT_QUOTES) ?>"</h1>
+            <h1 class="news-title" style="font-size: 14px;" >Kết quả tìm kiếm "{{ $keywords }}"</h1>
         </div>
-    <?php endif; ?>
+    @endif
 
-    <?php if (!$short && !$items): ?>
+    @if(!$short && !$items)
         <div class="c20"></div>
         <div style="text-align: center; font-weight: bold">Không tìm thấy kết quả</div>
         <div class="c10"></div>
-    <?php endif; ?>
+    @endif
 
     <div class="flex-container flex-space-between search-item-list">
-        <?php foreach ($items as $rs): ?>
-            <?php
+        @foreach($items as $rs)
+            @php
                 $link = (string)($rs['url'] ?? '');
                 if ($link !== '' && !str_starts_with($link, 'http')) {
                     $link = '/' . $link;
                 }
-            ?>
+            @endphp
             <div class="cell-1-1 " >
                 <h2 class="news-name" style="margin: 0px;">
-                    <a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>"><?= htmlspecialchars((string)$rs['name'], ENT_QUOTES) ?></a>
+                    <a href="{{ $link }}">{{ $rs['name'] }}</a>
                 </h2>
-                <div class="cat-path">Danh mục <?= htmlspecialchars((string)($rs['id_category'] ?? ''), ENT_QUOTES) ?></div>
+                <div class="cat-path">Danh mục {{ $rs['id_category'] ?? '' }}</div>
 
                 <div class="c10"></div>
                 <div class="flex-container">
                     <div class="cell-1-12 tab-cell-1-4" >
-                        <a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>"><?= $rs['image'] ?? '' ?></a>
+                        <a href="{{ $link }}">{!! $rs['image'] ?? '' !!}</a>
                     </div>
 
                     <div class="cell-11-12 tab-cell-3-4" >
                         <div style="text-align:justify;padding-top:5px;">
-                            <?= htmlspecialchars(mb_substr(strip_tags((string)($rs['intro'] ?? '')), 0, 100), ENT_QUOTES) ?>
+                            {{ mb_substr(strip_tags((string)($rs['intro'] ?? '')), 0, 100) }}
                         </div>
                     </div>
                 </div>
                 <div class="c30"></div>
             </div>
-        <?php endforeach; ?>
+        @endforeach
     </div>
     <div class="paging"></div>
 
@@ -59,10 +58,10 @@
 .cat-path a{ color: #666; font-size: 12px; text-decoration: none; font-weight: bold; }
 </style>
 
-<script type="text/javascript" src="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/js/hightlight.js"></script>
+<script type="text/javascript" src="{{ $dir_path ?? '' }}/js/hightlight.js"></script>
 <script language="javascript">
     $(function () {
-        $('.search-item-list').highlight('<?= htmlspecialchars($keywords ?? '', ENT_QUOTES) ?>');
-        $('.search-item-list').highlight('<?= htmlspecialchars($h_keywords ?? '', ENT_QUOTES) ?>');
+        $('.search-item-list').highlight('{{ $keywords ?? '' }}');
+        $('.search-item-list').highlight('{{ $h_keywords ?? '' }}');
     });
 </script>

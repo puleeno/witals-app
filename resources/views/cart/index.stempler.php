@@ -20,7 +20,7 @@
     .contact_input textarea{ width: 100%; border-radius: 5px; border:solid 1px #999; background: #EEE; }
     .remove-cart{ color: #FF0000; font-size: 20px; }
     .price-mobile{ display:none; }
-    @media handheld, only screen and (max-width: 767px) {
+    @@media handheld, only screen and (max-width: 767px) {
         .price-mobile{ display:block; float: right; margin-bottom: 10px; font-weight: bold; }
         .cart-name{ text-transform: inherit; font-size: 14px; }
         .quantity{ float: left; }
@@ -53,50 +53,52 @@
     <div class="c10"></div>
 
     <div id="giohang_row">
-        <?php $tong = 0; foreach (($cart ?? []) as $item):
+        @php $tong = 0; @endphp
+        @foreach(($cart ?? []) as $item)
+        @php
             $price = (float)($item['price_num'] ?? preg_replace('/\D/','',(string)($item['price'] ?? '0')));
             $qty = max(1, (int)($item['qty'] ?? 1));
             $thanhtien = $price * $qty; $tong += $thanhtien;
             $id = (int)($item['id_product'] ?? 0);
-        ?>
+        @endphp
         <div class="c5"></div>
         <div class="flex-container flex-space-between item-cart">
             <div class="cell-6-12 mobile-cell-1-1">
                 <div class="flex-container flex-space-between">
                     <div class="cell-1-5">
-                        <a href="<?= htmlspecialchars((string)($item['link_detail'] ?? ''), ENT_QUOTES) ?>" class="cart-image" target="_blank"><img src="<?= htmlspecialchars((string)($item['image'] ?? ''), ENT_QUOTES) ?>" width="80" alt=""></a>
+                        <a href="{{ $item['link_detail'] ?? '' }}" class="cart-image" target="_blank"><img src="{{ $item['image'] ?? '' }}" width="80" alt=""></a>
                     </div>
                     <div class="cell-4-5">
-                        <a href="<?= htmlspecialchars((string)($item['link_detail'] ?? ''), ENT_QUOTES) ?>" class="cart-name" title="View product" target="_blank"><?= htmlspecialchars((string)($item['name'] ?? ''), ENT_QUOTES) ?></a>
+                        <a href="{{ $item['link_detail'] ?? '' }}" class="cart-name" title="View product" target="_blank">{{ $item['name'] ?? '' }}</a>
                         <div class="c5"></div>
                         <div class="quantity">
-                            <div class="price-mobile"><?= number_format($thanhtien) ?>&nbsp;VNĐ&nbsp;</div>
-                            <div style="float: left;">Số lượng: <input type="text" class="txt-quantity" name="quantity[]" ref="<?= $id ?>" value="<?= $qty ?>"></div>
+                            <div class="price-mobile">{{ number_format($thanhtien) }}&nbsp;VNĐ&nbsp;</div>
+                            <div style="float: left;">Số lượng: <input type="text" class="txt-quantity" name="quantity[]" ref="{{ $id }}" value="{{ $qty }}"></div>
                             <div style="float: left; margin-left: 10px;">
                                 <i class="fa fa-plus" onClick="increaseQty($(this));"></i>
                                 <i class="fa fa-minus" onClick="decreaseQty($(this));"></i>
                             </div>
                             <div class="c10"></div>
-                            <div><div class="cart-color"><?= htmlspecialchars((string)($item['color'] ?? ''), ENT_QUOTES) ?></div></div>
+                            <div><div class="cart-color">{{ $item['color'] ?? '' }}</div></div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="id_product[]" value="<?= $id ?>"/>
+                <input type="hidden" name="id_product[]" value="{{ $id }}"/>
                 <div class="c10"></div>
             </div>
-            <div class="cell-2-12 hide-on-mobile cart-price hd-mb"><?= number_format($price) ?> VNĐ&nbsp;</div>
-            <div class="cell-3-12 hide-on-mobile cart-price"><?= number_format($thanhtien) ?>&nbsp;VNĐ&nbsp;</div>
+            <div class="cell-2-12 hide-on-mobile cart-price hd-mb">{{ number_format($price) }} VNĐ&nbsp;</div>
+            <div class="cell-3-12 hide-on-mobile cart-price">{{ number_format($thanhtien) }}&nbsp;VNĐ&nbsp;</div>
             <div class="cell-1-12 mobile-cell-1-1" style="text-align:left;">
-                <a class="remove-cart" href="#" ref="<?= $id ?>" onClick="delItemCart($(this)); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a class="remove-cart" href="#" ref="{{ $id }}" onClick="delItemCart($(this)); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
             </div>
         </div>
         <div class="c5"></div>
         <div style="border-bottom:solid 1px #CCC"></div>
         <div class="c5"></div>
-        <?php endforeach; ?>
+        @endforeach
 
         <div class="c10"></div>
-        <div class="total-payment" align="right">Tổng cộng: <span><?= number_format($tong) ?> đ</span></div>
+        <div class="total-payment" align="right">Tổng cộng: <span>{{ number_format($tong) }} đ</span></div>
     </div>
     <div class="c10"></div>
 

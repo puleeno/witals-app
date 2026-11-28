@@ -4,7 +4,8 @@
 
 - **GIỮ NGUYÊN HTML / CSS / STYLE giống hệt site cũ.** Output render phải giống old-source 100% (markup, class, cấu trúc thẻ, link CSS/JS, đường dẫn asset).
 - **KHÔNG** tự thiết kế lại (không design system mới, không đổi class, không đổi cấu trúc header/footer/menu/content).
-- Chỉ **KHÔNG dùng cấu trúc code/dự án cũ** (procedural PHP legacy). Logic được viết lại theo Witals (modules, `SiteContext`, Stempler/native views) nhưng **markup sinh ra phải y hệt legacy**.
+- Chỉ **KHÔNG dùng cấu trúc code/dự án cũ** (procedural PHP legacy). Logic được viết lại theo Witals (modules, `SiteContext`, **Stempler views `.stempler.php`**) nhưng **markup sinh ra phải y hệt legacy**.
+- **BẮT BUỘC dùng template engine Stempler cho MỌI view** (`.stempler.php`). **KHÔNG** dùng native PHP view (`.php`) cho template. Chỉ thay `<?php ?>` bằng `{{ }}` (escaped) / `{!! !!}` (raw cho biến HTML); dùng `@extends`, `@section`, `@foreach`, `@if`... thay cho PHP control structures.
 - Khi chuyển template legacy → view: giữ nguyên thẻ HTML, chỉ thay `<?php ?>` bằng `{{ }}` / `{!! !!}` tương ứng (raw cho biến HTML, escaped cho text).
 - Mọi thay đổi phải verify parity bằng `curl -k https://xanhvina.localhost/...` so với old-source.
 

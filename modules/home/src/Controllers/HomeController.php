@@ -31,9 +31,7 @@ class HomeController extends AbstractController
         $factory = $this->app->make(\Witals\Framework\Contracts\View\Factory::class);
         $base = array_merge($context, ['page_title' => $context['site_name'] ?? 'Trang chủ']);
 
-        $html = $factory->make('layouts/head', $base)->render()
-            . $body
-            . $factory->make('layouts/foot', $base)->render();
+        $html = $factory->make('layouts/base', array_merge($base, ['content' => $body]))->render();
 
         return Response::html($html);
     }

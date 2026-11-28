@@ -57,8 +57,6 @@ class StaticPagesController extends AbstractController
         $site = $this->app->make(\App\Foundation\Site\SiteContext::class)->build();
         $base = array_merge($site, $data);
 
-        return $factory->make('layouts/head', $base)->render()
-            . $factory->make($view, $base)->render()
-            . $factory->make('layouts/foot', $base)->render();
+        return $factory->make('layouts/base', array_merge($base, ['content' => $factory->make($view, $base)->render()]))->render();
     }
 }

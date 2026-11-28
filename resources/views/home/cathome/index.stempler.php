@@ -1,4 +1,4 @@
-<?php
+@php
 $product = $product ?? [];
 $news = $news ?? [];
 $video = $video ?? [];
@@ -7,27 +7,30 @@ $dir = (string)($dir_path ?? '');
 $productBase = '/san-pham';
 $addcartBase = '/addcart';
 $newsBase = '/tin-tuc';
-?>
+@endphp
+
 <style>
     .flashsale-header { display: flex; align-items: center; gap: 10px; }
     .flashsale-header h2 { margin: 0; }
 </style>
 
-<?php foreach ($product as $grp): $cat = $grp['cat']; $items = $grp['items']; $catimage = $cat['image'] ? $dir . '/' . ltrim((string)$cat['image'], '/') : ''; $link = '/' . trim((string)($cat['url'] ?? ''), '/'); ?>
+@foreach($product as $grp)
+@php $cat = $grp['cat']; $items = $grp['items']; $catimage = $cat['image'] ? $dir . '/' . ltrim((string)$cat['image'], '/') : ''; $link = '/' . trim((string)($cat['url'] ?? ''), '/'); @endphp
 <!-- START BLOCK : product -->
 <div class="flashsale-wrapper">
     <div class="c50"></div>
     <div class="grid">
         <div class="homecat-title">
             <div class="flashsale-header">
-                <img class="flas-sales" src="<?= htmlspecialchars($catimage ?: 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=', ENT_QUOTES) ?>" width="80" alt="<?= htmlspecialchars((string)($catname ?? ''), ENT_QUOTES) ?>">
-                <h2><a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>"><?= htmlspecialchars((string)($cat['name'] ?? ''), ENT_QUOTES) ?></a></h2>
+                <img class="flas-sales" src="{{ $catimage ?: 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=' }}" width="80" alt="{{ $catname ?? '' }}">
+                <h2><a href="{{ $link }}">{{ $cat['name'] ?? '' }}</a></h2>
                 <div class="flashsale-timer"><div class="countdown"></div></div>
             </div>
         </div>
         <div class="c30"></div>
         <div class="flex-container">
-            <?php foreach ($items as $i):
+            @foreach($items as $i)
+            @php
                 $price = (float)($i['price'] ?? 0);
                 $pricekm = (float)($i['pricekm'] ?? 0);
                 $priceOut = $pricekm > 0 ? number_format($pricekm) . ' đ' : ($price > 0 ? number_format($price) . ' đ' : (string)($i['price'] ?? ''));
@@ -39,68 +42,69 @@ $newsBase = '/tin-tuc';
                         $sale = '<div class="home-product-item__sale-off"><span class="home-product-item__sale-off-percent">-' . $disc . '%</span><span class="home-product-item__sale-off-label">GIẢM</span></div>';
                     }
                 }
-            ?>
+            @endphp
             <div class="cell-1-4 tab-cell-1-2">
                 <div class="producthome-item">
                     <div class="img-hv">
-                        <a href="<?= htmlspecialchars($productBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" class="img-shine" title="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
-                            <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%">
+                        <a href="{{ $productBase }}/{{ $i['url'] ?? '' }}" class="img-shine" title="{{ $i['name'] ?? '' }}">
+                            <img src="{{ $i['image'] ?? '' }}" alt="{{ $i['name'] ?? '' }}" style="width:100%">
                         </a>
-                        <a class="addcart" href="<?= htmlspecialchars($addcartBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
+                        <a class="addcart" href="{{ $addcartBase }}/{{ $i['url'] ?? '' }}" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
                     </div>
                     <div class="producthot-box">
                         <h3>
-                            <a href="<?= htmlspecialchars($productBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>" class="producthot-item__name text-line-2" title="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
-                                <?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>
+                            <a href="{{ $productBase }}/{{ $i['url'] ?? '' }}" class="producthot-item__name text-line-2" title="{{ $i['name'] ?? '' }}">
+                                {{ $i['name'] ?? '' }}
                             </a>
                         </h3>
                         <div class="c10"></div>
-                        <div class="producthot-item__intro text-line-2"><?= strip_tags((string)($i['intro'] ?? '')) ?></div>
+                        <div class="producthot-item__intro text-line-2">{!! strip_tags((string)($i['intro'] ?? '')) !!}</div>
                         <div class="producthot__price">
-                            <span class="producthot__price-old"><?= htmlspecialchars($pricekmOut, ENT_QUOTES) ?></span>
-                            <span class="producthot__price-current"><?= htmlspecialchars($priceOut, ENT_QUOTES) ?></span>
+                            <span class="producthot__price-old">{{ $pricekmOut }}</span>
+                            <span class="producthot__price-current">{{ $priceOut }}</span>
                         </div>
                     </div>
                     <div class="c10"></div>
-                    <?= $sale ?>
+                    {!! $sale !!}
                 </div>
             </div>
-            <?php endforeach; ?>
+            @endforeach
         </div>
         <div class="c30"></div>
-        <div class="text-center"><a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>" class="btn-seeall">Xem Tất cả</a></div>
+        <div class="text-center"><a href="{{ $link }}" class="btn-seeall">Xem Tất cả</a></div>
         <div class="c30"></div>
     </div>
     <div class="c20"></div>
 </div>
 <!-- END BLOCK : product -->
-<?php endforeach; ?>
+@endforeach
 
-<?php foreach ($news as $grp): $cat = $grp['cat']; $items = $grp['items']; $link = '/' . trim((string)($cat['url'] ?? ''), '/'); ?>
+@foreach($news as $grp)
+@php $cat = $grp['cat']; $items = $grp['items']; $link = '/' . trim((string)($cat['url'] ?? ''), '/'); @endphp
 <!-- START BLOCK : news -->
 <div class="servicehome-wrapper" style="background-color: #3b3b3b0a;">
     <div class="c50"></div>
     <div class="grid">
-        <h2 class="homecat-title homecat-title__service"><a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>"><?= htmlspecialchars((string)($cat['name'] ?? ''), ENT_QUOTES) ?></a></h2>
+        <h2 class="homecat-title homecat-title__service"><a href="{{ $link }}">{{ $cat['name'] ?? '' }}</a></h2>
         <div class="c30"></div>
     </div>
     <div class="swiper-container slider-homenews">
         <div class="swiper-wrapper">
-            <?php foreach ($items as $i): ?>
+            @foreach($items as $i)
             <div class="swiper-slide">
                 <div class="service-item">
-                    <a href="<?= htmlspecialchars($newsBase . '/' . (string)($i['url'] ?? $i['id_news'] ?? ''), ENT_QUOTES) ?>">
-                        <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" style="width:100%" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>">
+                    <a href="{{ $newsBase }}/{{ $i['url'] ?? $i['id_news'] ?? '' }}">
+                        <img src="{{ $i['image'] ?? '' }}" style="width:100%" alt="{{ $i['name'] ?? '' }}">
                     </a>
                     <div class="service-item__content">
                         <h3 class="service-item__name">
-                            <a href="<?= htmlspecialchars($newsBase . '/' . (string)($i['url'] ?? $i['id_news'] ?? ''), ENT_QUOTES) ?>" class="text-line-2"><?= $i['name'] ?? '' ?></a>
+                            <a href="{{ $newsBase }}/{{ $i['url'] ?? $i['id_news'] ?? '' }}" class="text-line-2">{!! $i['name'] ?? '' !!}</a>
                         </h3>
-                        <div class="text-line-3"><?= $i['intro'] ?? '' ?></div>
+                        <div class="text-line-3">{!! $i['intro'] ?? '' !!}</div>
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
+            @endforeach
         </div>
         <div class="service-button-next"><i class="fas fa-chevron-right"></i></div>
         <div class="service-button-prev"><i class="fas fa-chevron-left"></i></div>
@@ -109,32 +113,36 @@ $newsBase = '/tin-tuc';
     <div class="c50"></div>
 </div>
 <!-- END BLOCK : news -->
-<?php endforeach; ?>
+@endforeach
 
-<?php foreach ($video as $grp): $cat = $grp['cat']; $items = $grp['items']; $link = '/' . trim((string)($cat['url'] ?? ''), '/'); ?>
+@foreach($video as $grp)
+@php $cat = $grp['cat']; $items = $grp['items']; $link = '/' . trim((string)($cat['url'] ?? ''), '/'); @endphp
 <!-- START BLOCK : video -->
 <div class="grid">
     <div class="c20"></div>
-    <div class="title-cat-home"><a href="<?= htmlspecialchars($link, ENT_QUOTES) ?>"><?= htmlspecialchars((string)($cat['name'] ?? ''), ENT_QUOTES) ?></a></div>
-    <a class="view-more-home" href="<?= htmlspecialchars($link, ENT_QUOTES) ?>">Xem thêm <i class="fa fa-angle-right"></i></a>
+    <div class="title-cat-home"><a href="{{ $link }}">{{ $cat['name'] ?? '' }}</a></div>
+    <a class="view-more-home" href="{{ $link }}">Xem thêm <i class="fa fa-angle-right"></i></a>
     <div class="c"></div>
     <div class="title-cat-line"></div>
     <div class="c20"></div>
     <div class="flex-container flex-space-between video-home">
-        <?php foreach ($items as $i): $vc = ''; if (preg_match('%(?:youtu\.be/|v=|embed/)([A-Za-z0-9_-]+)%', (string)($i['video'] ?? ''), $m)) $vc = $m[1]; ?>
+        @foreach($items as $i)
+        @php $vc = ''; if (preg_match('%(?:youtu\.be/|v=|embed/)([A-Za-z0-9_-]+)%', (string)($i['video'] ?? ''), $m)) $vc = $m[1]; @endphp
         <div class="cell-1-3 tab-cell-1-2 video-home-item">
-            <div style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden;"><iframe allowfullscreen frameborder="0" height="360" src="//www.youtube.com/embed/<?= htmlspecialchars($vc, ENT_QUOTES) ?>?modestbranding=1&amp;fs=1&amp;rel=0" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" width="300"></iframe></div>
+            <div style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden;"><iframe allowfullscreen frameborder="0" height="360" src="//www.youtube.com/embed/{{ $vc }}?modestbranding=1&amp;fs=1&amp;rel=0" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;" width="300"></iframe></div>
             <div class="c5"></div>
-            <h3 class="video-home-name"><a href="<?= htmlspecialchars($newsBase . '/' . (string)($i['url'] ?? ''), ENT_QUOTES) ?>"><?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?></a></h3>
+            <h3 class="video-home-name"><a href="{{ $newsBase }}/{{ $i['url'] ?? '' }}">{{ $i['name'] ?? '' }}</a></h3>
         </div>
-        <?php endforeach; ?>
+        @endforeach
     </div>
     <div class="c20"></div>
 </div>
 <!-- END BLOCK : video -->
-<?php endforeach; ?>
+@endforeach
 
-<?php foreach ($other as $o): ?><?= is_string($o) ? $o : '' ?><?php endforeach; ?>
+@foreach($other as $o)
+{!! is_string($o) ? $o : '' !!}
+@endforeach
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

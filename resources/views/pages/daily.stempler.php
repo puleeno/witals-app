@@ -1,6 +1,5 @@
-<?php /** @var array<string,mixed> $cat */ ?>
 <div class="c"></div>
-<div class="crumb"><div class="grid"><a href="/<?= htmlspecialchars($lang_dir ?? '', ENT_QUOTES) ?>"><i class="fa fa-home"></i></a> <i class="fa fa-angle-right"></i> <?= htmlspecialchars((string)($cat['name'] ?? ''), ENT_QUOTES) ?></div><div class="c5"></div></div>
+<div class="crumb"><div class="grid"><a href="/{{ $lang_dir ?? '' }}"><i class="fa fa-home"></i></a> <i class="fa fa-angle-right"></i> {{ $cat['name'] ?? '' }}</div><div class="c5"></div></div>
 <div class="c"></div>
 
 <div class="c20"></div>
@@ -8,11 +7,11 @@
 
 <a name="map_here"></a>
 
-<h1 class="title-page"><span><?= htmlspecialchars((string)($cat['name'] ?? ''), ENT_QUOTES) ?></span></h1>
+<h1 class="title-page"><span>{{ $cat['name'] ?? '' }}</span></h1>
 
 <div class="c5"></div>
 <div class="c10"></div>
-<div class="cat-content"><?= $cat['intro'] ?? '' ?></div>
+<div class="cat-content">{!! $cat['intro'] ?? '' !!}</div>
 <div class="c10"></div>
 
 <div class="c20"></div>
@@ -31,7 +30,7 @@
                 </select>
             </div>
             <div class="cell-3-10 tab-cell-1-1">
-                <input name="mapkw" type="text" class="txt-contact" placeholder="Tên đường, tỉnh thành, quận huyện, tên đại lý" value="<?= htmlspecialchars((string)($_GET['mapkw'] ?? ''), ENT_QUOTES) ?>" />
+                <input name="mapkw" type="text" class="txt-contact" placeholder="Tên đường, tỉnh thành, quận huyện, tên đại lý" value="{{ $_GET['mapkw'] ?? '' }}" />
             </div>
             <div class="cell-1-10 tab-cell-1-1">
                 <input class="btn-contact" type="submit" value="Tìm kiếm" />

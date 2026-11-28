@@ -1,4 +1,4 @@
-<?php $items = $items ?? []; $slider = $items['slider_image'] ?? []; $other = $items['other_products'] ?? []; ?>
+@php $items = $items ?? []; $slider = $items['slider_image'] ?? []; $other = $items['other_products'] ?? []; @endphp
 
 <div class="c"></div>
 <div class="crumb"><div class="grid"><a href="/">Trang chủ</a> <i class="fa fa-angle-right"></i> <a href="/san-pham/">Sản phẩm</a></div><div class="c5"></div></div>
@@ -8,27 +8,27 @@
 
 <script type="application/ld+json">
     {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": <?= json_encode((string)($name ?? ''), JSON_UNESCAPED_UNICODE|JSON_HEX_TAG) ?>,
-        "image": <?= json_encode((string)($site_address ?? '').($image ?? ''), JSON_UNESCAPED_UNICODE|JSON_HEX_TAG) ?>,
+        "@@context": "https://schema.org/",
+        "@@type": "Product",
+        "name": {!! json_encode((string)($name ?? ''), JSON_UNESCAPED_UNICODE|JSON_HEX_TAG) !!},
+        "image": {!! json_encode((string)($site_address ?? '').($image ?? ''), JSON_UNESCAPED_UNICODE|JSON_HEX_TAG) !!},
         "description": "",
         "brand": {
-            "@type": "Brand",
+            "@@type": "Brand",
             "name": "XanhVina"
         },
-        "sku": <?= json_encode((string)($ma ?? ''), JSON_UNESCAPED_UNICODE) ?>,
+        "sku": {!! json_encode((string)($ma ?? ''), JSON_UNESCAPED_UNICODE) !!},
         "offers": {
-            "@type": "Offer",
-            "url": <?= json_encode((string)($site_address ?? '').($cat_link ?? ''), JSON_UNESCAPED_UNICODE|JSON_HEX_TAG) ?>,
+            "@@type": "Offer",
+            "url": {!! json_encode((string)($site_address ?? '').($cat_link ?? ''), JSON_UNESCAPED_UNICODE|JSON_HEX_TAG) !!},
             "priceCurrency": "VND",
-            "price": <?= json_encode((string)($price_number ?? '0'), JSON_UNESCAPED_UNICODE) ?>,
+            "price": {!! json_encode((string)($price_number ?? '0'), JSON_UNESCAPED_UNICODE) !!},
             "priceValidUntil": "2023-12-31",
             "availability": "https://schema.org/InStock",
             "itemCondition": "https://schema.org/NewCondition"
         },
         "aggregateRating": {
-            "@type": "AggregateRating",
+            "@@type": "AggregateRating",
             "ratingValue": "4.8",
             "bestRating": "5",
             "worstRating": "1",
@@ -43,11 +43,13 @@
             <div class="cell-5-12 tab-cell-1-1">
                 <div class="swiper-container gallery-top swiper-container-initialized swiper-container-horizontal swiper-container-autoheight">
                     <div class="swiper-wrapper" style="height: 517px; transform: translate3d(-1054px, 0px, 0px); transition-duration: 0ms;">
-                        <?php if ($slider === []): ?>
-                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="<?= htmlspecialchars((string)($image ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
-                        <?php else: foreach ($slider as $i): ?>
-                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
-                        <?php endforeach; endif; ?>
+                        @if($slider === [])
+                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="{{ $image ?? '' }}" alt="{{ $name ?? '' }}" title="{{ $name ?? '' }}" style="width:100%"></div>
+                        @else
+                        @foreach($slider as $i)
+                        <div class="swiper-slide" style="width: 517px; margin-right: 10px;"><img src="{{ $i['image'] ?? '' }}" alt="{{ $name ?? '' }}" title="{{ $name ?? '' }}" style="width:100%"></div>
+                        @endforeach
+                        @endif
                     </div>
                     <div class="swiper-button-next swiper-button-black" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"></div>
                     <div class="swiper-button-prev swiper-button-black" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="false"></div>
@@ -56,11 +58,13 @@
                 <div class="c10"></div>
                 <div class="swiper-container gallery-thumbs-pro swiper-container-initialized swiper-container-horizontal swiper-container-free-mode swiper-container-thumbs">
                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                        <?php if ($slider === []): ?>
-                        <div class="swiper-slide swiper-slide-active" style="width: 91.4px; margin-right: 15px;"><img src="<?= htmlspecialchars((string)($thumbimage ?? $image ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
-                        <?php else: foreach ($slider as $i): ?>
-                        <div class="swiper-slide" style="width: 91.4px; margin-right: 15px;"><img src="<?= htmlspecialchars((string)($i['thumb'] ?? $i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" title="<?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?>" style="width:100%"></div>
-                        <?php endforeach; endif; ?>
+                        @if($slider === [])
+                        <div class="swiper-slide swiper-slide-active" style="width: 91.4px; margin-right: 15px;"><img src="{{ $thumbimage ?? $image ?? '' }}" alt="{{ $name ?? '' }}" title="{{ $name ?? '' }}" style="width:100%"></div>
+                        @else
+                        @foreach($slider as $i)
+                        <div class="swiper-slide" style="width: 91.4px; margin-right: 15px;"><img src="{{ $i['thumb'] ?? $i['image'] ?? '' }}" alt="{{ $name ?? '' }}" title="{{ $name ?? '' }}" style="width:100%"></div>
+                        @endforeach
+                        @endif
                     </div>
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
 
@@ -97,22 +101,22 @@
             </div>
             <div class="cell-7-12 tab-cell-1-1">
                 <div style="font-size: 24px">
-                    <strong><?= htmlspecialchars((string)($name ?? ''), ENT_QUOTES) ?></strong>
+                    <strong>{{ $name ?? '' }}</strong>
                 </div>
                 <div class="c5"></div>
                 <div class="tinhtrang" style="float: left; margin-right: 20px">
-                    SKU: <b><?= htmlspecialchars((string)($ma ?? ''), ENT_QUOTES) ?></b>
+                    SKU: <b>{{ $ma ?? '' }}</b>
                 </div>
 
                 <div class="tinhtrang" style="float: left">
-                    Thương hiệu: <b style="color: #5b8651"><?= htmlspecialchars((string)($hangsx ?? 'Xanhvina'), ENT_QUOTES) ?></b>
+                    Thương hiệu: <b style="color: #5b8651">{{ $hangsx ?? 'Xanhvina' }}</b>
                 </div>
                 <div class="c10"></div>
 
                 <div class="tinhtrang">Tình trạng: <b>Còn hàng</b></div>
                 <div class="c10"></div>
                 <div class="price">
-                    <div class="pricekm-detail" id="pricekm"><?= htmlspecialchars((string)($price ?? 'Liên hệ'), ENT_QUOTES) ?></div>
+                    <div class="pricekm-detail" id="pricekm">{{ $price ?? 'Liên hệ' }}</div>
                     <small>(Giá bán chưa bao gồm phí vận chuyển)</small>
                 </div>
                 <div class="c20"></div>
@@ -137,11 +141,11 @@
                 <div class="c10"></div>
 
                 <div class="flex-container" style="justify-content: flex-start; align-items: center">
-                    <a class="buynow-btn" href="<?= htmlspecialchars((string)($linkcart ?? ''), ENT_QUOTES) ?>?qty=1&amp;voucher=">
+                    <a class="buynow-btn" href="{{ $linkcart ?? '' }}?qty=1&amp;voucher=">
                         <i class="fas fa-cart-plus"></i> Mua hàng ngay
                     </a>
 
-                    <a class="addcart-btn" href="<?= htmlspecialchars((string)($linkcart ?? ''), ENT_QUOTES) ?>?qty=1&amp;voucher=">
+                    <a class="addcart-btn" href="{{ $linkcart ?? '' }}?qty=1&amp;voucher=">
                         <i class="fas fa-arrow-right"></i> Thêm vào giỏ hàng</a>
                 </div>
                 <p>
@@ -154,12 +158,12 @@
                 <div class="c10"></div>
             </div>
 
-            <input type="hidden" id="link_to_cart" value="<?= htmlspecialchars((string)($linkcart ?? ''), ENT_QUOTES) ?>">
+            <input type="hidden" id="link_to_cart" value="{{ $linkcart ?? '' }}">
 
             <script>
                 $("#voucher").change(function () {
                     $(".voucher_value").load(
-                        "/api/voucher/check?idcat=<?= (int)($idcat ?? 0) ?>&v=" +
+                        "/api/voucher/check?idcat={{ (int)($idcat ?? 0) }}&v=" +
                             $(this).val()
                     );
                     linkcart();
@@ -241,7 +245,7 @@
                 <div class="flex-container">
                     <div class="cell-3-4 tab-cell-1-1">
                         <div class="text0h" style="text-align: justify">
-                            <div class="product-content tocContent"><div class="content-pro"><?= $content ?? '' ?></div>
+                            <div class="product-content tocContent"><div class="content-pro">{!! $content ?? '' !!}</div>
 
 <div class="c20">&nbsp;</div>
 </div>
@@ -303,34 +307,34 @@
                 <div class="c30"></div>
                 <div class="flex-container">
 
-                    <?php foreach ($other as $i): ?>
+                    @foreach($other as $i)
                     <div class="cell-1-4 tab-cell-1-2">
                         <div class="producthome-item">
                             <div class="img-hv">
-                                <a href="<?= htmlspecialchars((string)($i['link_detail'] ?? ''), ENT_QUOTES) ?>" class="img-shine"> <img src="<?= htmlspecialchars((string)($i['image'] ?? ''), ENT_QUOTES) ?>" alt="<?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>" style="width:100%"> </a>
+                                <a href="{{ $i['link_detail'] ?? '' }}" class="img-shine"> <img src="{{ $i['image'] ?? '' }}" alt="{{ $i['name'] ?? '' }}" style="width:100%"> </a>
                                 <div class="hvr-show">
-                                    <a href="<?= htmlspecialchars((string)($i['link_cart'] ?? ''), ENT_QUOTES) ?>" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
+                                    <a href="{{ $i['link_cart'] ?? '' }}" title="Thêm vào giỏ hàng"><i class="fas fa-cart-plus"></i></a>
                                 </div>
                             </div>
 
                             <div class="producthot-box">
                                 <h3>
-                                    <a href="<?= htmlspecialchars((string)($i['link_detail'] ?? ''), ENT_QUOTES) ?>" class="producthot-item__name text-line-2">
-                                        <?= htmlspecialchars((string)($i['name'] ?? ''), ENT_QUOTES) ?>
+                                    <a href="{{ $i['link_detail'] ?? '' }}" class="producthot-item__name text-line-2">
+                                        {{ $i['name'] ?? '' }}
                                     </a>
                                 </h3>
                                 <div class="c10"></div>
 
                                 <div class="producthot__price">
-                                    <span class="producthot__price-old"><?= htmlspecialchars((string)($i['pricekm'] ?? ''), ENT_QUOTES) ?> <span style="margin-right: 5px"></span></span>
-                                    <span class="producthot__price-current"><?= htmlspecialchars((string)($i['price'] ?? ''), ENT_QUOTES) ?></span>
+                                    <span class="producthot__price-old">{{ $i['pricekm'] ?? '' }} <span style="margin-right: 5px"></span></span>
+                                    <span class="producthot__price-current">{{ $i['price'] ?? '' }}</span>
                                 </div>
                             </div>
 
                             <div class="c10"></div>
                         </div>
                     </div>
-                    <?php endforeach; ?>
+                    @endforeach
 
                     <div class="cell-1-4 tab-cell-1-2"></div>
                     <div class="cell-1-4 tab-cell-1-2"></div>
