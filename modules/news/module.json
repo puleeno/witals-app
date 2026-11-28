@@ -16,6 +16,8 @@
     },
     "provides": ["news.data"],
     "admin": {
+        "data_type": "Tin tức",
+        "group_icon": "📰",
         "group": "Nội dung",
         "group_icon": "📰",
         "nav": { "label": "Tin tức", "url": "/dashboard/news", "icon": "📰" },

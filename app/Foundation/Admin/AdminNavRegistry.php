@@ -81,7 +81,7 @@ class AdminNavRegistry
                 'icon'  => (string) ($nav['icon'] ?? '📦'),
             ];
 
-            $group = isset($admin['group']) ? (string) $admin['group'] : '';
+            $group = isset($admin['data_type']) ? (string) $admin['data_type'] : (isset($admin['group']) ? (string) $admin['group'] : '');
             if ($group === '') {
                 $this->topLevel[] = $item;
                 continue;
@@ -107,51 +107,11 @@ class AdminNavRegistry
     {
         $base = [
             ['label' => 'Bảng điều khiển', 'url' => '/dashboard', 'icon' => '📊'],
-            'Kinh doanh' => [
-                'icon' => '🛍️',
-                'children' => [
-                    ['label' => 'Đơn hàng',      'url' => '/dashboard/orders',     'icon' => '🛒'],
-                    ['label' => 'Khách hàng',    'url' => '/dashboard/customers',  'icon' => '👥'],
-                    ['label' => 'Hóa đơn',       'url' => '/dashboard/invoices',   'icon' => '📄'],
-                    ['label' => 'Cộng tác viên', 'url' => '/dashboard/affiliates', 'icon' => '🤝'],
-                ],
-            ],
-            'Sản phẩm Số' => [
-                'icon' => '📦',
-                'children' => [
-                    ['label' => 'Gói Thành Viên', 'url' => '/dashboard/memberships', 'icon' => '💎'],
-                    ['label' => 'Software Licenses', 'url' => '/dashboard/licenses', 'icon' => '💻'],
-                    ['label' => 'Themes Manager', 'url' => '/dashboard/catalog?type=theme', 'icon' => '🎨'],
-                    ['label' => 'Plugins Repository', 'url' => '/dashboard/catalog?type=plugin', 'icon' => '🔌'],
-                    ['label' => 'Quản lý Dịch vụ', 'url' => '/dashboard/web-services', 'icon' => '🛠️'],
-                ],
-            ],
-            'Dịch vụ Hạ tầng' => [
-                'icon' => '☁️',
-                'children' => [
-                    ['label' => 'Quản lý Hosting',  'url' => '/dashboard/hosting',   'icon' => '🖥️'],
-                    ['label' => 'Quản lý Tên miền', 'url' => '/dashboard/domains',   'icon' => '🌐'],
-                    ['label' => 'Chứng chỉ SSL',    'url' => '/dashboard/infrastructure/ssl', 'icon' => '🔒'],
-                    ['label' => 'Email Hosting',    'url' => '/dashboard/infrastructure/email', 'icon' => '📧'],
-                ],
-            ],
-            'Hệ thống' => [
-                'icon' => '⚙️',
-                'children' => [
-                    ['label' => 'API Keys (Updater)', 'url' => '/dashboard/profile', 'icon' => '⚡'],
-                    ['label' => 'Webhooks',      'url' => '/dashboard/webhooks',   'icon' => '🪝'],
-                ],
-            ],
         ];
 
-        // Merge module groups into base (append new groups, append children to
-        // existing same-named groups).
+        // Merge module groups (declared via module.json admin.group).
         foreach ($this->groups as $label => $group) {
-            if (isset($base[$label]) && is_array($base[$label])) {
-                $base[$label]['children'] = array_merge($base[$label]['children'], $group['children']);
-            } else {
-                $base[$label] = $group;
-            }
+            $base[$label] = $group;
         }
 
         // Top-level module links: insert right after the dashboard link.

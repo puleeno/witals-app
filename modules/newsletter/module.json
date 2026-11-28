@@ -16,6 +16,8 @@
     },
     "provides": ["newsletter.data"],
     "admin": {
+        "data_type": "Marketing",
+        "group_icon": "📣",
         "group": "Marketing",
         "group_icon": "📣",
         "nav": { "label": "Newsletter", "url": "/dashboard/newsletter", "icon": "✉️" },

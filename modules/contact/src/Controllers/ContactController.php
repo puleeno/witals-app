@@ -9,6 +9,8 @@ use Cycle\Database\DatabaseProviderInterface;
 use Witals\Framework\Http\AbstractController;
 use Witals\Framework\Http\Request;
 use Witals\Framework\Http\Response;
+use Witals\Framework\Events\Contracts\EventDispatcherInterface;
+use Modules\Contact\Events\ContactSubmitted;
 
 /**
  * Public controller — thay thế legacy contact submit.
@@ -65,6 +67,18 @@ class ContactController extends AbstractController
             ])->run();
         } catch (\Throwable $e) {
             return Response::json(['error' => 'Không thể lưu liên hệ'], 500);
+        }
+
+        try {
+            $this->app->make(EventDispatcherInterface::class)->dispatch(new ContactSubmitted([
+                'name'    => $fullname,
+                'email'   => $email,
+                'phone'   => $phone,
+                'address' => $address,
+                'message' => $other . ($subject !== '' ? ' (' . $subject . ')' : ''),
+            ]));
+        } catch (\Throwable) {
+            // event dispatch is best-effort
         }
 
         return Response::json(['status' => 'ok', 'message' => 'Đã gửi liên hệ']);

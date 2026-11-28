@@ -53,7 +53,9 @@ class ModuleCrudController extends AdminController
         $rows = $this->rows($def['table']);
         $cols = $def['list_fields'];
 
-        $head = '';
+        $imageCol = $this->imageColumn($def);
+
+        $head = $imageCol !== null ? '<th>Ảnh</th>' : '';
         foreach ($cols as $c) {
             $head .= '<th>' . htmlspecialchars($c, ENT_QUOTES) . '</th>';
         }
@@ -62,6 +64,10 @@ class ModuleCrudController extends AdminController
         $body = '';
         foreach ($rows as $row) {
             $body .= '<tr>';
+            if ($imageCol !== null) {
+                $src = trim((string) ($row[$imageCol] ?? ''));
+                $body .= '<td><img class="admin-thumb" src="' . htmlspecialchars($src, ENT_QUOTES) . '" alt=""></td>';
+            }
             foreach ($cols as $c) {
                 $body .= '<td>' . htmlspecialchars((string) ($row[$c] ?? ''), ENT_QUOTES) . '</td>';
             }
@@ -76,7 +82,7 @@ class ModuleCrudController extends AdminController
         }
 
         if ($body === '') {
-            $body = '<tr><td colspan="' . (count($cols) + 1) . '" style="text-align:center;color:var(--text-dim)">Chưa có dữ liệu</td></tr>';
+            $body = '<tr><td colspan="' . (count($cols) + ($imageCol !== null ? 2 : 1)) . '" style="text-align:center;color:var(--text-dim)">Chưa có dữ liệu</td></tr>';
         }
 
         $content = '<div class="admin-table-wrap"><table class="admin-table"><thead><tr>'
@@ -301,6 +307,21 @@ class ModuleCrudController extends AdminController
             $this->dbal->database()->delete($table, [$pk => $id])->run();
         } catch (\Throwable) {
         }
+    }
+
+    /**
+     * @param array<string, mixed> $def
+     */
+    private function imageColumn(array $def): ?string
+    {
+        foreach ($def['columns'] as $col) {
+            $name = (string) ($col['name'] ?? '');
+            if ($name !== '' && preg_match('/(image|thumb|avatar|photo|cover)/i', $name)) {
+                return $name;
+            }
+        }
+
+        return null;
     }
 
     /**

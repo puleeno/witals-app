@@ -23,6 +23,8 @@
         }
     },
     "admin": {
+        "data_type": "Sản phẩm",
+        "group_icon": "📦",
         "group": "Nội dung",
         "group_icon": "🛒",
         "nav": { "label": "Ecommerce", "url": "/dashboard/product", "icon": "🛒" },

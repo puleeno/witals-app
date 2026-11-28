@@ -14,6 +14,7 @@
     },
     "provides": ["category.data"],
     "admin": {
+        "data_type": "Danh mục",
         "group": "Nội dung",
         "group_icon": "📂",
         "nav": { "label": "Danh mục", "url": "/dashboard/category", "icon": "📂" },

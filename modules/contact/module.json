@@ -14,5 +14,18 @@
             "Modules\\Contact\\": "src/"
         }
     },
-    "provides": ["contact.data"]
+    "provides": ["contact.data"],
+    "admin": {
+        "data_type": "Liên hệ",
+        "group_icon": "✉️",
+        "nav": { "label": "Liên hệ", "url": "/dashboard/contact", "icon": "✉️" },
+        "crud": {
+            "table": "contact",
+            "pk": "id_contact",
+            "title": "Liên hệ",
+            "title_field": "name",
+            "list_fields": ["name", "email", "xem", "createdate"],
+            "form_fields": ["name", "email", "content"]
+        }
+    }
 }
