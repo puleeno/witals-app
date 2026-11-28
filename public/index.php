@@ -75,11 +75,8 @@ if (!$isWitalsRequest) {
 
 // Static assets are served by the web server itself (Apache/Nginx/PHP built-in
 // server resolve them before this script runs). Everything else is a page.
-if (!$isWitalsRequest) {
-    $GLOBALS['__witals_app'] = $app;
-    require __DIR__ . '/../legacy/site.php';
-    return;
-}
+// Legacy lane đã được migrate sang Witals; fallback route trả 404.
+$GLOBALS['__witals_app'] = $app;
 
 // Create and start the traditional server using the factory
 $server = ServerFactory::create(RuntimeType::TRADITIONAL, $app);

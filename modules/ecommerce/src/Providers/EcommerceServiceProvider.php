@@ -31,6 +31,12 @@ class EcommerceServiceProvider extends ServiceProvider
         $router->get($addcart, [CartController::class, 'index']);
         $router->get($addcart . '/{id}', [CartController::class, 'add']);
         $router->get('/api/cart/count', [CartController::class, 'count']);
+        $router->get('/cart/remove/{id}', [CartController::class, 'remove']);
+        $router->get('/cart/update', [CartController::class, 'update']);
+        $router->post('/cart/update', [CartController::class, 'update']);
+        $router->post('/cart/checkout', [\Modules\Ecommerce\Controllers\OrderController::class, 'checkout']);
+        $router->get('/contact-success', [\Modules\Ecommerce\Controllers\OrderController::class, 'success']);
+        $router->get('/api/voucher/check', [CartController::class, 'voucher']);
     }
 
     /** @return array<string, string> */

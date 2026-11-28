@@ -167,15 +167,16 @@ class SiteContext
             $target = (int) ($rs['target'] ?? 0) === 1 ? " target='_blank'" : '';
 
             $submenu = $this->menuChildren($idc);
-            $arrow = '';
             $hasSub = '';
             if (count($submenu) > 0) {
-                $arrow = '<i class="fa fa-angle-down" aria-hidden="true"></i>';
                 $hasSub = $mega > 0 ? $this->renderMegaMenu($submenu) : $this->renderSubMenu($submenu);
             }
 
-            $style = 'background:url(' . $imageadv . ') center left no-repeat; ' . $megaStyle . ' ';
-            $out .= '<li class=" " style="' . htmlspecialchars($style, ENT_QUOTES) . '"> <a href="' . htmlspecialchars($link, ENT_QUOTES) . '"' . $target . ' class="">' . htmlspecialchars(strip_tags((string) $rs['name']), ENT_QUOTES) . ' ' . $arrow . '</a>'
+            $img = $imageadv !== ''
+                ? '<img class="flas-sales" src="' . htmlspecialchars($imageadv, ENT_QUOTES) . '" width="100%">'
+                : '';
+            $style = $mega > 0 ? 'position: initial;' : '';
+            $out .= '<li class=" " style="' . htmlspecialchars($style, ENT_QUOTES) . '">  <a href="' . htmlspecialchars($link, ENT_QUOTES) . '"' . $target . ' class="">' . $img . ' ' . htmlspecialchars(strip_tags((string) $rs['name']), ENT_QUOTES) . '  </a>'
                 . $hasSub . '</li>';
         }
         $out .= '</ul>';

@@ -104,13 +104,13 @@
         function increaseQty(obj){ var i=obj.parent().parent().find(".txt-quantity"); i.val(parseInt(i.val())+1); updateItemQuantity(i.val(), i.attr("ref")); }
         function decreaseQty(obj){ var i=obj.parent().parent().find(".txt-quantity"); var q=parseInt(i.val())-1; if(q<1){q=1;}else{i.val(q);updateItemQuantity(i.val(), i.attr("ref"));} }
         $('#giohang_row').on('change', '.txt-quantity', function(){ updateItemQuantity($(this).val(), $(this).attr("ref")); });
-        function delItemCart(obj){ if(confirm("Xóa sản phẩm này khỏi giỏ hàng ?")==false){return false;} var id=obj.attr("ref"); $("#giohang_row").load("/index4.php?page=cart&code=del&uid="+id); }
-        function updateItemQuantity(q,id){ $("#giohang_row").load("/index4.php?page=cart&code=update&uid="+id+"&uqty="+q); }
+        function delItemCart(obj){ if(confirm("Xóa sản phẩm này khỏi giỏ hàng ?")==false){return false;} var id=obj.attr("ref"); window.location.href="/cart/remove/"+id; }
+        function updateItemQuantity(q,id){ window.location.href="/cart/update?uid="+id+"&uqty="+q; }
         $(".buy-other").click(function(){ window.history.back(); return false; });
     </script>
 
     <div class="c20"></div>
-    <form action="/index4.php?page=cart" method="post" id="cartform" onSubmit="return check_cart();">
+    <form action="/cart/checkout" method="post" id="cartform" onSubmit="return check_cart();">
         <input type="hidden" name="code" value="save" />
         <div class="step-02">
             <div class="cart-title-number">02</div>

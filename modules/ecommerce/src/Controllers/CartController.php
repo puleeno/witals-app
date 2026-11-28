@@ -103,6 +103,46 @@ class CartController extends AbstractController
         return Response::json(['count' => $n]);
     }
 
+    /**
+     * GET /cart/remove/{id} — xoá item khỏi cart, redirect về giỏ.
+     */
+    public function remove(Request $request, string $id): Response
+    {
+        $this->session->start();
+        $cart = $this->session->get(self::SESSION_KEY, []);
+        if (is_array($cart)) {
+            unset($cart[$id]);
+            $this->session->set(self::SESSION_KEY, $cart);
+        }
+
+        return Response::redirect($this->path('cart', '/gio-hang'));
+    }
+
+    /**
+     * GET/POST /cart/update — cập nhật số lượng item, redirect về giỏ.
+     */
+    public function update(Request $request): Response
+    {
+        $this->session->start();
+        $cart = $this->session->get(self::SESSION_KEY, []);
+        $id = (string) ($request->input('uid') ?? '');
+        $qty = max(1, (int) ($request->input('uqty') ?? 1));
+        if (is_array($cart) && isset($cart[$id]) && is_array($cart[$id])) {
+            $cart[$id]['qty'] = $qty;
+            $this->session->set(self::SESSION_KEY, $cart);
+        }
+
+        return Response::redirect($this->path('cart', '/gio-hang'));
+    }
+
+    /**
+     * GET /api/voucher/check — placeholder (legacy ajaxprovider checkVoucher).
+     */
+    public function voucher(Request $request): Response
+    {
+        return Response::text('');
+    }
+
     private function table(string $logical): string
     {
         $override = $this->app->config('database.tables.' . $logical);

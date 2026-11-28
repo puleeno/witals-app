@@ -1,0 +1,18 @@
+{
+    "name": "search",
+    "version": "1.0.0",
+    "description": "Tìm kiếm (search_content) — thay legacy search.php + info_search.htm.",
+    "type": "data",
+    "priority": 55,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\Search\\Providers\\SearchServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Search\\": "src/"
+        }
+    },
+    "provides": ["search.page"]
+}

@@ -68,7 +68,7 @@ $(".tocContent").LongPageNavigation({ longPageNavigationPosition:"longPageNaviga
 
 	<div class="form-dangky" style="background: #EEE;" >
 		<div class="c10"></div>
-		<form action="<?= htmlspecialchars($i['dir_path'] ?? $dir_path ?? '', ENT_QUOTES) ?>/index4.php?page=contact&lang=<?= htmlspecialchars($i['lang'] ?? $lang ?? '', ENT_QUOTES) ?>" method="post" id="news_regform" data-alert="<?= htmlspecialchars($i['_ban_can_nhap_thong_tin'] ?? $_ban_can_nhap_thong_tin ?? '', ENT_QUOTES) ?>" data-captcha ="<?= htmlspecialchars($i['_captcha_invalid'] ?? $_captcha_invalid ?? '', ENT_QUOTES) ?>" data-success="<?= htmlspecialchars($i['_thong_tin_lien_he'] ?? $_thong_tin_lien_he ?? '', ENT_QUOTES) ?>" data-redirect="/contact-success/" >
+		<form action="<?= htmlspecialchars($i['dir_path'] ?? $dir_path ?? '', ENT_QUOTES) ?>/contact/submit" method="post" id="news_regform" data-alert="<?= htmlspecialchars($i['_ban_can_nhap_thong_tin'] ?? $_ban_can_nhap_thong_tin ?? '', ENT_QUOTES) ?>" data-captcha ="<?= htmlspecialchars($i['_captcha_invalid'] ?? $_captcha_invalid ?? '', ENT_QUOTES) ?>" data-success="<?= htmlspecialchars($i['_thong_tin_lien_he'] ?? $_thong_tin_lien_he ?? '', ENT_QUOTES) ?>" data-redirect="/contact-success/" >
 		
 			<input type="hidden"  name="code" value="save" />                
 

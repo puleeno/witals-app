@@ -1,0 +1,18 @@
+{
+    "name": "notfound",
+    "version": "1.0.0",
+    "description": "Trang 404 — thay legacy 404.php.",
+    "type": "data",
+    "priority": 70,
+    "enabled": true,
+    "depends": [],
+    "providers": [
+        "Modules\\NotFound\\Providers\\NotFoundServiceProvider"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\NotFound\\": "src/"
+        }
+    },
+    "provides": ["notfound.page"]
+}

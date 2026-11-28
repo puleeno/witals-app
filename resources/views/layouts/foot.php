@@ -149,7 +149,7 @@
             <div style="padding:20px; border-radius:10px; min-height:320px; ">
 
 
-                <form action="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/index4.php?page=contact&lang=<?= htmlspecialchars($lang ?? '', ENT_QUOTES) ?>" method="post" id="regform2" data-alert="<?= htmlspecialchars($_ban_can_nhap_thong_tin ?? '', ENT_QUOTES) ?>" data-captcha ="<?= htmlspecialchars($_captcha_invalid ?? '', ENT_QUOTES) ?>" data-success="<?= htmlspecialchars($_thong_tin_lien_he ?? '', ENT_QUOTES) ?>" data-redirect="/contact-success/" >
+                <form action="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/contact/submit" method="post" id="regform2" data-alert="<?= htmlspecialchars($_ban_can_nhap_thong_tin ?? '', ENT_QUOTES) ?>" data-captcha ="<?= htmlspecialchars($_captcha_invalid ?? '', ENT_QUOTES) ?>" data-success="<?= htmlspecialchars($_thong_tin_lien_he ?? '', ENT_QUOTES) ?>" data-redirect="/contact-success/" >
 
                     <input type="hidden"  name="code" value="save" />
 
@@ -200,7 +200,7 @@
             <div style="padding:20px; border-radius:10px; min-height:320px; ">
 
 
-                <form action="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/index4.php?page=contact&lang=<?= htmlspecialchars($lang ?? '', ENT_QUOTES) ?>" method="post" id="regform"
+                <form action="<?= htmlspecialchars($dir_path ?? '', ENT_QUOTES) ?>/contact/submit" method="post" id="regform"
                     data-alert="<?= htmlspecialchars($_ban_can_nhap_thong_tin ?? '', ENT_QUOTES) ?>" data-captcha="<?= htmlspecialchars($_captcha_invalid ?? '', ENT_QUOTES) ?>"
                     data-success="<?= htmlspecialchars($_thong_tin_lien_he ?? '', ENT_QUOTES) ?>" data-redirect="/contact-success/">
 

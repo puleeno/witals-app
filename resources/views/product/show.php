@@ -159,7 +159,7 @@
             <script>
                 $("#voucher").change(function () {
                     $(".voucher_value").load(
-                        "/index4.php?page=ajaxprovider&code=checkVoucher&idcat=<?= (int)($idcat ?? 0) ?>&v=" +
+                        "/api/voucher/check?idcat=<?= (int)($idcat ?? 0) ?>&v=" +
                             $(this).val()
                     );
                     linkcart();

@@ -24,6 +24,26 @@ class ContactController extends AbstractController
     ) {
     }
 
+    /**
+     * GET /lien-he — trang liên hệ (thay legacy contact.php + contact.htm).
+     */
+    public function page(Request $request): Response
+    {
+        $cat = null;
+        try {
+            $rows = $this->dbal->database()->select()->from('category')
+                ->where('url', 'lien-he/')->limit(1)->fetchAll();
+            $cat = $rows[0] ?? null;
+        } catch (\Throwable) {
+            $cat = null;
+        }
+
+        return Response::html($this->render('contact/page', [
+            'cat'        => $cat,
+            'page_title' => (string) ($cat['name'] ?? 'Liên hệ'),
+        ]));
+    }
+
     public function submit(Request $request): Response
     {
         $input = $request->input() ?? [];
@@ -89,5 +109,17 @@ class ContactController extends AbstractController
         $override = $this->app->config('database.tables.contact');
 
         return is_string($override) && $override !== '' ? $override : 'contact';
+    }
+
+    /** @param array<string, mixed> $data */
+    private function render(string $view, array $data): string
+    {
+        $factory = $this->app->make(\Witals\Framework\Contracts\View\Factory::class);
+        $site = $this->app->make(\App\Foundation\Site\SiteContext::class)->build();
+        $base = array_merge($site, $data);
+
+        return $factory->make('layouts/head', $base)->render()
+            . $factory->make($view, $base)->render()
+            . $factory->make('layouts/foot', $base)->render();
     }
 }

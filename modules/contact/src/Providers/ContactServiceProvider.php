@@ -21,6 +21,8 @@ class ContactServiceProvider extends ServiceProvider
     {
         $router = $this->app->make(RouterInterface::class);
         $router->post('/contact/submit', [ContactController::class, 'submit']);
+        $router->get('/lien-he', [ContactController::class, 'page']);
+        $router->get('/lib/imagesercurity.php', [\Modules\Contact\Controllers\CaptchaController::class, 'image']);
 
         $events = $this->app->make(EventDispatcherInterface::class);
         $events->listen(ContactSubmitted::class, [new SendContactMail($this->app), 'handle']);
